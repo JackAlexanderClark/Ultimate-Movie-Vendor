@@ -88,12 +88,43 @@ def submit_dvd_review():
         )
         db.session.add(dvd_review)          # add to database
         db.session.commit()                 # commit
-        return redirect('/')#
+        return redirect('/')
 
-# import function from scripts.py to delete a dvd record
-@app.route('/')
-def delete_dvd():
+# update and send id
+@app.route('/update_dvd/<int:id>', methods=["GET", "POST"])
+def update_dvd(id):
+    dvd = Dvd.query.filter_by(id=id).first()
+    if request.method == "GET":
+        return render_template("add_dvd.html", dvd=dvd)
+    if request.method == "POST":
+        dvd.name = request.form.get("name")
+        dvd.description = request.form.get("description")
+        dvd.price = request.form.get("price")
+        dvd.quantity = request.form.get("quantity")
+        dvd.genre = request.form.get("genre")
+        file = request.files["image"]
 
+        # if wish to keep same image, check if user submits new file
+        if file:
+            extension = os.path.splitext(file.filename)[1]
+            image_name = str(uuid.uuid4()) + extension
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+        else:
+            image_name = dvd.image
+
+        dvd.image = image_name
+
+        db.session.commit()
+        return redirect("/")
+
+@app.route('/delete_dvd/<int:id>', methods=["GET"])
+def delete_dvd(id):
+    dvd = Dvd.query.filter_by(id=id).first()
+    db.session.delete(dvd)
+    db.session.commit()
+
+    # return a delete successful pop up
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run()
