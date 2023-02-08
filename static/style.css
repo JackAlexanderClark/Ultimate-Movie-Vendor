@@ -1,0 +1,42 @@
+/* styling for dashboard and submission forms */
+* {
+    font-family: Century;
+}
+
+.titles {
+    text-decoration: underline;
+    color: green;
+}
+
+/* style dvd images for dashboard */
+#imageCard {
+    padding: 5px;
+    height: 200px;
+    width: 200px;
+    border: 10px black;
+}
+
+#deleteBtn {
+    float:right;
+    background-color: red;
+    color: white;
+}
+
+#updateBtn {
+    float:right;
+    background-color: yellow;
+    color: white;
+}
+
+
+#dashboard {
+    margin: auto;
+    width: 50%;
+}
+
+#dashboardLogo {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    width: 50%;
+}

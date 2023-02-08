@@ -1,0 +1,40 @@
+{% include 'header.html'%}                        <!-- include header as already has inherited main -->
+{% block body %}
+<br>
+    <!-- dashboard logo -->
+    <div class="row" id="dashboard">
+        <div class="container col-md-12">
+            <h1>Your Movie Dashboard</h1>
+            <img src="static/images/DVD logo.png" id="dashboardLogo">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container">
+    <!-- for loop to loop over db dvd objects -->
+                  {% for dvd in dvds %}
+                  <div class="row">
+                      <!-- give padding to each card -->
+                      <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
+                        <div class="card">
+                            <!-- two curly brackets display db -->
+                          <img class="card-img-top" src="static/images/{{ dvd.image }}" alt="Card image cap" id="imageCard">
+                            <div class="card-body">
+                                <h5 class="card-title"><span class="titles">Name:</span> {{ dvd.name }}</h5>
+                                <p class="card-text"><span class="titles">Description:</span> {{ dvd.description }}</p>
+                                <p class="card-text"><span class="titles">Price:</span> £{{ dvd.price }}0</p>
+                                <p class="card-text"><span class="titles">Genre:</span> {{ dvd.genre }}</p>
+                                <p class="card-text"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
+                                <a href="dvd_review_register" class="btn btn-primary">Add a review</a>
+                                <button type="button" class="btn btn-warning">Update this DVD?</button>
+                                <button href="delete_dvd" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button>
+                              </div>
+                        </div>
+                           <!-- end for loop -->
+                          {% endfor %}
+                      </div>
+                </div>
+            </div>
+
+{% endblock %}
