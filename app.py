@@ -49,7 +49,7 @@ def register_user():
 @app.route('/add_dvd', methods=["GET", "POST"])
 def add_dvds():
     if request.method == "GET":
-        return render_template("add_dvd.html")
+        return render_template("add_dvd.html", dvd=False)
     if request.method == "POST":
         name = request.form.get("name")
         description = request.form.get("description")
@@ -75,16 +75,21 @@ def add_dvds():
 
 # submit users review for movies
 # need to fix and set up foreign keys
-@app.route('/dvd_review_register', methods=["GET", "POST"])
-def submit_dvd_review():
+@app.route('/add_dvd_review/<int:id>', methods=["GET", "POST"])
+def submit_dvd_review(id):
+    dvd = Dvd.query.filter_by(id=id).first()
+    # build authentication to pick the currently logged in and pass into the USer
+    user = User.query.first()
     if request.method == "GET":
-        return render_template("dvd_review_submit.html")
+        return render_template("dvd_review_submit.html", dvd=dvd, user=user)
     if request.method == "POST":
         review = request.form.get("review")
         rating = request.form.get("rating")
         dvd_review = DvdReview(
             review=review,
             rating=rating,
+            user_id=user.id,
+            dvd_id=dvd.id,
         )
         db.session.add(dvd_review)          # add to database
         db.session.commit()                 # commit
@@ -125,6 +130,13 @@ def delete_dvd(id):
 
     # return a delete successful pop up
     return redirect("/")
+
+@app.route('/reviews', methods=["GET"])
+def reviews():
+    reviews = DvdReview.query.all()
+    return render_template("view_dvd_reviews.html", reviews=reviews)
+
+# display the amount of gold stars on the DVD card
 
 if __name__ == '__main__':
     app.run()

@@ -6,6 +6,9 @@
         <div class="container col-md-12">
             <h1>Your Movie Dashboard</h1>
             <img src="static/images/DVD logo.png" id="dashboardLogo">
+            <br>
+            <p>Submit your DVD's you wish to trade and submit reviews and share with the community!</p>
+            <hr>
         </div>
     </div>
 
@@ -26,7 +29,8 @@
                                 <p class="card-text"><span class="titles">Price:</span> £{{ dvd.price }}0</p>
                                 <p class="card-text"><span class="titles">Genre:</span> {{ dvd.genre }}</p>
                                 <p class="card-text"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
-                                <a href="add_dvd_review/{{ dvd.id }}" class="btn btn-primary"><button>Add a review</a></button>
+                                <p class="card-text"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
+                                <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary">Add a review</button></a>
                                 <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning">Update this DVD?</button></a>
                                 <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
                               </div>

@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import backref
+from sqlalchemy.sql import func
 
 # using sql alchemy
 db = SQLAlchemy()
@@ -30,6 +31,7 @@ class Dvd(db.Model):
     quantity = db.Column(db.Integer())
     image = db.Column(db.String())                          # image will be a URL
     genre = db.Column(db.String(10))
+    created_date = db.Column(db.DateTime, default=func.now())       # get datetime for now
 
     def __init__(self, name, description, price, quantity, image, genre):
         self.name = name
@@ -49,11 +51,9 @@ class DvdReview(db.Model):
     review = db.Column(db.String())
     rating = db.Column(db.Integer())
 
-    def __init__(self, dvd_id, dvd, user_id, user, review, rating):
+    def __init__(self, dvd_id, user_id, review, rating):
         self.dvd_id = dvd_id
-        self.dvd = dvd
         self.user_id = user_id
-        self.user = user
         self.review = review
         self.rating = rating
 

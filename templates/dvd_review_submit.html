@@ -6,7 +6,19 @@
 
     <div class="container">
     <!-- how to add foreign keys to database -->
-        <form action="" method="POST">
+        <form action="" method="POST" >
+            <div class="form-group row">
+                <label for="firstname" class="col-sm-2 col-form-label">Name of DVD</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" id="inputEmail3" value="{{ dvd.name }}" required readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-sm-2 col-form-label">User</label>
+                <div class="col-sm-10">
+                    <input type="text" name="" class="form-control" id="inputEmail3" value="{{ user.firstname + ' ' + user.lastname }}" required readonly>
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="firstname" class="col-sm-2 col-form-label">Review</label>
                 <div class="col-sm-10">
