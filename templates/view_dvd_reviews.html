@@ -4,11 +4,15 @@
     <div class="container">
 
         {% for review in reviews %}
-        <div class="card" style="width: 18rem;">
-          <img src="http://127.0.0.1:5000/static/images/{{ review.dvd.image }}">
+        <div class="review-card" style="width: 30rem;">
+          <img id=review_image" src="http://127.0.0.1:5000/static/images/{{ review.dvd.image }}">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Review:{{  review.review }} Rating:{{ review.rating }}</li>
-
+            <li class="list-group-item"><b>Review:</b> {{  review.review }}</li>
+           <!-- for loop to iterate over number of stars -->
+            <li class="list-group-item"><b>Rating:</b> {% for i in range(review.rating)  %}
+                 <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                {% endfor %}
+            </li>
           </ul>
         </div>
     {% endfor %}

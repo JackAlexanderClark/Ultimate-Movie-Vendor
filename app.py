@@ -131,10 +131,16 @@ def delete_dvd(id):
     # return a delete successful pop up
     return redirect("/")
 
+# display all reviews
 @app.route('/reviews', methods=["GET"])
 def reviews():
     reviews = DvdReview.query.all()
     return render_template("view_dvd_reviews.html", reviews=reviews)
+
+# help page to illustrate how to use the app for users
+@app.route('/help', methods=["GET"])
+def help():
+    return render_template("help.html")
 
 # display the amount of gold stars on the DVD card
 
