@@ -4,8 +4,6 @@ import uuid
 from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
 
-
-
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://jack_movie:4576@localhost:5432/movie"       # connect to db with me as owner
 # tell flask where we want to upload images
@@ -141,6 +139,12 @@ def reviews():
 @app.route('/help', methods=["GET"])
 def help():
     return render_template("help.html")
+
+@app.route('/credits', methods=["GET"])
+def credits():
+    return render_template("credits.html")
+
+
 
 # display the amount of gold stars on the DVD card
 
