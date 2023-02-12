@@ -6,6 +6,7 @@
 .titles {
     text-decoration: underline;
     color: green;
+    text-transform: uppercase;
 }
 
 /* style dvd images for dashboard */
@@ -45,6 +46,13 @@
 
 #dashboard_title {
     text-decoration: underline;
+    text-align: center;
+    margin: 0;
+}
+
+#order_btn {
+    margin: 0;
+    text-align: center;
 }
 
 #gold_star {

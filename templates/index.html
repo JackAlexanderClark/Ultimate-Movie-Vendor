@@ -5,9 +5,12 @@
     <div class="row" id="dashboard">
         <div class="container col-md-12">
             <h1 id="dashboard_title">Your Movie Dashboard</h1>
+            <p>Submit your DVD's you wish to trade and submit reviews and share with the community!</p>
             <img src="static/images/DVD logo.png" id="dashboardLogo">
             <br>
-            <div class="dropdown">
+            <br>
+            <div class="dropdown" id="order_btn">
+              <!-- order by button -->
               <button class="dropdown-toggle btn btn-info btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Order By
               </button>
@@ -17,9 +20,8 @@
                     <a class="dropdown-item" href="?sort=lowest_rating">Order By the Lowest Rating</a>
               </div>
             </div>
-            <p>Submit your DVD's you wish to trade and submit reviews and share with the community!</p>
             <hr>
-            <!-- order by button -->
+
 
         </div>
     </div>
@@ -29,19 +31,21 @@
     <div class="container">
     <!-- for loop to loop over db dvd objects -->
                   {% for dvd in dvds %}
-                  <div class="row">
+                  <div class="row" class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                       <!-- give padding to each card -->
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                         <div class="card">
-                          <img class="card-img-top" src="static/images/{{ dvd.image }}" alt="Card image cap" id="imageCard">
+                          <div class="text-center">
+                            <img class="card-img-top" src="static/images/{{ dvd.image }}" alt="Card image cap" id="imageCard">
+                          </div>
                             <div class="card-body">
-                                <h5 class="card-title"><span class="titles">Name:</span> {{ dvd.name }}</h5>
-                                <p class="card-text"><span class="titles">Description:</span> {{ dvd.description }}</p>
-                                <p class="card-text"><span class="titles">Price:</span> £{{ dvd.price }}0</p>
-                                <p class="card-text"><span class="titles">Genre:</span> {{ dvd.genre }}</p>
-                                <p class="card-text"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
-                                <p class="card-text"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
-                                <p class="card-text"><span class="titles">Rating:</span>
+                                <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
+                                <p class="card-text text-center"><span class="titles">Description:</span> {{ dvd.description }}</p>
+                                <p class="card-text text-center"><span class="titles">Price:</span> £{{ dvd.price }}0</p>
+                                <p class="card-text text-center"><span class="titles">Genre:</span> {{ dvd.genre }}</p>
+                                <p class="card-text text-center"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
+                                <p class="card-text text-center"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
+                                <p class="card-text text-center"><span class="titles">Rating:</span>
                                     {% if dvd.dvd.rating == 1 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
                                     {% elif dvd.dvd.rating == 2 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
                                     {% elif dvd.dvd.rating == 3 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
@@ -55,11 +59,11 @@
                                 <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg">Update this DVD?</button></a>
                                 <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
                               </div>
-                        </div>
                            <!-- end for loop -->
                           {% endfor %}
                       </div>
                 </div>
+        </div>
     </div>
 
 {% endblock %}
