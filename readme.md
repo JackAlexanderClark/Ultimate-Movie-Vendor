@@ -12,3 +12,11 @@
 <li>Users will be able to add a DVD, update the DVD and delete it from their dashboard.</li>
 <li>The dashboards will function as the primary display for their catalogue of DVDs and their respective reviews.</li>
 </ul>
+
+
+<h3>2. Data Models</h3>
+<ul>
+    <li>The app is based around 3 principles the "user", the "dvd" a user can own and a "dvd review" a user can write about a dvd.</li>
+    <li>This is intrinsic to the business logic of the app.</li>
+</ul>
+<img src="static/images/ERD diagram of tables.jpg">

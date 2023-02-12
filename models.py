@@ -31,7 +31,7 @@ class Dvd(db.Model):
     quantity = db.Column(db.Integer())
     image = db.Column(db.String())                          # image will be a URL
     genre = db.Column(db.String(10))
-    created_date = db.Column(db.DateTime, default=func.now())       # get datetime for now
+    created_date = db.Column(db.Date, default=func.now())       # get datetime for now
 
     def __init__(self, name, description, price, quantity, image, genre):
         self.name = name

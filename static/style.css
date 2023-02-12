@@ -11,8 +11,8 @@
 /* style dvd images for dashboard */
 #imageCard {
     padding: 5px;
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
     border: 10px black;
 }
 
@@ -37,9 +37,14 @@
 #dashboardLogo {
     height: 200px;
     width: 200px;
-    margin: auto;
     width: 50%;
     text-align: center;
+    margin: auto;
+    display: block;
+}
+
+#dashboard_title {
+    text-decoration: underline;
 }
 
 #gold_star {

@@ -3,6 +3,7 @@ import uuid
 
 from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
+from helper import sort_dvd
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://jack_movie:4576@localhost:5432/movie"       # connect to db with me as owner
@@ -18,7 +19,11 @@ def create_tables():
 @app.route('/')
 def homepage():  # put application's code here
     # tell index.html we will receive object dvd_reviews that needs to be looped over
-    dvds = Dvd.query.all()              # query db call all dvd
+    sort_param = request.args.get("sort")
+    dvds = Dvd.query.all()  # query db call all dvd
+    if sort_param:
+        dvds = sort_dvd(Dvd, sort_param)
+
     return render_template("index.html", dvds=dvds)
 
 # get user information and store in database
@@ -107,7 +112,7 @@ def update_dvd(id):
         dvd.genre = request.form.get("genre")
         file = request.files["image"]
 
-        # if wish to keep same image, check if user submits new file
+        # if user wishes to keep the same image, check if user submits new file
         if file:
             extension = os.path.splitext(file.filename)[1]
             image_name = str(uuid.uuid4()) + extension
