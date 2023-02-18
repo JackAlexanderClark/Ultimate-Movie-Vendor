@@ -150,9 +150,7 @@ def credits():
     return render_template("credits.html")
 
 
-
 # display the amount of gold stars on the DVD card
-
 if __name__ == '__main__':
     app.run()
 

@@ -6,8 +6,7 @@
         <div class="container col-md-12">
             <h1 id="dashboard_title">Your Movie Dashboard</h1>
             <p>Submit your DVD's you wish to trade and submit reviews and share with the community!</p>
-            <img src="static/images/DVD logo.png" id="dashboardLogo">
-            <br>
+            <p>Create a database to store all your DVDs and reviews as you collect!</p>
             <br>
             <div class="dropdown" id="order_btn">
               <!-- order by button -->
@@ -21,23 +20,21 @@
               </div>
             </div>
             <hr>
-
-
         </div>
     </div>
 
     <br>
 
-    <div class="container">
     <!-- for loop to loop over db dvd objects -->
                   {% for dvd in dvds %}
-                  <div class="row" class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
+                  <div class="container" style="border: 10px black">
+                      <div class="row" class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                       <!-- give padding to each card -->
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                         <div class="card">
-                          <div class="text-center">
-                            <img class="card-img-top" src="static/images/{{ dvd.image }}" alt="Card image cap" id="imageCard">
-                          </div>
+                              <div class="text-center">
+                                <img class="card-img-top" src="static/images/{{ dvd.image }}" alt="Card image cap" id="imageCard">
+                              </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
                                 <p class="card-text text-center"><span class="titles">Description:</span> {{ dvd.description }}</p>
@@ -59,11 +56,12 @@
                                 <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg">Update this DVD?</button></a>
                                 <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
                               </div>
-                           <!-- end for loop -->
-                          {% endfor %}
-                      </div>
+                            </div>
+                        </div>
                 </div>
-        </div>
-    </div>
+            </div>
+            <!-- end for loop -->
+            {% endfor %}
+
 
 {% endblock %}
