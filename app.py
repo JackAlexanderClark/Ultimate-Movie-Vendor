@@ -149,6 +149,10 @@ def help():
 def credits():
     return render_template("credits.html")
 
+@app.route('/login', methods=["GET"])
+def login():
+    return render_template("login_page.html")
+
 
 # display the amount of gold stars on the DVD card
 if __name__ == '__main__':
