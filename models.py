@@ -22,6 +22,18 @@ class User(db.Model):
         self.country = country
         self.password = password
 
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return str(self.id)
+
 class Dvd(db.Model):
     __tablename__ = "dvd"
     id = db.Column(db.Integer, primary_key = True)

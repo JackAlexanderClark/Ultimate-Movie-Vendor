@@ -1,22 +1,31 @@
 import os
 import uuid
 
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
+from flask_login import LoginManager, login_required, login_user, logout_user
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://jack_movie:4576@localhost:5432/movie"       # connect to db with me as owner
+load_dotenv()
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
 # tell flask where we want to upload images
 app.config["UPLOAD_FOLDER"] = "static/images"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 # initialise the app and connect to the database
 db.init_app(app)
+# initialise login manager
+login_manager = LoginManager()
+login_manager.login_view = "sign_in"
+login_manager.init_app(app)
 
 @app.before_request
 def create_tables():
     db.create_all()
 
 @app.route('/')
+@login_required
 def homepage():  # put application's code here
     # tell index.html we will receive object dvd_reviews that needs to be looped over
     sort_param = request.args.get("sort")
@@ -50,6 +59,7 @@ def register_user():
 
 # add movies into database
 @app.route('/add_dvd', methods=["GET", "POST"])
+@login_required
 def add_dvds():
     if request.method == "GET":
         return render_template("add_dvd.html", dvd=False)
@@ -79,6 +89,7 @@ def add_dvds():
 # submit users review for movies
 # need to fix and set up foreign keys
 @app.route('/add_dvd_review/<int:id>', methods=["GET", "POST"])
+@login_required
 def submit_dvd_review(id):
     dvd = Dvd.query.filter_by(id=id).first()
     # build authentication to pick the currently logged in and pass into the USer
@@ -100,6 +111,7 @@ def submit_dvd_review(id):
 
 # update and send id
 @app.route('/update_dvd/<int:id>', methods=["GET", "POST"])
+@login_required
 def update_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
     if request.method == "GET":
@@ -126,6 +138,7 @@ def update_dvd(id):
         return redirect("/")
 
 @app.route('/delete_dvd/<int:id>', methods=["GET"])
+@login_required
 def delete_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
     db.session.delete(dvd)
@@ -136,23 +149,45 @@ def delete_dvd(id):
 
 # display all reviews
 @app.route('/reviews', methods=["GET"])
+@login_required
 def reviews():
     reviews = DvdReview.query.all()
     return render_template("view_dvd_reviews.html", reviews=reviews)
 
 # help page to illustrate how to use the app for users
 @app.route('/help', methods=["GET"])
+@login_required
 def help():
     return render_template("help.html")
 
 @app.route('/credits', methods=["GET"])
+@login_required
 def credits():
     return render_template("credits.html")
 
-@app.route('/login', methods=["GET"])
-def login():
-    return render_template("login_page.html")
+@app.route('/sign_in', methods=["GET", "POST"])
+def sign_in():
+    if request.method == "GET":
+        return render_template("login_page.html", error=False)
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        user = User.query.filter_by(email=email, password=password).first()
+        if user:
+            login_user(user)
+            return redirect("/")
+        else:
+            return render_template("login_page.html", error=True)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter(User.id==int(user_id)).first()
+
+@app.route('/log_out')
+@login_required
+def log_out():
+    logout_user()
+    return redirect("/sign_in")
 
 # display the amount of gold stars on the DVD card
 if __name__ == '__main__':
