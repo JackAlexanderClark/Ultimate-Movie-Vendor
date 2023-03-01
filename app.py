@@ -183,13 +183,16 @@ def sign_in():
 def load_user(user_id):
     return User.query.filter(User.id==int(user_id)).first()
 
-@app.route('/log_out')
+@app.route('/log_out', methods=["GET"])
 @login_required
 def log_out():
     logout_user()
     return redirect("/sign_in")
 
-# display the amount of gold stars on the DVD card
+@app.route('/login', methods=['POST'])
+def login():
+    return render_template('login.html')
+
 if __name__ == '__main__':
     app.run()
 

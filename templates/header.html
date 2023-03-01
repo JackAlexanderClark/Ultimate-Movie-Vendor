@@ -21,18 +21,22 @@
           Extra
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="http://127.0.0.1:5000/sign_in">Login</a>
           <a class="dropdown-item" href="http://127.0.0.1:5000/help">Help</a>
           <a class="dropdown-item" href="http://127.0.0.1:5000/credits">Credits</a>
         </div>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <p>User: {{ current_user.email }}</p>
+        <small>Current User: {{ current_user.email }}</small>
+        &nbsp;
+        <form method="GET" action="{{ url_for('sign_in') }}">
+            <button class="btn btn-success" type="submit" name="sign_in">Login</button>
+        </form>
+        &nbsp;
+        <form method="GET" action="{{ url_for('log_out') }}">
+            <button type="submit" class="btn btn-danger">Log Out</button>
+        </form>
     </form>
-      <button>Log Out</button>
   </div>
 </nav>
 {% endblock %}
