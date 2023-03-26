@@ -41,5 +41,8 @@
     <li>An example query would be "ALTER TABLE child_table ADD CONSTRAINT child_fk FOREIGN KEY (parent_id) REFERENCES parent_table(id) ON DELETE CASCADE;"</li>
 
 
-    
+
 </ul>
+
+    Query:
+   ![image](https://user-images.githubusercontent.com/97599832/227782249-084ee5ce-761f-4f04-8174-d244941c3293.png)
