@@ -141,6 +141,7 @@ def update_dvd(id):
 @login_required
 def delete_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
+
     db.session.delete(dvd)
     db.session.commit()
 

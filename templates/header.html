@@ -27,7 +27,7 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-        <small>Current User: {{ current_user.email }}</small>
+        <small><b>Current User:</b> {{ current_user.email }}</small>
         &nbsp;
         <form method="GET" action="{{ url_for('sign_in') }}">
             <button class="btn btn-success" type="submit" name="sign_in">Login</button>

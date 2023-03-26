@@ -1,4 +1,10 @@
 // custom javascript
 function alertUser() {
-  alert("Are you sure you wish to delete this DVD?");
+
+  const confirmDelete = confirm("Are you sure you want to delete?");
+
+  if (!confirmDelete) {
+    // Cancel the button click
+    return false;
+  }
 }

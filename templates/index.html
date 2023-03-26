@@ -13,6 +13,13 @@
                 <div class="col-md-12">
                     <p style="text-align: center; font-weight: bold;">Total DVDs in your collection: {{ dvds|length }}</p>
                 </div>
+
+                {% if dvds|length == 0 %}
+                    <div class="row" class="col-md-6 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
+                        <h3><b>You have no DVD's in your collection, please add one using the above forms, or click help for more information.</b></h3>
+                    </div>
+                {% endif %}
+
             </div>
             <div class="dropdown" id="order_btn">
               <!-- order by button -->
@@ -31,7 +38,7 @@
 
     <br>
 
-    <!-- for loop to loop over db dvd objects -->
+        <!-- for loop to loop over db dvd objects -->
                   {% for dvd in dvds %}
                   <div class="container" style="border: 10px black">
                       <div class="row" class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">

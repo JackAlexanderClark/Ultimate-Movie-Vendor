@@ -6,7 +6,9 @@
     </div>
     <hr>
 
-    <div class="container" style="padding-top: 30px; border: 2px black">
+    <div class="container" style="padding-top: 30px; border: 2px black;">
+        <div class="row">
+        <div class="col-md-6 justify-content-center" style="text-align: center;">
         {% for review in reviews %}
         <div class="review-card" style="width: 30rem; border: 5px black">
          {% if review.dvd.name  %}
@@ -24,6 +26,8 @@
             </li>
           </ul>
         </div>
+        </div>
+            </div>
     {% endfor %}
 
     </div>
