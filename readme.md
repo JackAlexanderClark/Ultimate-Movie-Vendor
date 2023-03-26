@@ -20,3 +20,26 @@
     <li>This is intrinsic to the business logic of the app.</li>
 </ul>
 <img src="static/images/ERD diagram of tables.jpg">
+
+
+
+<h3>3. Features and Development Process</h3>
+
+<h3>4. Bugs and Testing</h3>
+<ul>
+        <li>While testing my application I came across a major bug when trying to delete a DVD. Because I have a second table called DVD_REVIEW, it has a foreign key                  relationship with the primary key of DVD, the "DVD ID". So if you create a DVD and then add a DVD review and then try to delete the DVD, the application                 will return a 500 critical error, as seen below: </li>
+        
+    [image](https://user-images.githubusercontent.com/97599832/227781558-7f0e1e34-2468-4eaa-ba16-33ded95038fe.png)
+    
+    <li>From here we are taken to the submit DVD review form. We can then add a review which will create a record in the DVD review table with a dvd id. </li>
+    <li>Attempting to delete will then error.</li>
+    
+    ![image](https://user-images.githubusercontent.com/97599832/227781676-a482c273-f966-4523-b5d0-855f36aafde7.png)
+    
+    <li>As you can see in the above URL, "/delete_dvd/9" we are passing in the dvd id - 9 to the delete dvd, however, we have no built in functionality to also delete the record from the child table of the parent DVD table.</li>
+    <li>The solution I decided upon came across during research, PostgreSQL has a feature called "cascading delete" which will delete the child records when the parent record is deleted if they have a foreign key relationship"</li>
+    <li>An example query would be "ALTER TABLE child_table ADD CONSTRAINT child_fk FOREIGN KEY (parent_id) REFERENCES parent_table(id) ON DELETE CASCADE;"</li>
+
+
+    
+</ul>
