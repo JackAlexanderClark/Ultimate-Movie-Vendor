@@ -26,12 +26,14 @@
 - To store the price per DVD.
 - To allow Users to review DVD's.
 
+
 - Users can compile a collection of DVD's and then order them based on their preferences such as from highest rating to lowest.
 - Users can also order their collection by the date they purchased the DVD.
 
 - This app could be the basis for communities such as movie and books clubs, who wish to remember and store all their reviews and favourite DVD's.
+![image](https://user-images.githubusercontent.com/97599832/228037084-5e519704-9511-4c7e-9821-b97b1432d9f9.png)
 
--
+
 
 <h3>3. Features and Development Process</h3>
 
