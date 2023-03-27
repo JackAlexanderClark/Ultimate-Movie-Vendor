@@ -31,13 +31,18 @@
 
 - This app could be the basis for communities such as movie and books clubs, who wish to remember and store all their reviews and favourite DVD's.
 
-
+-
 
 <h3>3. Features and Development Process</h3>
 
 - This app is built with Flask and Python, using templates.
 - These templates render HTML that has in-built python scripts that call from the PostgreSQL Database.
 - Users can input data straight into the forms and then manipulate the data around the domain of DVDs and Users.
+
+![image](https://user-images.githubusercontent.com/97599832/228033308-b57220f2-1862-490d-aeef-518e8aaa47c2.png)
+
+- If a user changes the inventory they can use the update button to change data on the DVD such as the quantity, they can also delete the DVD if it is no longer available.
+- Similarly, they can add a review to the particular DVD by using the add review button.
 
 <h3>4. Bugs and Testing</h3>
 
