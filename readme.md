@@ -21,6 +21,10 @@
 </ul>
 <img src="static/images/ERD diagram of tables.jpg">
 
+<h3> Business Goals </h3>
+- To allow a User to store the quantity of DVD's in their inventory for stock purposs.
+- To store the price per DVD.
+- To allow Users to review DVD's.
 
 
 <h3>3. Features and Development Process</h3>
