@@ -26,8 +26,18 @@
 - To store the price per DVD.
 - To allow Users to review DVD's.
 
+- Users can compile a collection of DVD's and then order them based on their preferences such as from highest rating to lowest.
+- Users can also order their collection by the date they purchased the DVD.
+
+- This app could be the basis for communities such as movie and books clubs, who wish to remember and store all their reviews and favourite DVD's.
+
+
 
 <h3>3. Features and Development Process</h3>
+
+- This app is built with Flask and Python, using templates.
+- These templates render HTML that has in-built python scripts that call from the PostgreSQL Database.
+- Users can input data straight into the forms and then manipulate the data around the domain of DVDs and Users.
 
 <h3>4. Bugs and Testing</h3>
 
