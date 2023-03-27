@@ -87,7 +87,6 @@ def add_dvds():
         return redirect('/')
 
 # submit users review for movies
-# need to fix and set up foreign keys
 @app.route('/add_dvd_review/<int:id>', methods=["GET", "POST"])
 @login_required
 def submit_dvd_review(id):
@@ -145,8 +144,20 @@ def delete_dvd(id):
     db.session.delete(dvd)
     db.session.commit()
 
-    # return a delete successful pop up
+    delete_dvd_review(id)
     return redirect("/")
+
+#THIS NEEDS FIXING CANNOT DELELTE REVIEWS WHEN A DVD IS DELETED
+@app.route('/delete_dvd_review/<int:id>', methods=["GET"])
+@login_required
+def delete_dvd_review(id):
+    dvd_reviews = DvdReview.query.filter_by(id=id).first()
+
+    db.session.delete(dvd_reviews)
+    db.session.commit()
+
+    return redirect("/")
+
 
 # display all reviews
 @app.route('/reviews', methods=["GET"])
