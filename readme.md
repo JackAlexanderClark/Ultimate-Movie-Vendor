@@ -37,6 +37,12 @@
 
 <h3>3. Features and Development Process</h3>
 
+<h4> Wireframes and Concepts: </h4>
+
+- Early on I want a DVD to be a self-contained object that could be looped over or iterated upon. It would contain all the information pertaining to each DVD and would then display on the dashboard in whatever ordered they are stored within the database.
+![image](https://user-images.githubusercontent.com/97599832/228220314-76894dcd-2492-4336-82fc-69f4c75070e0.png)
+
+
 - This app is built with Flask and Python, using templates.
 - These templates render HTML that has in-built python scripts that call from the PostgreSQL Database.
 - Users can input data straight into the forms and then manipulate the data around the domain of DVDs and Users.
