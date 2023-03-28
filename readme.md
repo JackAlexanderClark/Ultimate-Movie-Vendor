@@ -27,7 +27,30 @@
 - To allow Users to review DVD's.
 
 
+- Users can compile a collection of DVD's and then order them based on their preferences such as from highest rating to lowest.
+- Users can also order their collection by the date they purchased the DVD.
+
+- This app could be the basis for communities such as movie and books clubs, who wish to remember and store all their reviews and favourite DVD's.
+![image](https://user-images.githubusercontent.com/97599832/228037084-5e519704-9511-4c7e-9821-b97b1432d9f9.png)
+
+
+
 <h3>3. Features and Development Process</h3>
+
+<h4> Wireframes and Concepts: </h4>
+
+- Early on I want a DVD to be a self-contained object that could be looped over or iterated upon. It would contain all the information pertaining to each DVD and would then display on the dashboard in whatever ordered they are stored within the database.
+![image](https://user-images.githubusercontent.com/97599832/228220314-76894dcd-2492-4336-82fc-69f4c75070e0.png)
+
+
+- This app is built with Flask and Python, using templates.
+- These templates render HTML that has in-built python scripts that call from the PostgreSQL Database.
+- Users can input data straight into the forms and then manipulate the data around the domain of DVDs and Users.
+
+![image](https://user-images.githubusercontent.com/97599832/228033308-b57220f2-1862-490d-aeef-518e8aaa47c2.png)
+
+- If a user changes the inventory they can use the update button to change data on the DVD such as the quantity, they can also delete the DVD if it is no longer available.
+- Similarly, they can add a review to the particular DVD by using the add review button.
 
 <h3>4. Bugs and Testing</h3>
 
