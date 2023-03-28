@@ -1,20 +1,38 @@
 import os
 import uuid
-
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
 
+if os.path.exists(".env"):
+    import env  # noqa
+
 app = Flask(__name__)
 #load_dotenv()
 #app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
 # tell flask where we want to upload images
+
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["UPLOAD_FOLDER"] = "static/images"
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
+# initialise the app and connect to the database
+db.init_app(app)
+# initialise login manager
+login_manager = LoginManager()
+login_manager.login_view = "sign_in"
+login_manager.init_app(app)
 
+if os.environ.get("DEVELOPMENT") == "True":
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("POSTGRES_URL")  # local
+else:
+    uri = os.environ.get("DATABASE_URL")
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+    app.config["SQLALCHEMY_DATABASE_URI"] = uri  # heroku
 
+db = SQLAlchemy(app)
 
 # initialise the app and connect to the database
 db.init_app(app)
