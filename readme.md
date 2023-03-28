@@ -18,8 +18,15 @@
 <ul>
     <li>The app is based around 3 principles the "user", the "dvd" a user can own and a "dvd review" a user can write about a dvd.</li>
     <li>This is intrinsic to the business logic of the app.</li>
+    <li></li>
+    <li>As seen below, this ERD diagram shows the relationships between the database tables, we can see that the DVD_REVIEW references the primary key of DVD id.</li>
+    <li>Similarly we can see that the DVD_REVIEW references the primary key of user id from USER table.</li>
+    
 </ul>
 <img src="static/images/ERD diagram of tables.jpg">
+
+    <h3>What does this achieve?</h3>
+    <p>This means users can log into the App with an email and password and start straight away adding their DVD collection, they can review each DVD and then use CRUD (create, read, update, delete) each record to personalise their DVD collections</p>.
 
 <h3> Business Goals </h3>
 - To allow a User to store the quantity of DVD's in their inventory for stock purposs.
