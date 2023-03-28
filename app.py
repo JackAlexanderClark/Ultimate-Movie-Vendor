@@ -6,7 +6,7 @@ from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
 
-if os.path.exists(".env"):
+if os.path.exists("env.py"):
     import env  # noqa
 
 app = Flask(__name__)
@@ -35,7 +35,7 @@ else:
 db = SQLAlchemy(app)
 
 # initialise the app and connect to the database
-db.init_app(app)
+#db.init_app(app)
 # initialise login manager
 login_manager = LoginManager()
 login_manager.login_view = "sign_in"
