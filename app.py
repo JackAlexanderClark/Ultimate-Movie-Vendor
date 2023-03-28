@@ -8,11 +8,15 @@ from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
 
 app = Flask(__name__)
-load_dotenv()
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
+#load_dotenv()
+#app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
 # tell flask where we want to upload images
 app.config["UPLOAD_FOLDER"] = "static/images"
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
+
+
+
 # initialise the app and connect to the database
 db.init_app(app)
 # initialise login manager
