@@ -7,7 +7,7 @@ from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
 
 
-if os.path.exists(".env"):
+if os.path.exists("env.py"):
     import env  # noqa
 
 app = Flask(__name__)
