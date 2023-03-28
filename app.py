@@ -1,6 +1,5 @@
 import os
 import uuid
-import re
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
@@ -8,7 +7,7 @@ from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
 
 
-if os.path.exists("env.py"):
+if os.path.exists(".env"):
     import env  # noqa
 
 app = Flask(__name__)
@@ -36,14 +35,10 @@ else:
 
 
 
-# initialise the app and connect to the database
-#db.init_app(app)
 # initialise login manager
-login_manager = LoginManager()
-login_manager.login_view = "sign_in"
-login_manager.init_app(app)
-
+db.init_app(app)
 db = SQLAlchemy(app)
+
 @app.before_request
 def create_tables():
     db.create_all()
