@@ -19,6 +19,7 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["UPLOAD_FOLDER"] = "static/images"
 
 # initialise the app and connect to the database
+db.init_app(app)
 # initialise login manager
 login_manager = LoginManager()
 login_manager.login_view = "sign_in"
@@ -35,8 +36,6 @@ else:
 
 
 # initialise login manager
-db = SQLAlchemy(app)
-
 @app.before_request
 def create_tables():
     db.create_all()
