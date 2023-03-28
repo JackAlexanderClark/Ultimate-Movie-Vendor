@@ -1,7 +1,6 @@
 import os
 import uuid
 
-from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
