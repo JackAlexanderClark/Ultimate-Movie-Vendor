@@ -1,17 +1,19 @@
 import os
 import uuid
+import re
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
 
+
 if os.path.exists("env.py"):
     import env  # noqa
 
 app = Flask(__name__)
 #load_dotenv()
-#app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
 # tell flask where we want to upload images
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
@@ -32,7 +34,7 @@ else:
         uri = uri.replace("postgres://", "postgresql://", 1)
     app.config["SQLALCHEMY_DATABASE_URI"] = uri  # heroku
 
-db = SQLAlchemy(app)
+
 
 # initialise the app and connect to the database
 #db.init_app(app)
@@ -41,6 +43,7 @@ login_manager = LoginManager()
 login_manager.login_view = "sign_in"
 login_manager.init_app(app)
 
+db = SQLAlchemy(app)
 @app.before_request
 def create_tables():
     db.create_all()
@@ -214,7 +217,7 @@ def sign_in():
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.filter(User.id==int(user_id)).first()
+    return User.query.filter(User.id == int(user_id)).first()
 
 @app.route('/log_out', methods=["GET"])
 @login_required
