@@ -59,6 +59,7 @@
 - If a user changes the inventory they can use the update button to change data on the DVD such as the quantity, they can also delete the DVD if it is no longer available.
 - Similarly, they can add a review to the particular DVD by using the add review button.
 
+
 <h3>4. Bugs and Testing</h3>
 
      -While testing my application I came across a major bug when trying to delete a DVD. Because I have a second table called DVD_REVIEW, it has a foreign key                  relationship with the primary key of DVD, the "DVD ID". So if you create a DVD and then add a DVD review and then try to delete the DVD, the application                 will return a 500 critical error, as seen below:         
@@ -76,3 +77,8 @@
 
     Solution:
    ![image](https://user-images.githubusercontent.com/97599832/227782249-084ee5ce-761f-4f04-8174-d244941c3293.png)
+
+### Checking Code through Validators:
+### CSS w3 Schools Jigsaw:
+
+![image](https://user-images.githubusercontent.com/97599832/228552574-b6fe0e9c-2e27-44ad-8937-291d16f54fd4.png)
