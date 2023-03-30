@@ -71,7 +71,6 @@
                                     {% endif %}
                                     {{ dvd.dvd.rating }}
                                 </p>
-                            {{ url_for('help') }}
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
                                 <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg">Update this DVD?</button></a>
                                 <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
