@@ -166,17 +166,30 @@ def delete_dvd(id):
     return redirect("/")
 
 
-@app.route('/delete_dvd_review/<int:dvd_review_id>', methods=["GET"])
+@app.route('/delete_dvd_review/<int:id>', methods=["GET"])
 @login_required
-def delete_dvd_review(dvd_review_id):
+def delete_dvd_review(dvd_id):
     # delete DVD review FK relationship first
     # int(id)
-    dvd_reviews = DvdReview.query.filter_by(dvd_review_id=dvd_review_id).first()
+    dvd_reviews = DvdReview.query.filter_by(Dvd.id == int(dvd_id)).first() \
+                                                                    @ login_manager.user_loader
+
 
     db.session.delete(dvd_reviews)
     db.session.commit()
 
     return redirect("/")
+
+#def delete_record():
+ #   table1_id = request.json['table1_id']
+  #  table2_id = request.json['table2_id']
+   # record_to_delete = Table3.query.filter_by(table1_id=table1_id, table2_id=table2_id).first()
+    #if record_to_delete:
+     #   db.session.delete(record_to_delete)
+      #  db.session.commit()
+       # return 'Record deleted successfully'
+    #else:
+    #    return 'Record not found'
 
 
 # display all reviews
