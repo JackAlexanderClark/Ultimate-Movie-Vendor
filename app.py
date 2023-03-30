@@ -158,10 +158,8 @@ def update_dvd(id):
 @login_required
 def delete_dvd(id):
     # delete DVD review FK relationship first
-    dvd_reviews = DvdReview.query.filter_by(id=id).first()
     dvd = Dvd.query.filter_by(id=id).first()
 
-    db.session.delete(dvd_reviews)
     db.session.delete(dvd)
     db.session.commit()
 
@@ -170,9 +168,9 @@ def delete_dvd(id):
 
 @app.route('/delete_dvd_review/<int:id>', methods=["GET"])
 @login_required
-def delete_dvd_review(id):
+def delete_dvd_review(dvd_review_id):
     # delete DVD review FK relationship first
-    dvd_reviews = DvdReview.query.filter_by(id=id).first()
+    dvd_reviews = DvdReview.query.filter_by(dvd_review_id=dvd_review_id).first()
 
     db.session.delete(dvd_reviews)
     db.session.commit()
@@ -186,6 +184,7 @@ def delete_dvd_review(id):
 def reviews():
     reviews = DvdReview.query.all()
     dvd = Dvd.query.all()
+
     return render_template("view_dvd_reviews.html", dvd=dvd, reviews=reviews)
 
 # help page to illustrate how to use the app for users
