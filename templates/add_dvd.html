@@ -38,7 +38,7 @@
                                  <input class="form-control" name="image" type="file" id="formFile">
                                 <!-- display image -->
                                     {% if dvd.image %}
-                                        <img src="http://127.0.0.1:5000/static/images/{{ dvd.image }}">
+                                        <img src="{{ dvd.image }}">
                                     {% endif %}
                 </div>
             </div>

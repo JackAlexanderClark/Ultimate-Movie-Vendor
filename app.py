@@ -9,11 +9,11 @@ from flask_login import LoginManager, login_required, login_user, logout_user
 
 if os.path.exists("env.py"):
     import env  # noqa
-app = Flask(__name__)
-#load_dotenv()
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
-# tell flask where we want to upload images
 
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
+
+# tell flask where we want to upload images
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["UPLOAD_FOLDER"] = "static/images"
 
