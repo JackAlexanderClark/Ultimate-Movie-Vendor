@@ -184,7 +184,8 @@ def delete_dvd(id):
 @login_required
 def reviews():
     reviews = DvdReview.query.all()
-    return render_template("view_dvd_reviews.html", reviews=reviews)
+    dvd = Dvd.query.all()
+    return render_template("view_dvd_reviews.html", dvd=dvd, reviews=reviews)
 
 # help page to illustrate how to use the app for users
 @app.route('/help', methods=["GET"])
