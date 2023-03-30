@@ -124,7 +124,7 @@ def submit_dvd_review(id):
         )
         db.session.add(dvd_review)          # add to database
         db.session.commit()                 # commit
-        return redirect(url_for("/submit_dvd_review/<int:id>"))
+        return redirect(url_for("submit_dvd_review"))
         #return redirect('/')
 
 # update and send id
