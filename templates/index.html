@@ -53,7 +53,7 @@
                         <div class="card">
                               <div class="text-center">         <!-- before src="dvd.image" if doesn't work -->
                                   {% if dvd.image %}
-                              <img class="card-img-top" src="{{ url_for('static', filename='images/'+dvd.image ) }}" alt="Card image cap" id="imageCard">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='images/'+dvd.image ) }}" alt="Card image cap" id="imageCard">
                                   {% endif %}
                               </div>
                             <div class="card-body">
