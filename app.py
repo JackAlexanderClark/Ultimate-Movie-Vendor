@@ -112,7 +112,7 @@ def submit_dvd_review(id):
     # build authentication to pick the currently logged in and pass into the USer
     user = User.query.first()
     if request.method == "GET":
-        return render_template("dvd_review_submit.html", dvd=dvd, user=user)
+        return render_template("dvd_review_submit.html", id=id, dvd=dvd, user=user)
     if request.method == "POST":
         review = request.form.get("review")
         rating = request.form.get("rating")
