@@ -66,16 +66,16 @@
                                 <p class="card-text text-center"><span class="titles">Rating:</span>
                                 <i class="fa-solid fa-star"></i>
                                     {% if dvd.dvd.rating == 1 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 2 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 3 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 4 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 5 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                                        {% elif dvd.dvd.rating == 2 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
+                                        {% elif dvd.dvd.rating == 3 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
+                                        {% elif dvd.dvd.rating == 4 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
+                                        {% elif dvd.dvd.rating == 5 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
                                         {% else %} No DVD rating available.
                                     {% endif %}
                                     {{ dvd.dvd.rating }}
                                 </p>
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
-                                <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg">Update this DVD?</button></a>
+                                <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg" style="background-color: yellow;">Update this DVD?</button></a>
                                 <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
                               </div>
                             </div>
