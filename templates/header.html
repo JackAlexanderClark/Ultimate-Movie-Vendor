@@ -5,24 +5,24 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="http://127.0.0.1:5000/">Dashboard <i class="fa-sharp fa-solid fa-house"></i></a>
+        <a class="nav-link" href="{{ url_for('homepage') }}">Dashboard <i class="fa-sharp fa-solid fa-house"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://127.0.0.1:5000/user_register">User Registration Form <i class="fa-solid fa-user"></i></a>
+        <a class="nav-link" href="{{ url_for('user_register') }}">User Registration Form <i class="fa-solid fa-user"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://127.0.0.1:5000/add_dvd">Submit a DVD <i class="fa-sharp fa-solid fa-compact-disc"></i></a>
+        <a class="nav-link" href="{{ url_for('add_dvd') }}">Submit a DVD <i class="fa-sharp fa-solid fa-compact-disc"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://127.0.0.1:5000/reviews">View DVD Reviews<i class="fa-sharp fa-solid fa-compact-disc"></i></a>
+        <a class="nav-link" href="{{ url_for('reviews') }}">View DVD Reviews<i class="fa-sharp fa-solid fa-compact-disc"></i></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Extra
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="http://127.0.0.1:5000/help">Help</a>
-          <a class="dropdown-item" href="http://127.0.0.1:5000/credits">Credits</a>
+          <a class="dropdown-item" href="{{ url_for('help') }}">Help</a>
+          <a class="dropdown-item" href="{{ url_for('credits') }}">Credits</a>
         </div>
       </li>
     </ul>
