@@ -6,7 +6,10 @@
 
     <div class="container">
     <!-- how to add foreign keys to database -->
-        <form  method="POST"  action="{{ url_for('submit_dvd_review', id=id) }}">
+        <form  method="POST"  action="{{ url_for('submit_dvd_review', review=review,
+            rating=rating,
+            user_id=user.id,
+            dvd_id=dvd.id) }}">
             <div class="form-group row">
                 <label for="firstname" class="col-sm-2 col-form-label">Name of DVD</label>
                 <div class="col-sm-10">
