@@ -17,6 +17,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connec
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["UPLOAD_FOLDER"] = "static/images"
 
+
+
 # initialise the app and connect to the database
 
 # initialise login manager
@@ -130,7 +132,7 @@ def submit_dvd_review(id):
 def update_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
     if request.method == "GET":
-        return render_template("add_dvd.html", dvd=dvd)
+        return render_template("edit_dvd.html", dvd=dvd)
     if request.method == "POST":
         dvd.name = request.form.get("name")
         dvd.description = request.form.get("description")
