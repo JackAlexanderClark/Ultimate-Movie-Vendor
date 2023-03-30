@@ -124,7 +124,6 @@ def submit_dvd_review(id):
         )
         db.session.add(dvd_review)          # add to database
         db.session.commit()                 # commit
-        #return redirect(url_for("submit_dvd_review/<int:id>"))
         return redirect('/')
 
 # update and send id
@@ -133,7 +132,7 @@ def submit_dvd_review(id):
 def update_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
     if request.method == "GET":
-        return render_template("edit_dvd.html", dvd=dvd)
+        return render_template("edit_dvd.html", id=id, dvd=dvd)
     if request.method == "POST":
         dvd.name = request.form.get("name")
         dvd.description = request.form.get("description")
