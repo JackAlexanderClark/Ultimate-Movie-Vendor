@@ -171,9 +171,7 @@ def delete_dvd(id):
 def delete_dvd_review(dvd_id):
     # delete DVD review FK relationship first
     # int(id)
-    dvd_reviews = DvdReview.query.filter_by(Dvd.id == int(dvd_id)).first() \
-                                                                    @ login_manager.user_loader
-
+    dvd_reviews = DvdReview.query.filter_by(Dvd.id == int(dvd_id)).first()
 
     db.session.delete(dvd_reviews)
     db.session.commit()
