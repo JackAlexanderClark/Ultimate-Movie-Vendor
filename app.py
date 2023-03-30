@@ -158,8 +158,11 @@ def update_dvd(id):
 @app.route('/delete_dvd/<int:id>', methods=["GET"])
 @login_required
 def delete_dvd(id):
+    # delete DVD review FK relationship first
+    dvd_reviews = DvdReview.query.filter_by(id=id).first()
     dvd = Dvd.query.filter_by(id=id).first()
 
+    db.session.delete(dvd_reviews)
     db.session.delete(dvd)
     db.session.commit()
 

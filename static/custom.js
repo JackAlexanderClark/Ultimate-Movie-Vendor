@@ -1,7 +1,7 @@
 // custom javascript
 function alertUser() {
 
-  const confirmDelete = confirm("Are you sure you want to delete?");
+  const confirmDelete = confirm("Are you sure you want to delete this DVD?");
 
   if (!confirmDelete) {
     // Cancel the button click
