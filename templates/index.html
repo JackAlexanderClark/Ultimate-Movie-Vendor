@@ -52,7 +52,9 @@
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                         <div class="card">
                               <div class="text-center">         <!-- before src="dvd.image" if doesn't work -->
+                                  {% if dvd.image %}
                               <img class="card-img-top" src="{{ url_for('static', filename='images/'+dvd.image ) }}" alt="Card image cap" id="imageCard">
+                                  {% endif %}
                               </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
@@ -62,6 +64,7 @@
                                 <p class="card-text text-center"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
                                 <p class="card-text text-center"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
                                 <p class="card-text text-center"><span class="titles">Rating:</span>
+                                <i class="fa-solid fa-star"></i>
                                     {% if dvd.dvd.rating == 1 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
                                     {% elif dvd.dvd.rating == 2 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
                                     {% elif dvd.dvd.rating == 3 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
