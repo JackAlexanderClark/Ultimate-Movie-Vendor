@@ -52,9 +52,7 @@
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                         <div class="card">
                               <div class="text-center">         <!-- before src="dvd.image" if doesn't work -->
-                                  {% if dvd.image %}
                                         <img src="static/images/{{ dvd.image }}">
-                                  {% endif %}
                               </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
@@ -75,7 +73,7 @@
                                     {{ dvd.dvd.rating }}
                                 </p>
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
-                                <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg" style="background-color: yellow;">Update this DVD?</button></a>
+                                <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">Update this DVD?</button></a>
                                 <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
                               </div>
                             </div>
