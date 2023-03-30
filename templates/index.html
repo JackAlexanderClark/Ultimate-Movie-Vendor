@@ -2,6 +2,12 @@
 {% block body %}
 <div id="page_header"></div>
 <br>
+    <style>
+    .gold_star {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
     <!-- dashboard logo -->
     <div class="row" id="dashboard">
         <div class="container col-md-12">
@@ -46,7 +52,7 @@
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                         <div class="card">
                               <div class="text-center">
-                                <img class="card-img-top" src="static/images/{{ dvd.image }}" alt="Card image cap" id="imageCard">
+                                <img class="card-img-top" src="{{ dvd.image }}" alt="Card image cap" id="imageCard">
                               </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
@@ -56,11 +62,11 @@
                                 <p class="card-text text-center"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
                                 <p class="card-text text-center"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
                                 <p class="card-text text-center"><span class="titles">Rating:</span>
-                                    {% if dvd.dvd.rating == 1 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                    {% elif dvd.dvd.rating == 2 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                    {% elif dvd.dvd.rating == 3 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                    {% elif dvd.dvd.rating == 4 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
-                                    {% elif dvd.dvd.rating == 5 %} <img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img id="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                                    {% if dvd.dvd.rating == 1 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                                    {% elif dvd.dvd.rating == 2 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                                    {% elif dvd.dvd.rating == 3 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                                    {% elif dvd.dvd.rating == 4 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                                    {% elif dvd.dvd.rating == 5 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg"><img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
                                     {% else %} No DVD rating available.
                                     {% endif %}
                                     {{ dvd.dvd.rating }}
