@@ -9,7 +9,6 @@ from flask_login import LoginManager, login_required, login_user, logout_user
 
 if os.path.exists("env.py"):
     import env  # noqa
-
 app = Flask(__name__)
 #load_dotenv()
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
@@ -19,11 +18,12 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["UPLOAD_FOLDER"] = "static/images"
 
 # initialise the app and connect to the database
-db.init_app(app)
+
 # initialise login manager
 login_manager = LoginManager()
 login_manager.login_view = "sign_in"
 login_manager.init_app(app)
+db.init_app(app)
 
 if os.environ.get("DEVELOPMENT") == "True":
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("POSTGRES_URL")  # local
