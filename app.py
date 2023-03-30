@@ -166,10 +166,11 @@ def delete_dvd(id):
     return redirect("/")
 
 
-@app.route('/delete_dvd_review/<int:id>', methods=["GET"])
+@app.route('/delete_dvd_review/<int:dvd_review_id>', methods=["GET"])
 @login_required
 def delete_dvd_review(dvd_review_id):
     # delete DVD review FK relationship first
+    # int(id)
     dvd_reviews = DvdReview.query.filter_by(dvd_review_id=dvd_review_id).first()
 
     db.session.delete(dvd_reviews)
