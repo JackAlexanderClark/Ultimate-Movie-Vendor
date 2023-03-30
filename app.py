@@ -1,7 +1,7 @@
 import os
 import uuid
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
@@ -124,7 +124,8 @@ def submit_dvd_review(id):
         )
         db.session.add(dvd_review)          # add to database
         db.session.commit()                 # commit
-        return redirect('/')
+        return redirect(url_for("submit_dvd_review"))
+        #return redirect('/')
 
 # update and send id
 @app.route('/update_dvd/<int:id>', methods=["GET", "POST"])
