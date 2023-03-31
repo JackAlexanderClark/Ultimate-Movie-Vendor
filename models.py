@@ -56,7 +56,7 @@ class Dvd(db.Model):
 class DvdReview(db.Model):
     __tablename__ = "dvd_review"
     id = db.Column(db.Integer, primary_key=True)
-    dvd_id = db.Column(db.Integer, db.ForeignKey("dvd.id"))
+    dvd_id = db.Column(db.Integer, db.ForeignKey("dvd.id", ondelete='CASCADE'))
     dvd = db.relationship("Dvd", backref=backref("dvd", uselist=False))             # relation of foreign key to dvd table
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User", backref=backref("user", uselist=False))          # related to USER table
