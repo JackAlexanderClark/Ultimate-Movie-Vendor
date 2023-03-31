@@ -40,9 +40,7 @@
               <input type="text" id="dvd_id" name="dvd_id">
               <input type="submit" value="Delete Reviews">
             </form>
-            <form method="POST" action="{{ url_for('delete_dvd_review', id=id) }}">
-                <a href="delete_dvd_review/{{ review.dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUserReview()" id="deleteBtn" name="deleteBtn">Delete this Review?</button></a>
-            </form>
+
         </div>
         </div>
             </div>
