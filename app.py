@@ -12,7 +12,7 @@ if os.path.exists("env.py"):
     import env  # noqa
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
+#app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
 
 # tell flask where we want to upload images
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
