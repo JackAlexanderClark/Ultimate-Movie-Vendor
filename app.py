@@ -170,7 +170,7 @@ def delete_dvd(id):
 @login_required
 @app.route('/dvd_reviews/delete_by_dvd_id', methods=['POST'])
 def delete_dvd_reviews_by_dvd_id():
-    dvd_id = request.form['dvd_id']
+    dvd_id = request.form.get('dvd_id')
     dvds = Dvd.query.all()  # query db call all dvd
     reviews = DvdReview.query.all()
     if dvd_id is not None:
@@ -184,7 +184,6 @@ def delete_dvd_reviews_by_dvd_id():
     # do i need to enter id into text input instead of button?
     else:
         return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")
-
 
 
 
