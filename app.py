@@ -7,7 +7,6 @@ from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
 
-
 if os.path.exists("env.py"):
     import env  # noqa
 
@@ -158,17 +157,17 @@ def update_dvd(id):
 @app.route('/delete_dvd/<int:id>', methods=["GET"])
 @login_required
 def delete_dvd(id):
+
     dvd = Dvd.query.filter_by(id=id).first()
 
     try:
         db.session.delete(dvd)
         db.session.commit()
+        return redirect("/")
 
     except Exception as e:
         db.session.rollback()
-        return render_template("view_dvd_reviews.html", dvd=dvd, error=f"An error occurred while deleting this DVD review: {e}")
-
-    return redirect("/")
+        return render_template("view_dvd_reviews.html", dvd=dvd, error=f"An error occurred while deleting this DVD: {e}")
 
 
 @login_required
