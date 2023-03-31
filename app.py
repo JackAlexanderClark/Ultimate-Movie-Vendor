@@ -161,8 +161,6 @@ def delete_dvd(id):
 
     dvd = Dvd.query.filter_by(id=id).first()
 
-    delete_dvd_reviews_by_dvd_id(id)
-
     db.session.delete(dvd)
     db.session.commit()
 
@@ -171,14 +169,12 @@ def delete_dvd(id):
 
 @login_required
 @app.route('/dvd_reviews/delete_by_dvd_id', methods=['POST'])
-def delete_dvd_reviews_by_dvd_id(id):
-    if id:
-        dvd_id = id
-    else:
-        dvd_id = request.form.get('dvd_id')
+def delete_dvd_reviews_by_dvd_id():
 
+    dvd_id = request.form.get('dvd_id')
     dvds = Dvd.query.all()  # query db call all dvd
     reviews = DvdReview.query.all()
+
     if dvd_id is not None:
         try:
             db.session.execute(text("DELETE FROM dvd_review WHERE dvd_id = :dvd_id"), {"dvd_id": dvd_id})
