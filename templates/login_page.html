@@ -27,8 +27,8 @@
           <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
           <label for="inputPassword" class="sr-only">Password</label>
           <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-
-            <a href="{{ url_for('user_register') }}"><h2>Need to create a new account?</h2></a>
+            <br>
+            <a href="{{ url_for('register_user') }}"><h2>Need to create a new account?</h2></a>
 
           <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             {% if error %}
