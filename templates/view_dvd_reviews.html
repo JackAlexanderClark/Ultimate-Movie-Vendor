@@ -14,6 +14,9 @@
          {% if review.dvd.name  %}
             <li class="list-group-item"><b>DVD:</b> {{  review.dvd.name }}</li>
          {% endif %}
+            <div class="col-md-12">
+                <p style="text-align: center; font-weight: bold;">Total DVDs in your collection: {{ review|length }}</p>
+            </div>
         <!-- edit here -->
               {% if review.dvd.image %}
                 <img class="card-img-top" src="{{ url_for('static', filename='images/'+review.dvd.image ) }}" alt="Card image cap" id="imageCard" style="width: 30rem; height: 30rem;">
@@ -35,9 +38,10 @@
               <p>{{ error }}</p>
             {% endif %}
 
+            <!-- pass in review_id into delete function -->
             <form method="POST" action="{{ url_for('delete_dvd_reviews_by_dvd_id') }}">
-              <label for="dvd_id">Delete this DVD review?</label>
-              <input type="text" id="dvd_id" name="dvd_id">
+              <label for="review.dvd_id">Delete this DVD review?</label>
+              <input type="text" id="review.dvd_id" name="review.dvd_id" value="{{ review.dvd_id }}">
               <input type="submit" value="Delete Reviews">
             </form>
 
