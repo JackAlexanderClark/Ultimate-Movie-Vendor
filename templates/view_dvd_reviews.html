@@ -27,6 +27,19 @@
                 {% endfor %}
             </li>
           </ul>
+            DVD id: {{ review.dvd_id }}
+
+            {% if message %}
+              <p>{{ message }}</p>
+            {% elif error %}
+              <p>{{ error }}</p>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('delete_dvd_reviews_by_dvd_id') }}">
+              <label for="dvd_id">Delete this DVD review?</label>
+              <input type="text" id="dvd_id" name="dvd_id">
+              <input type="submit" value="Delete Reviews">
+            </form>
             <form method="POST" action="{{ url_for('delete_dvd_review', id=id) }}">
                 <a href="delete_dvd_review/{{ review.dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUserReview()" id="deleteBtn" name="deleteBtn">Delete this Review?</button></a>
             </form>
