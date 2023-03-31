@@ -1,6 +1,7 @@
 import os
 import uuid
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
@@ -174,12 +175,16 @@ def delete_dvd_reviews_by_dvd_id():
     reviews = DvdReview.query.all()
 
     try:
-        db.session.execute("DELETE FROM dvd_review WHERE dvd_id = :dvd_id", {"dvd_id": dvd_id})
+        db.session.execute(text("DELETE FROM dvd_review WHERE dvd_id = :dvd_id"), {"dvd_id": dvd_id})
         db.session.commit()
-        return render_template("view_dvd_reviews.html", dvds=dvds, reviews=reviews)
+        return render_template("view_dvd_reviews.html", dvds=dvds, reviews=reviews, message=f"Deleted all reviews for DVD with id {dvd_id}")
     except Exception as e:
         db.session.rollback()
         return render_template("view_dvd_reviews.html", dvds=dvds, reviews=reviews, error=f"An error occurred while deleting this DVD review: {e}")
+
+
+
+# ...
 
 
 #def delete_record():
