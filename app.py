@@ -161,6 +161,8 @@ def delete_dvd(id):
 
     dvd = Dvd.query.filter_by(id=id).first()
 
+    delete_dvd_reviews_by_dvd_id(id) ## delete dvd review
+
     db.session.delete(dvd)
     db.session.commit()
 
