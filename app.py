@@ -157,7 +157,7 @@ def update_dvd(id):
 @app.route('/delete_dvd/<int:id>', methods=["GET"])
 @login_required
 def delete_dvd(id):
-    # delete DVD review FK relationship first
+
     dvd = Dvd.query.filter_by(id=id).first()
 
     db.session.delete(dvd)
@@ -170,13 +170,14 @@ def delete_dvd(id):
 @app.route('/dvd_reviews/delete_by_dvd_id', methods=['POST'])
 def delete_dvd_reviews_by_dvd_id():
     dvd_id = request.form['dvd_id']
+    dvds = Dvd.query.all()  # query db call all dvd
     try:
         db.session.execute("DELETE FROM dvd_review WHERE dvd_id = :dvd_id", {"dvd_id": dvd_id})
         db.session.commit()
-        return render_template('index.html', message=f"Deleted all reviews for DVD with id {dvd_id}")
+        return render_template("index.html", dvds=dvds)
     except Exception as e:
         db.session.rollback()
-        return render_template('index.html', error=f"An error occurred while deleting DVD reviews: {e}")
+        return render_template("index.html", error=f"An error occurred while deleting this DVD review: {e}",  dvds=dvds)
 
 
 #def delete_record():
