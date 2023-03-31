@@ -171,13 +171,15 @@ def delete_dvd(id):
 def delete_dvd_reviews_by_dvd_id():
     dvd_id = request.form['dvd_id']
     dvds = Dvd.query.all()  # query db call all dvd
+    reviews = DvdReview.query.all()
+
     try:
         db.session.execute("DELETE FROM dvd_review WHERE dvd_id = :dvd_id", {"dvd_id": dvd_id})
         db.session.commit()
-        return render_template("index.html", dvds=dvds)
+        return render_template("view_dvd_reviews.html", dvds=dvds, reviews=reviews)
     except Exception as e:
         db.session.rollback()
-        return render_template("index.html", error=f"An error occurred while deleting this DVD review: {e}",  dvds=dvds)
+        return render_template("view_dvd_reviews.html", dvds=dvds, reviews=reviews, error=f"An error occurred while deleting this DVD review: {e}")
 
 
 #def delete_record():
