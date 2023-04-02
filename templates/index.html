@@ -52,7 +52,7 @@
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                         <div class="card">
                               <div class="text-center">         <!-- before src="dvd.image" if doesn't work -->
-                                    <img src="{{ url_for('uploaded_file', filename=dvd.image) }}" alt="DVD Image">
+                                    <img src="{{ url_for('uploaded_file', filename=dvd.image) }}" alt="Your DVD Image" height="200" width="200">
                               </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
@@ -64,7 +64,7 @@
                                 <p class="card-text text-center"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
                                 <p class="card-text text-center"><span class="titles">Rating:</span>
                                 <i class="fa-solid fa-star"></i>
-                                    {% if dvd.dvd.rating == 1 %} <img class="gold_star" src="http://127.0.0.1:5000/static/images/gold star.jpg">
+                                    {% if dvd.dvd.rating == 1 %} <img class="gold_star" src="/static/images/gold star.jpg">
                                         {% elif dvd.dvd.rating == 2 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
                                         {% elif dvd.dvd.rating == 3 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
                                         {% elif dvd.dvd.rating == 4 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">

@@ -161,17 +161,12 @@ def uploaded_file(filename):
 @app.route('/delete_dvd/<int:id>', methods=["GET"])
 @login_required
 def delete_dvd(id):
-
     dvd = Dvd.query.filter_by(id=id).first()
 
-    try:
-        db.session.delete(dvd)
-        db.session.commit()
-        return redirect("/")
+    db.session.delete(dvd)
+    db.session.commit()
 
-    except Exception as e:
-        db.session.rollback()
-        return render_template("view_dvd_reviews.html", dvd=dvd, error=f"An error occurred while deleting this DVD: {e}")
+    return redirect("/")
 
 
 @login_required
