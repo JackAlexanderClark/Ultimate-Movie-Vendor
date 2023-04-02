@@ -2,7 +2,7 @@ import os
 import uuid
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, abort
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
@@ -162,17 +162,20 @@ def uploaded_file(filename):
 @login_required
 def delete_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
+    if dvd is None:
+        raise ValueError("DVD with specified id not found")
 
     try:
         db.session.delete(dvd)
         db.session.commit()
         return redirect("/")
 
-    except Exception as e:
+    except ValueError as e:
+        # handle the error and return a custom response
         db.session.rollback()
         return render_template("view_dvd_reviews.html", dvd=dvd,
                            error=f"An error occurred while deleting this DVD: {e}")
-
+        return f"Error: {str(e)}", 400
 
 
 @login_required
