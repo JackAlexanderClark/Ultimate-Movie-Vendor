@@ -23,16 +23,16 @@
             <li class="list-group-item"><b>Rating:</b>
             <!-- for loop to iterate over number of stars -->
                 {% for i in range(review.rating)  %}
-                    <img id="gold_star" src="static/images/gold star.jpg">
+                    <img id="gold_star" src="static/images/gold star.jpg" width="20" height="20">
                 {% endfor %}
             </li>
           </ul>
             DVD id: {{ review.dvd_id }}
 
             {% if message %}
-              <p>{{ message }}</p>
+                <p>{{ message }}</p>
             {% elif error %}
-              <p>{{ error }}</p>
+                <p>{{ error }}</p>
             {% endif %}
 
             <!-- pass in review_id into delete function -->

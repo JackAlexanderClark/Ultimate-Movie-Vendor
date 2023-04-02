@@ -163,10 +163,16 @@ def uploaded_file(filename):
 def delete_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
 
-    db.session.delete(dvd)
-    db.session.commit()
+    try:
+        db.session.delete(dvd)
+        db.session.commit()
+        return redirect("/")
 
-    return redirect("/")
+    except Exception as e:
+        db.session.rollback()
+        return render_template("view_dvd_reviews.html", dvd=dvd,
+                           error=f"An error occurred while deleting this DVD: {e}")
+
 
 
 @login_required
