@@ -38,7 +38,7 @@
                                  <input class="form-control" name="image" type="file" id="formFile">
                                 <!-- display image -->
                                     {% if dvd.image %}
-                                        <img src="{{ dvd.image }}">
+                                        <img src="{{ url_for('uploaded_file', filename=dvd.image) }}" alt="DVD Image">
                                     {% endif %}
                 </div>
             </div>
