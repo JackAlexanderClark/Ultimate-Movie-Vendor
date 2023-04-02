@@ -36,6 +36,7 @@
         <div style="color:black;">
             <b>Current User:</b> {{ current_user.email }}
         </div>
+        &nbsp;
         <form method="GET" action="{{ url_for('sign_in') }}">
             <button class="btn btn-success" type="submit" name="sign_in">Login</button>
         </form>

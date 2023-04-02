@@ -154,6 +154,10 @@ def update_dvd(id):
         db.session.commit()
         return redirect("/")
 
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 @app.route('/delete_dvd/<int:id>', methods=["GET"])
 @login_required
 def delete_dvd(id):
