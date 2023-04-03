@@ -74,13 +74,7 @@
                                     {{ dvd.dvd.rating }}
                                 </p>
                             <!-- turn these buttons into POST forms -->
-                                        <form method="POST" action="{{ url_for('delete_dvd_reviews_by_dvd_id') }}">
-                                          <label for="dvd_id">Delete this DVD review?</label>
-                                          <input type="text" id="dvd_id" name="dvd_id" value="{{ review.dvd_id }}">
-                                            <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
-                                          <input type="submit" value="Delete Reviews">
-                                        </form>
-
+                                <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
                                 <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">Update this DVD?</button></a>
                                 <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
                               </div>
