@@ -2,7 +2,7 @@ import os
 import uuid
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory,
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
