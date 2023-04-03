@@ -173,8 +173,7 @@ def delete_dvd(id):
 
     except Exception as e:
         db.session.rollback()
-        return render_template("index.html", dvd=dvd,
-                           error=f"An error occurred while deleting this DVD: {e}")
+        return render_template("index.html", dvd=dvd, error=f"An error occurred while deleting this DVD: {e}")
 
 
 
