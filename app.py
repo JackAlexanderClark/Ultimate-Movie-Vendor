@@ -83,7 +83,8 @@ def register_user():
 @login_required
 def add_dvds():
     if request.method == "GET":
-        return render_template("add_dvd.html", dvd=False)
+        dvd = Dvd(name="", description="", price="", quantity="", genre="", image="")
+        return render_template("add_dvd.html", dvd=dvd)
     if request.method == "POST":
         name = request.form.get("name")
         description = request.form.get("description")
