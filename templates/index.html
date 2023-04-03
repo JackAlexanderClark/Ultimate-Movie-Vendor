@@ -82,6 +82,11 @@
                         </div>
                 </div>
             </div>
+                          {% if filename %}
+                            <div> Image here
+                                <img src="{{ url_for('display_image', filename=filename) }}">
+                            </div>
+                        {% endif %}
             <!-- end for loop -->
             {% endfor %}
 
