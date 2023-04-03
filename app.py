@@ -15,6 +15,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connec
 
 # tell flask where we want to upload images
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+# changed from 'static/images'
 app.config["UPLOAD_FOLDER"] = 'static/UPLOAD_FOLDER'
 
 
@@ -188,10 +189,10 @@ def delete_dvd_reviews_by_dvd_id():
         try:
             db.session.execute(text("DELETE FROM dvd_review WHERE dvd_id = :dvd_id"), {"dvd_id": dvd_id})
             db.session.commit()
-            return render_template("index.html", dvds=dvds, message=f"Deleted all reviews for DVD with id {dvd_id}")
+            return render_template("index.html", dvds=dvds, reviews=reviews, message=f"Deleted all reviews for DVD with id {dvd_id}")
         except Exception as e:
             db.session.rollback()
-            return render_template("index.html", dvds=dvds, error=f"An error occurred while deleting this DVD review: {e}")
+            return render_template("index.html", dvds=dvds, reviews=reviews, error=f"An error occurred while deleting this DVD review: {e}")
     # do i need to enter id into text input instead of button?
     else:
         return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")
