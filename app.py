@@ -48,10 +48,12 @@ def homepage():  # put application's code here
     # tell index.html we will receive object dvd_reviews that needs to be looped over
     sort_param = request.args.get("sort")
     dvds = Dvd.query.all()  # query db call all dvd
+    reviews = DvdReview.query.all()
+
     if sort_param:
         dvds = sort_dvd(Dvd, sort_param)
 
-    return render_template("index.html", dvds=dvds)
+    return render_template("index.html", dvds=dvds, reviews=reviews)
 
 # get user information and store in database
 @app.route('/user_register', methods=["GET", "POST"])
@@ -170,7 +172,7 @@ def delete_dvd(id):
 
     except Exception as e:
         db.session.rollback()
-        return render_template("view_dvd_reviews.html", dvd=dvd,
+        return render_template("index.html", dvd=dvd,
                            error=f"An error occurred while deleting this DVD: {e}")
 
 
