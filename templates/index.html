@@ -72,6 +72,10 @@
                                         {% else %} No DVD rating available.
                                     {% endif %}
                                     {{ dvd.dvd.rating }}
+                                    {% if dvd.dvd.review %}
+                                        <h3>Review:</h3>
+                                        <p>{{ dvd.dvd.review }}</p>
+                                    {% endif %}
                                 </p>
                             <!-- turn these buttons into POST forms -->
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>

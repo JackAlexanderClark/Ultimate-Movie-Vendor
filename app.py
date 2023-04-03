@@ -15,7 +15,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connec
 
 # tell flask where we want to upload images
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-# changed from 'static/images'
 UPLOAD_FOLDER = 'static/images/'
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -197,8 +196,6 @@ def delete_dvd_reviews_by_dvd_id():
     # do i need to enter id into text input instead of button?
     else:
         return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")
-
-
 
 
 
