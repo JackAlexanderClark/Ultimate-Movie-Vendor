@@ -48,12 +48,11 @@ def homepage():  # put application's code here
     # tell index.html we will receive object dvd_reviews that needs to be looped over
     sort_param = request.args.get("sort")
     dvds = Dvd.query.all()  # query db call all dvd
-    reviews = DvdReview.query.all()
 
     if sort_param:
         dvds = sort_dvd(Dvd, sort_param)
 
-    return render_template("index.html", dvds=dvds, reviews=reviews)
+    return render_template("index.html", dvds=dvds)
 
 # get user information and store in database
 @app.route('/user_register', methods=["GET", "POST"])
