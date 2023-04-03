@@ -10,6 +10,7 @@
         <div class="row">
         <div class="col-md-6 justify-content-center" style="text-align: center;">
         {% for review in reviews %}
+            {% if review is not none %}
         <div class="review-card" style="width: 30rem; border: 5px black">
          {% if review.dvd.name  %}
             <li class="list-group-item"><b>DVD:</b> {{  review.dvd.name }}</li>
@@ -45,6 +46,7 @@
         </div>
         </div>
             </div>
+        {% endif %}
     {% endfor %}
 
     </div>
