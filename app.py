@@ -15,7 +15,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connec
 
 # tell flask where we want to upload images
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-app.config["UPLOAD_FOLDER"] = "static/images"
+app.config["UPLOAD_FOLDER"] = 'static/UPLOAD_FOLDER'
 
 
 
