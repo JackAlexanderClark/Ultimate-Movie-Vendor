@@ -133,26 +133,28 @@ def submit_dvd_review(id):
 @app.route('/update_dvd/<int:id>', methods=["GET", "POST"])
 @login_required
 def update_dvd(id):
-    dvd = Dvd.query.all()
+    dvd = Dvd.query.get(id)
+
+    if not dvd:
+        return render_template("index.html", message="DVD not found")
+
     if request.method == "GET":
         return render_template("edit_dvd.html", id=id, dvd=dvd)
+
     if request.method == "POST":
         dvd.name = request.form.get("name")
         dvd.description = request.form.get("description")
         dvd.price = request.form.get("price")
         dvd.quantity = request.form.get("quantity")
         dvd.genre = request.form.get("genre")
-        file = request.files["image"]
 
-        # if user wishes to keep the same image, check if user submits new file
+        file = request.files.get("image")
+
         if file:
             extension = os.path.splitext(file.filename)[1]
             image_name = str(uuid.uuid4()) + extension
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
-        else:
-            image_name = dvd.image
-
-        dvd.image = image_name
+            dvd.image = image_name
 
         db.session.commit()
         return redirect("/")

@@ -91,7 +91,7 @@
                             <!-- turn these buttons into POST forms -->
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
 
-                                <form method="POST" action="{{ url_for('update_dvd', id=dvd.id) }}">
+                                <form method="GET" action="{{ url_for('update_dvd', id=dvd.id) }}">
                                       <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
                                       <input type="submit" value="Update This DVD?" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">
                                 </form>
