@@ -31,6 +31,10 @@
                     </div>
                 {% endif %}
 
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+
             </div>
             <div class="dropdown" id="order_btn">
               <!-- order by button -->
@@ -81,10 +85,14 @@
                             <!-- turn these buttons into POST forms -->
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
                                 <a href="update_dvd/{{ dvd.id }}"><button type="button" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">Update this DVD?</button></a>
-                                <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg" onclick="alertUser()" id="deleteBtn">Delete this DVD?</button></a>
-                              </div>
-                            </div>
-                        </div>
+                                <form method="POST" action="{{ url_for('delete_dvd') }}">
+                                      <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
+                                      <input type="submit" value="Delete This DVD?" onclick="alertUser()" id="deleteBtn">
+                                </form>
+{# <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg"  >Delete this DVD?</button></a>                          #}
+                                          </div>
+                                        </div>
+                                    </div>
                 </div>
             </div>
             <!-- end for loop -->
