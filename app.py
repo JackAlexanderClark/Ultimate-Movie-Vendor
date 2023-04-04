@@ -133,7 +133,7 @@ def submit_dvd_review(id):
 @app.route('/update_dvd/<int:id>', methods=["GET", "POST"])
 @login_required
 def update_dvd(id):
-    dvd = Dvd.query.filter_by(id=id).first()
+    dvd = Dvd.query.all()
     if request.method == "GET":
         return render_template("edit_dvd.html", id=id, dvd=dvd)
     if request.method == "POST":

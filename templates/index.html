@@ -85,14 +85,14 @@
                             <!-- turn these buttons into POST forms -->
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
 
-                                <form method="POST" action="{{ url_for('pdate_dvd', id=dvd.id) }}">
+                                <form method="POST" action="{{ url_for('update_dvd', id=dvd.id) }}">
                                       <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
                                       <input type="submit" value="Update This DVD?" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">
                                 </form>
 
                                 <form method="POST" action="{{ url_for('delete_dvd', id=dvd.id) }}">
                                       <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
-                                      <input type="submit" value="Delete This DVD?" class="btn btn-danger btn-lg" onclick="alertUser()">
+                                      <input type="submit" value="Delete This DVD?" class="btn btn-danger btn-lg" onclick="alertUser()" style="float:right;">
                                 </form>
 
 {# <a href="delete_dvd/{{ dvd.id }}"><button class="btn btn-danger btn-lg"  >Delete this DVD?</button></a>                          #}
