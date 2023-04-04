@@ -62,6 +62,12 @@
                         <div class="card">
                               <div class="text-center">         <!-- before src="dvd.image" if doesn't work -->
                                   <img src="{{ url_for('uploaded_file', filename=dvd.image) }}" alt="DVD Image" height="200" width="200">
+                                  <p>
+                                      New image type ~~~~
+                                  </p>
+                                    <img src="{{ url_for('static', filename='uploads/' + dvd.image) }}" alt="DVD Image">
+
+
                               </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
