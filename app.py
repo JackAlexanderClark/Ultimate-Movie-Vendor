@@ -166,14 +166,17 @@ def uploaded_file(filename):
 def delete_dvd(id):
     dvd = Dvd.query.filter_by(id=id).first()
 
-    try:
-        db.session.delete(dvd)
-        db.session.commit()
-        return redirect("/")
+    if id is not None:
+        try:
+            db.session.execute(text("DELETE FROM dvd WHERE id = :id"), {"id": id})
+            db.session.commit()
+            return render_template("index.html", dvd=dvd, message=f"Deleted all DVD with id {id}")
+        except Exception as e:
+            db.session.rollback()
+            return render_template("index.html", dvd=dvd, error=f"An error occurred while deleting this DVD: {e}")
 
-    except Exception as e:
-        db.session.rollback()
-        return render_template("index.html", dvd=dvd, error=f"An error occurred while deleting this DVD: {e}")
+    else:
+        return render_template('index.html', dvd=dvd, error="Please enter a valid DVD ID")
 
 
 
