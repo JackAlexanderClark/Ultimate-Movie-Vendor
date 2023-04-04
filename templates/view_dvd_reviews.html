@@ -10,6 +10,16 @@
         <div class="row">
         <div class="col-md-6 justify-content-center" style="text-align: center;">
         {% for review in reviews %}
+                <div class="col-md-12">
+                    <p style="text-align: center; font-weight: bold;">Total Reviews on your DVD's: {{ reviews|length }}</p>
+                </div>
+
+                {% if reviews|length == 0 %}
+                    <div class="row" class="col-md-6 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
+                        <h3><b>You have no Reviews added to your DVD's in your collection,  click add a review on a DVD.</b></h3>
+                    </div>
+                {% endif %}
+
             {% if review.dvd_id is not none %}
                 <div class="review-card" style="width: 30rem; border: 5px black">
                  {% if review.dvd.name  %}
