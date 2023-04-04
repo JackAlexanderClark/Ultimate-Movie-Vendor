@@ -188,16 +188,15 @@ def delete_dvd_reviews_by_dvd_id():
 
     dvd_id = request.form.get('dvd_id')
     dvds = Dvd.query.all()  # query db call all dvd
-    reviews = DvdReview.query.all()
 
     if dvd_id is not None:
         try:
             db.session.execute(text("DELETE FROM dvd_review WHERE dvd_id = :dvd_id"), {"dvd_id": dvd_id})
             db.session.commit()
-            return render_template("view_dvd_reviews.html", dvds=dvds, reviews=reviews)
+            return render_template("index.html", dvds=dvds)
         except Exception as e:
             db.session.rollback()
-            return render_template("view_dvd_reviews.html", dvds=dvds, reviews=reviews, error=f"An error occurred while deleting this DVD review: {e}")
+            return render_template("index.html", dvds=dvds, error=f"An error occurred while deleting this DVD review: {e}")
     # do i need to enter id into text input instead of button?
     else:
         return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")
