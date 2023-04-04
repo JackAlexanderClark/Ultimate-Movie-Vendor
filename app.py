@@ -163,9 +163,9 @@ def uploaded_file(filename):
 
 @app.route('/delete_dvd/<int:id>', methods=["POST"])
 @login_required
-def delete_dvd():
+def delete_dvd(id):
 
-    id = request.form.get('id')
+    # id = request.form.get('id')
     dvd = Dvd.query.all()
 
     if id is not None:
