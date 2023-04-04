@@ -51,7 +51,7 @@ def homepage():  # put application's code here
     dvds = Dvd.query.all()  # query db call all dvd
 
     if sort_param:
-        dvds = sort_dvd(Dvd, sort_param)
+        dvds = sort_dvd(Dvd, sort_param, id)
 
     return render_template("index.html", dvds=dvds)
 
