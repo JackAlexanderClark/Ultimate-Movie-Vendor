@@ -212,8 +212,9 @@ def delete_dvd_reviews_by_dvd_id():
 def reviews():
     reviews = DvdReview.query.all()
     dvd = Dvd.query.all()
+    user = User.query.all()
 
-    return render_template("view_dvd_reviews.html", dvd=dvd, reviews=reviews)
+    return render_template("view_dvd_reviews.html", dvd=dvd, reviews=reviews, user=user)
 
 # help page to illustrate how to use the app for users
 @app.route('/help', methods=["GET"])
