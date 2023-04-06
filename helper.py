@@ -3,7 +3,7 @@ from flask import render_template
 
 # order and sort functions
 def sort_dvd(Dvd, param):
-    if id is None:
+
         if param == "newest":
             # descending order
             dvd_model = Dvd.query.order_by(Dvd.created_date.desc()).all()
