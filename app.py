@@ -15,7 +15,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connec
 
 # tell flask where we want to upload images
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-UPLOAD_FOLDER = 'static/images/'
+UPLOAD_FOLDER = '/static/images/'
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
@@ -28,7 +28,7 @@ login_manager.login_view = "sign_in"
 login_manager.init_app(app)
 db.init_app(app)
 
-if os.environ.get("DEVELOPMENT") == "True":
+if os.environ.get("DEVELOPMENT") == "False":
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("POSTGRES_URL")  # local
 else:
     uri = os.environ.get("DATABASE_URL")
@@ -166,9 +166,6 @@ def uploaded_file(filename):
 @app.route('/delete_dvd/<int:id>', methods=["POST"])
 @login_required
 def delete_dvd(id):
-
-    # id = request.form.get('id')
-    dvd = Dvd.query.all()
 
     if id is not None:
         try:
