@@ -95,12 +95,14 @@ def add_dvds():
         # f_name generate random string + "png"
         image_name = str(uuid.uuid4()) + extension
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+        image_url = request.form.get("image_url")
         dvd = Dvd(
             name=name,
             description=description,
             price=price,
             quantity=quantity,
             image=image_name,
+            image_url=image_url,
             genre=genre
         )
         db.session.add(dvd)                # add to database

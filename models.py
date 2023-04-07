@@ -42,15 +42,17 @@ class Dvd(db.Model):
     price = db.Column(db.Float())
     quantity = db.Column(db.Integer())
     image = db.Column(db.String())                          # image will be a URL
+    image_url = db.Column(db.String())
     genre = db.Column(db.String(10))
     created_date = db.Column(db.Date, default=func.now())       # get datetime for now
 
-    def __init__(self, name, description, price, quantity, image, genre):
+    def __init__(self, name, description, price, quantity, image, image_url, genre):
         self.name = name
         self.description = description
         self.price = price
         self.quantity = quantity
         self.image = image
+        self.image_url = image_url
         self.genre = genre
 
 class DvdReview(db.Model):
