@@ -67,13 +67,10 @@
                         <div class="card">
                               <div class="text-center">
                                   <img src="{{ url_for('uploaded_file', filename=dvd.image) }}" alt="DVD Image" height="200" width="200">
-                                  <p>
-                                      New image type ~~~~
-                                  </p>
-                                    <img src="{{ url_for('static', filename='uploads/' + dvd.image) }}" alt="DVD Image">
-https://labs.openai.com/s/W1uNuGh8rELg7FQnblaU5FoJ
-
                               </div>
+                        <div>
+                            <p>Image URL:</p> <img src="{{ dvd.image_url }}">
+                        </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
                                 <p class="card-text text-center"><span class="titles">DVD id:</span> {{ dvd.id }}</p>
