@@ -28,7 +28,7 @@ login_manager.login_view = "sign_in"
 login_manager.init_app(app)
 db.init_app(app)
 
-if os.environ.get("DEVELOPMENT") == "False":
+if os.environ.get("DEVELOPMENT") == "True":
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("POSTGRES_URL")  # local
 else:
     uri = os.environ.get("DATABASE_URL")
