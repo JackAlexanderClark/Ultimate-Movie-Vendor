@@ -47,9 +47,10 @@ def create_tables():
 @login_required
 def homepage():  # put application's code here
     # tell index.html we will receive object dvd_reviews that needs to be looped over
+
     sort_param = request.args.get("sort")
     dvds = Dvd.query.all()  # query db call all dvd
-
+    print(dvds,dvds[0].image_url)
     if sort_param:
         dvds = sort_dvd(Dvd, sort_param)
 
@@ -82,7 +83,8 @@ def register_user():
 @login_required
 def add_dvds():
     if request.method == "GET":
-        dvd = Dvd(name="", description="", price="", quantity="", genre="", image="", image_url="")
+        dvd = Dvd(name="", description="", price="", quantity="", genre="", image_url="")
+
         return render_template("add_dvd.html", dvd=dvd)
     if request.method == "POST":
         name = request.form.get("name")
@@ -90,18 +92,18 @@ def add_dvds():
         price = request.form.get("price")
         quantity = request.form.get("quantity")
         genre = request.form.get("genre")
-        file = request.files["image"]
-        extension = os.path.splitext(file.filename)[1]
+        #file = request.files["image"]
+        #extension = os.path.splitext(file.filename)[1]
         # f_name generate random string + "png"
-        image_name = str(uuid.uuid4()) + extension
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+        #image_name = str(uuid.uuid4()) + extension
+        #file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+
         image_url = request.form.get("image_url")
         dvd = Dvd(
             name=name,
             description=description,
             price=price,
             quantity=quantity,
-            image=image_name,
             image_url=image_url,
             genre=genre
         )
@@ -149,14 +151,7 @@ def update_dvd(id):
         dvd.price = request.form.get("price")
         dvd.quantity = request.form.get("quantity")
         dvd.genre = request.form.get("genre")
-
-        file = request.files.get("image")
-
-        if file:
-            extension = os.path.splitext(file.filename)[1]
-            image_name = str(uuid.uuid4()) + extension
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
-            dvd.image = image_name
+        dvd.image_url = request.form.get("image_url")
 
         db.session.commit()
         return redirect("/")
@@ -256,6 +251,7 @@ def login():
 
 
 if __name__ == "__main__":
+    from app import db
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
