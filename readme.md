@@ -86,6 +86,16 @@
    - I used the w3 Schools nav bar as my previous nav bar would go out of line and break at certain breakpoints.
    ![image](https://user-images.githubusercontent.com/97599832/231490168-f89a3909-c2a3-418e-8b91-7b49d5ee4f50.png)
 
+    - Bug - Incorrect inputs for tables
+    - If you enter letters for the "price" column in the form if will crash as the column is expecting integers.
+    ![image](https://user-images.githubusercontent.com/97599832/231492321-e109fd41-6b72-4a8a-9d3b-2ab6436080cd.png)
+    - To solve this error we need a validation check:
+    
+    - Add an error message.
+    
+    - Check using regex.
+    ![image](https://user-images.githubusercontent.com/97599832/231492997-ac32c32a-462d-4c10-9be3-71b832811bce.png)
+
 
 ### Checking Code through Validators:
 ### CSS w3 Schools Jigsaw:
