@@ -77,8 +77,17 @@
 
     Solution:
    ![image](https://user-images.githubusercontent.com/97599832/227782249-084ee5ce-761f-4f04-8174-d244941c3293.png)
+   
+   - I also changed my buttons to be wrapped in POST forms which prior the href tag was causing bugs.
+   
+   - I encountered another major bug when I tried to save images to my elephantSQL database. Whenever, the app would restart the dynos would restart which would cause the database instance to 
 
 ### Checking Code through Validators:
 ### CSS w3 Schools Jigsaw:
 
 ![image](https://user-images.githubusercontent.com/97599832/228552574-b6fe0e9c-2e27-44ad-8937-291d16f54fd4.png)
+
+### HTML Validator
+#### Page 1 - Index.html
+![image](https://user-images.githubusercontent.com/97599832/230635519-99be8721-e205-452e-8dee-ac462373550b.png)
+
