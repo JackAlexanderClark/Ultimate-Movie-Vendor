@@ -61,13 +61,14 @@
 
         <!-- for loop to loop over db dvd objects -->
                   {% for dvd in dvds %}
-                  <div class="container" style="border: 10px black">
+                  <div class="container" style="border-style: solid; border-width: medium; border-color: black; padding: 10px; margin-bottom: 20px;">
                       <div class="row" class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
                       <!-- give padding to each card -->
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
-
-                            <p>Image</p> <img src="{{ dvd.image_url }}" style="text-align: center;">
-                        </div>
+                            {% if dvd.image_url %}
+                                <p class="card-text text-center"><img src="{{ dvd.image_url }}" style="text-align: center; height: 200px; width: 200px;"></p>
+                            {% endif %}
+                      </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
                                 <p class="card-text text-center"><span class="titles">DVD id:</span> {{ dvd.id }}</p>
@@ -86,21 +87,26 @@
                                         {% else %} No DVD rating available.
                                     {% endif %}
                                 </p>
-                            <!-- turn these buttons into POST forms -->
-                                <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg" style="float:left; position: relative;">Add a Review to DVD</button></a>
+                                <!-- turn these buttons into POST forms -->
+                                <div class="card-body mb-3">
+                                    <!-- ... -->
+                                    <!-- Wrap buttons with a d-flex justify-content-center div -->
+                                    <div class="d-flex justify-content-center">
+                                        <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
 
-                                <form method="GET" action="{{ url_for('update_dvd', id=dvd.id) }}">
-                                      <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
-                                      <input type="submit" value="Update This DVD?" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">
-                                </form>
+                                        <form method="GET" action="{{ url_for('update_dvd', id=dvd.id) }}" class="ml-2">
+                                            <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
+                                            <input type="submit" value="Update This DVD?" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">
+                                        </form>
 
-                                <form method="POST" action="{{ url_for('delete_dvd', id=dvd.id) }}">
-                                      <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
-                                      <input type="submit" value="Delete This DVD?" class="btn btn-danger btn-lg" onclick="alertUser()" style="float:right; background-color: red; color: white; padding-bottom: 20px;" id="delete">
-                                </form>
-                                          </div>
-                                        </div>
+                                        <form method="POST" action="{{ url_for('delete_dvd', id=dvd.id) }}" class="ml-2">
+                                            <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
+                                            <input type="submit" value="Delete This DVD?" class="btn btn-danger btn-lg" onclick="alertUser()" style="background-color: red; color: white;" id="delete">
+                                        </form>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
             <!-- end for loop -->
@@ -108,7 +114,7 @@
 
 
             <div class="row">
-                <div class="col-md-12" style="text-align: center;">
+                <div class="col-md-12" style="text-align: center; padding-top: 10px;">
                     <a href="#page_header"><button type="button" class="btn btn-success" style="background-color: blue; color: white;">Return to top of the page?</button></a>
                 </div>
             </div>

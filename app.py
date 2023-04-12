@@ -1,8 +1,8 @@
 import os
-import uuid
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+import re
+from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
@@ -15,10 +15,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connec
 
 # tell flask where we want to upload images
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-UPLOAD_FOLDER = '/static/images/'
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-
-
 
 # initialise the app and connect to the database
 
@@ -77,13 +73,19 @@ def register_user():
         db.session.commit()                 # commit
         return redirect('/')
 
+def float_input(value):
+    return re.match(r'^\d+(\.\d+)?$', value) is not None
+
+def integer_input(value):
+    return re.match(r'^\d+$', value) is not None
+
+
 # add movies into database
 @app.route('/add_dvd', methods=["GET", "POST"])
 @login_required
 def add_dvds():
     if request.method == "GET":
         dvd = Dvd(name="", description="", price="", quantity="", genre="", image_url="")
-
         return render_template("add_dvd.html", dvd=dvd)
     if request.method == "POST":
         name = request.form.get("name")
@@ -92,6 +94,18 @@ def add_dvds():
         quantity = request.form.get("quantity")
         genre = request.form.get("genre")
         image_url = request.form.get("image_url")
+
+        # check inputs are correct data type i.e. integers
+        if not float_input(price):
+            flash('Invalid price format. Please enter a valid number.', 'error')
+            return render_template('add_dvd.html')
+
+        if not integer_input(quantity):
+            flash('Invalid quantity format. Please enter a valid integer.', 'error')
+            return render_template('add_dvd.html.html')
+
+        price = float(price)
+        quantity = int(quantity)
 
         dvd = Dvd(
             name=name,
@@ -147,12 +161,20 @@ def update_dvd(id):
         dvd.genre = request.form.get("genre")
         dvd.image_url = request.form.get("image_url")
 
+        # check inputs are correct data type i.e. integers
+        if not float_input(dvd.price):
+            flash('Invalid price format. Make sure you use a float, i.e 1.0.', 'error')
+            return render_template('add_dvd.html')
+
+        if not integer_input(dvd.quantity):
+            flash('Invalid quantity format. Please enter a valid integer, 1,2,3 etc.', 'error')
+            return render_template('add_dvd.html.html')
+
+        dvd.price = float(dvd.price)
+        dvd.quantity = int(dvd.quantity)
+
         db.session.commit()
         return redirect("/")
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 @app.route('/delete_dvd/<int:id>', methods=["POST"])
 @login_required
@@ -166,7 +188,6 @@ def delete_dvd(id):
         except Exception as e:
             db.session.rollback()
             return render_template("index.html")
-            #return render_template("index.html", dvd=dvd, error=f"An error occurred while deleting this DVD: {e}")
 
     else:
         return render_template('index.html', error="Please enter a valid DVD ID")
@@ -231,16 +252,6 @@ def log_out():
 @app.route('/login', methods=['POST'])
 def login():
     return render_template('login.html')
-
-# get username to display in reviews
-@app.route('/user_name/<int:user_id>')
-def user_name(user_id):
-    user = User.query.get(user_id)
-    if user:
-        full_name = user.firstname + " " + user.lastname
-        return full_name
-    else:
-        return "User not found", 404
 
 if __name__ == "__main__":
     app.run(

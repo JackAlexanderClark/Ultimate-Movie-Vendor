@@ -4,6 +4,11 @@
     <h1>Please add a DVD in the below form.</h1>
     <hr>
 
+    <!-- error if invalid input -->
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
     <div class="container">
         <!-- multiple data types (text, images, file) etc -->
         <form action="{{ url_for('update_dvd', id=dvd.id) }}" method="POST" enctype="multipart/form-data">

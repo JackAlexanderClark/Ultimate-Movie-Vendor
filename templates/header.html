@@ -76,17 +76,17 @@
         <div class="topnav" id="myTopnav">
             <a href="{{ url_for('homepage') }}">Dashboard <i class="fa fa-home"></i></a>
             <a href="{{ url_for('register_user') }}">Register User <i class="fa fa-user"></i></a>
-            <a href="{{ url_for('add_dvds') }}">Submit DVD </a>
-            <a href="{{ url_for('reviews') }}">DVD Reviews </a>
+            <a href="{{ url_for('add_dvds') }}">Submit DVD <i class="fa fa-arrow-up"></i></a>
+            <a href="{{ url_for('reviews') }}">DVD Reviews <i class="fa fa-paperclip"></i></a>
             <div style="padding: 16px; color:white;">
                 <b>Current User:</b> {{ current_user.email }}
             </div>
             <div style="padding: 0 16px; display: inline-flex; padding-top: 5px;">
                 <form method="GET" action="{{ url_for('sign_in') }}" style="margin-right: 8px;">
-                    <button class="btn btn-success" type="submit" name="sign_in">Login</button>
+                    <button class="btn btn-success" type="submit" name="sign_in" style="background-color: #4CAF50; color: white;">Login</button>
                 </form>
                 <form method="GET" action="{{ url_for('log_out') }}">
-                    <button type="submit" class="btn btn-danger">Log Out</button>
+                    <button type="submit" class="btn btn-danger" style="background-color: orangered; color: white;">Log Out</button>
                 </form>
             </div>
         </div>
