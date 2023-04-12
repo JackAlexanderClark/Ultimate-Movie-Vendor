@@ -106,3 +106,15 @@
 #### Page 1 - Index.html
 ![image](https://user-images.githubusercontent.com/97599832/230635519-99be8721-e205-452e-8dee-ac462373550b.png)
 
+### Deployment
+Deployment to Heroku Pages:
+
+1. In terminal you need to copy the requirements.txt and create a Procfile for Heroko to build you app.
+2. pip3 freeze --local > requirements.txt 
+3. echo web: python app.py > Procfile
+4.Go to the Deploy tab and then Deployment Method and use GitHub.
+5.Connect your GitHub repo you wish to clone and use for the App.
+6. Set up env.py file: IP : 0.0.0.0, PORT : 5000, DATABASE_URI : DATABASE_URI", SECRET_KEY {your secret key}
+7. Use Heroku/Python build package.
+
+### Credits 
