@@ -81,6 +81,11 @@
    - I also changed my buttons to be wrapped in POST forms which prior the href tag was causing bugs.
    
    - I encountered another major bug when I tried to save images to my elephantSQL database. Whenever, the app would restart the dynos would restart which would cause the database instance to 
+   
+   - Unresponsive Navigation Bar Bug
+   - I used the w3 Schools nav bar as my previous nav bar would go out of line and break at certain breakpoints.
+   ![image](https://user-images.githubusercontent.com/97599832/231490168-f89a3909-c2a3-418e-8b91-7b49d5ee4f50.png)
+
 
 ### Checking Code through Validators:
 ### CSS w3 Schools Jigsaw:
