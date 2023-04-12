@@ -50,7 +50,6 @@ def homepage():  # put application's code here
 
     sort_param = request.args.get("sort")
     dvds = Dvd.query.all()  # query db call all dvd
-    print(dvds,dvds[0].image_url)
     if sort_param:
         dvds = sort_dvd(Dvd, sort_param)
 
@@ -92,13 +91,8 @@ def add_dvds():
         price = request.form.get("price")
         quantity = request.form.get("quantity")
         genre = request.form.get("genre")
-        #file = request.files["image"]
-        #extension = os.path.splitext(file.filename)[1]
-        # f_name generate random string + "png"
-        #image_name = str(uuid.uuid4()) + extension
-        #file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
-
         image_url = request.form.get("image_url")
+
         dvd = Dvd(
             name=name,
             description=description,
@@ -210,17 +204,6 @@ def reviews():
 
     return render_template("view_dvd_reviews.html", dvd=dvd, reviews=reviews, user=user)
 
-# help page to illustrate how to use the app for users
-@app.route('/help', methods=["GET"])
-@login_required
-def help():
-    return render_template("help.html")
-
-@app.route('/credits', methods=["GET"])
-@login_required
-def credits():
-    return render_template("credits.html")
-
 @app.route('/sign_in', methods=["GET", "POST"])
 def sign_in():
     if request.method == "GET":
@@ -249,9 +232,17 @@ def log_out():
 def login():
     return render_template('login.html')
 
+# get username to display in reviews
+@app.route('/user_name/<int:user_id>')
+def user_name(user_id):
+    user = User.query.get(user_id)
+    if user:
+        full_name = user.firstname + " " + user.lastname
+        return full_name
+    else:
+        return "User not found", 404
 
 if __name__ == "__main__":
-    from app import db
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),

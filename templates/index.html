@@ -15,7 +15,7 @@
     </head>
     <!-- dashboard logo -->
     <div class="row" id="dashboard">
-        <div class="container col-md-12">
+        <div class="container col-md-12" style="text-align: center;">
             <h1 id="dashboard_title">Your Movie Dashboard</h1>
             <br>
             <p>Submit your DVD's you wish to trade and submit reviews and share with the community!</p>
@@ -29,6 +29,7 @@
                     {% else %}
                     <div class="col-md-6 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
                         <h3><b>You have no DVD's in your collection, please add one using the above forms, or click help for more information.</b></h3>
+                        <img src="static/images/DVD favicon.png" style="height: 25px; width: 25px;">
                     </div>
                     {% endif %}
                 </div>
@@ -65,7 +66,7 @@
                       <!-- give padding to each card -->
                       <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
 
-                            <p>Image URL:</p> <img src="{{ dvd.image_url }}">
+                            <p>Image</p> <img src="{{ dvd.image_url }}" style="text-align: center;">
                         </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
@@ -84,7 +85,6 @@
                                         {% elif dvd.dvd.rating == 5 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
                                         {% else %} No DVD rating available.
                                     {% endif %}
-                                    {{ dvd.dvd.rating }}
                                 </p>
                             <!-- turn these buttons into POST forms -->
                                 <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg" style="float:left; position: relative;">Add a Review to DVD</button></a>

@@ -23,17 +23,14 @@
                     <li class="list-group-item"><b>DVD:</b> {{  review.dvd.name }}</li>
                  {% endif %}
 
-                      {% if review.dvd.image %}
-                        <img class="card-img-top" src="{{ url_for('static', filename='images/'+review.dvd.image ) }}" alt="Card image cap" id="imageCard" style="width: 30rem; height: 30rem;">
-                      {% endif %}
-                  <ul class="list-group list-group-flush">
-                    {% if review.user.name %}
-                        <li class="list-group-item"><b>User:</b> {{ review.user.name }}</li>
-                    {% else %}
-                        <!-- continue -->
+                    {% if dvd.image_url %}
+                        <p>Image URL:</p> <img src="{{ dvd.image_url }}">
                     {% endif %}
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">    <b>User Name:</b><p>{{ full_name }}</p></li>
                     <li class="list-group-item"><b>Review:</b> {{  review.review }}</li>
-                    <li class="list-group-item"><b>Rating:</b>
+                    <li class="list-group-item"><b>Rating:</b></li>
 
                     <!-- for loop to iterate over number of stars -->
                         {% for i in range(review.rating)  %}
