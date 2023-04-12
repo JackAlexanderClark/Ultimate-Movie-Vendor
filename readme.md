@@ -81,6 +81,21 @@
    - I also changed my buttons to be wrapped in POST forms which prior the href tag was causing bugs.
    
    - I encountered another major bug when I tried to save images to my elephantSQL database. Whenever, the app would restart the dynos would restart which would cause the database instance to 
+   
+   - Unresponsive Navigation Bar Bug
+   - I used the w3 Schools nav bar as my previous nav bar would go out of line and break at certain breakpoints.
+   ![image](https://user-images.githubusercontent.com/97599832/231490168-f89a3909-c2a3-418e-8b91-7b49d5ee4f50.png)
+
+    - Bug - Incorrect inputs for tables
+    - If you enter letters for the "price" column in the form if will crash as the column is expecting integers.
+    ![image](https://user-images.githubusercontent.com/97599832/231492321-e109fd41-6b72-4a8a-9d3b-2ab6436080cd.png)
+    - To solve this error we need a validation check:
+    
+    - Add an error message.
+    
+    - Check using regex.
+    ![image](https://user-images.githubusercontent.com/97599832/231492997-ac32c32a-462d-4c10-9be3-71b832811bce.png)
+
 
 ### Checking Code through Validators:
 ### CSS w3 Schools Jigsaw:
@@ -91,3 +106,15 @@
 #### Page 1 - Index.html
 ![image](https://user-images.githubusercontent.com/97599832/230635519-99be8721-e205-452e-8dee-ac462373550b.png)
 
+### Deployment
+Deployment to Heroku Pages:
+
+1. In terminal you need to copy the requirements.txt and create a Procfile for Heroko to build you app.
+2. pip3 freeze --local > requirements.txt 
+3. echo web: python app.py > Procfile
+4.Go to the Deploy tab and then Deployment Method and use GitHub.
+5.Connect your GitHub repo you wish to clone and use for the App.
+6. Set up env.py file: IP : 0.0.0.0, PORT : 5000, DATABASE_URI : DATABASE_URI", SECRET_KEY {your secret key}
+7. Use Heroku/Python build package.
+
+### Credits 
