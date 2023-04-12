@@ -116,5 +116,10 @@ Deployment to Heroku Pages:
 5.Connect your GitHub repo you wish to clone and use for the App.
 6. Set up env.py file: IP : 0.0.0.0, PORT : 5000, DATABASE_URI : DATABASE_URI", SECRET_KEY {your secret key}
 7. Use Heroku/Python build package.
+8. Connect your database instance such as elephantSQL and use the database URL.
+
+To Clone this Repository:
+Terminal: $ git clone https://github.com/JackAlexanderClark/Ultimate-Movie-Vendor
 
 ### Credits 
+1. Jack Clark
