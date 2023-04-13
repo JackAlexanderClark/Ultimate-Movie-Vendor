@@ -11,6 +11,8 @@
 <li>The purpose of this project is to create an application that allows users to enter their own dvds details.</li>
 <li>Users will be able to add a DVD, update the DVD and delete it from their dashboard.</li>
 <li>The dashboards will function as the primary display for their catalogue of DVDs and their respective reviews.</li>
+Search functionality:
+One of the most useful features of the application is its search functionality. Users can search their collection based on the DVD title or filter results by the most recently added DVDs and by their review ratings. 
 </ul>
 
 
