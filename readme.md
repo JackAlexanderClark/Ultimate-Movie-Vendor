@@ -51,15 +51,20 @@ One of the most useful features of the application is its search functionality. 
 ## Layout 
 #### Dashboard
 ![image](https://user-images.githubusercontent.com/97599832/231828650-4ffdafa4-ca4d-445a-bfdc-0e0f3c9f579d.png)
+<hr>
 
 #### A DVD object
 ![image](https://user-images.githubusercontent.com/97599832/231828555-372dff6b-57c8-4dfe-9901-943cabf3fa35.png)
+<hr>
 
 #### User Login Form
+<hr>
 
 #### Submit a DVD Form
+<hr>
 
 #### Add a DVD Review Form
+<hr>
 
 <h4> Wireframes and Concepts: </h4>
 
