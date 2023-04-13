@@ -110,11 +110,17 @@
 Deployment to Heroku Pages:
 
 1. In terminal you need to copy the requirements.txt and create a Procfile for Heroko to build you app.
-2. pip3 freeze --local > requirements.txt 
-3. echo web: python app.py > Procfile
-4.Go to the Deploy tab and then Deployment Method and use GitHub.
-5.Connect your GitHub repo you wish to clone and use for the App.
+2. pip3 freeze --local > requirements.txt.
+3. echo web: python app.py > Procfile.
+4. Go to the Deploy tab and then Deployment Method and use GitHub.
+5. Connect your GitHub repo you wish to clone and use for the App.
 6. Set up env.py file: IP : 0.0.0.0, PORT : 5000, DATABASE_URI : DATABASE_URI", SECRET_KEY {your secret key}
 7. Use Heroku/Python build package.
+8. Connect your database instance such as elephantSQL and use the database URL.
+9. You can read the logs by using "heroko logs --tail" in the project directory.
+
+To Clone this Repository:
+Terminal: $ git clone https://github.com/JackAlexanderClark/Ultimate-Movie-Vendor
 
 ### Credits 
+1. Jack Clark
