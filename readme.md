@@ -11,8 +11,12 @@
 <li>The purpose of this project is to create an application that allows users to enter their own dvds details.</li>
 <li>Users will be able to add a DVD, update the DVD and delete it from their dashboard.</li>
 <li>The dashboards will function as the primary display for their catalogue of DVDs and their respective reviews.</li>
-Search functionality:
-One of the most useful features of the application is its search functionality. Users can search their collection based on the DVD title or filter results by the most recently added DVDs and by their review ratings. 
+<li>Search functionality:
+One of the most useful features of the application is its search functionality. Users can search their collection based on the DVD title or filter results by the most recently added DVDs and by their review ratings.</li>
+<li>The Database can be scaled and cater for a users size and the sort function can help them quickly order and look for specific DVD's by their rating or creation date. The DVD's will neatly stack append to the latest ones you have added.</li>
+<li>The dashboard will be the primary frontpage which will display the DVD's with accessible forms found upon the nav bar to submit new DVD's or reviews.
+<li>A DVD can be updated to keep up to date with quantity changes.</li>
+<li>Similarly, DVD reviews can be added and updated whenever is required.</li>
 </ul>
 
 
@@ -20,7 +24,7 @@ One of the most useful features of the application is its search functionality. 
 <ul>
     <li>The app is based around 3 principles the "user", the "dvd" a user can own and a "dvd review" a user can write about a dvd.</li>
     <li>This is intrinsic to the business logic of the app.</li>
-    <li></li>
+    <li>The DVD objects can be updated, read, created and deleted whenever is necessary by clear buttons on each DVD.</li>
     <li>As seen below, this ERD diagram shows the relationships between the database tables, we can see that the DVD_REVIEW references the primary key of DVD id.</li>
     <li>Similarly we can see that the DVD_REVIEW references the primary key of user id from USER table.</li>
     
@@ -34,8 +38,6 @@ One of the most useful features of the application is its search functionality. 
 - To allow a User to store the quantity of DVD's in their inventory for stock purposs.
 - To store the price per DVD.
 - To allow Users to review DVD's.
-
-
 - Users can compile a collection of DVD's and then order them based on their preferences such as from highest rating to lowest.
 - Users can also order their collection by the date they purchased the DVD.
 
@@ -58,8 +60,15 @@ One of the most useful features of the application is its search functionality. 
 
 ![image](https://user-images.githubusercontent.com/97599832/228033308-b57220f2-1862-490d-aeef-518e8aaa47c2.png)
 
+- Custom CSS and JavaScript files are also rendered on the templates.
+- The particular database instance is from ElephantSQL and uses their "Tiny" tier service.
+
 - If a user changes the inventory they can use the update button to change data on the DVD such as the quantity, they can also delete the DVD if it is no longer available.
 - Similarly, they can add a review to the particular DVD by using the add review button.
+
+- The core app logic is stored in the app.py including the initialisation of Flask and SQL Database.
+
+- Helper.py contains the search ordering logic for the dashboard.
 
 
 <h3>4. Bugs and Testing</h3>
@@ -82,7 +91,8 @@ One of the most useful features of the application is its search functionality. 
    
    - I also changed my buttons to be wrapped in POST forms which prior the href tag was causing bugs.
    
-   - I encountered another major bug when I tried to save images to my elephantSQL database. Whenever, the app would restart the dynos would restart which would cause the database instance to 
+   - I encountered another major bug when I tried to save images to my elephantSQL database. Whenever, the app would restart the dynos would restart which would cause the database instance to forget the images saved into the database.
+    - Solution: I decided instead to save the Image URL to the database and then instead display them inside HTML <img> tags rather than trying to save a random string name for an image and then store the images in and upload folder.
    
    - Unresponsive Navigation Bar Bug
    - I used the w3 Schools nav bar as my previous nav bar would go out of line and break at certain breakpoints.
@@ -108,6 +118,8 @@ One of the most useful features of the application is its search functionality. 
 #### Page 1 - Index.html
 ![image](https://user-images.githubusercontent.com/97599832/230635519-99be8721-e205-452e-8dee-ac462373550b.png)
 
+### Python Code Validator
+
 ### Deployment
 Deployment to Heroku Pages:
 
@@ -126,3 +138,4 @@ Terminal: $ git clone https://github.com/JackAlexanderClark/Ultimate-Movie-Vendo
 
 ### Credits 
 1. Jack Clark
+2. Code Institute Tutor (Ben Smith)
