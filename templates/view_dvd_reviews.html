@@ -1,5 +1,15 @@
 {% include 'header.html'%}                        <!-- include header as already has inherited main -->
 {% block body %}
+
+    <style>
+        .star {
+          display: inline-block;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+        }
+    </style>
+
     <div class="container">
         <h1>View your DVD reviews</h1>
         <img src="static/images/Review Writing note.png" style="height: 200px; width: 200px;">
@@ -30,10 +40,9 @@
                         <li class="list-group-item"><b>User Name:</b><p>{{ current_user.firstname }}</p></li>
                         <li class="list-group-item"><b>Review:</b> {{  review.review }}</li>
                         <li class="list-group-item"><b>Rating:</b></li>
-
-                    <!-- for loop to iterate over number of stars -->
+                        <!-- for loop to iterate over number of stars -->
                         {% for i in range(review.rating)  %}
-                            <img id="gold_star" src="static/images/gold star.jpg" width="20" height="20">
+                            <img id="gold_star" src="static/images/gold star.jpg" width="20" height="20" class="star">
                         {% endfor %}
                     </li>
                   </ul>
@@ -51,8 +60,8 @@
                     </form>
 
                 </div>
-                </div>
-                    </div>
+              </div>
+            </div>
         {% endif %}
     {% endfor %}
 

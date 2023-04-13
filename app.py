@@ -1,5 +1,4 @@
 import os
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 import re
 from flask import Flask, render_template, request, redirect, url_for, flash
@@ -13,10 +12,8 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
 
-# tell flask where we want to upload images
+# tell flask our secret key fron env.py
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-
-# initialise the app and connect to the database
 
 # initialise login manager
 login_manager = LoginManager()
@@ -33,7 +30,6 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = uri  # heroku
 
 
-
 # initialise login manager
 @app.before_request
 def create_tables():
@@ -42,8 +38,8 @@ def create_tables():
 @app.route('/')
 @login_required
 def homepage():  # put application's code here
-    # tell index.html we will receive object dvd_reviews that needs to be looped over
 
+    # tell index.html we will receive object dvd_reviews that needs to be looped over
     sort_param = request.args.get("sort")
     dvds = Dvd.query.all()  # query db call all dvd
     if sort_param:
@@ -124,7 +120,7 @@ def add_dvds():
 @login_required
 def submit_dvd_review(id):
     dvd = Dvd.query.filter_by(id=id).first()
-    # build authentication to pick the currently logged in and pass into the USer
+    # build authentication to pick the currently logged in and pass into the User
     user = User.query.first()
     if request.method == "GET":
         return render_template("dvd_review_submit.html", id=id, dvd=dvd, user=user)
@@ -209,7 +205,7 @@ def delete_dvd_reviews_by_dvd_id():
         except Exception as e:
             db.session.rollback()
             return render_template("index.html", dvds=dvds, error=f"An error occurred while deleting this DVD review: {e}")
-    # do i need to enter id into text input instead of button?
+
     else:
         return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")
 
@@ -219,6 +215,7 @@ def delete_dvd_reviews_by_dvd_id():
 @app.route('/reviews', methods=["GET"])
 @login_required
 def reviews():
+
     reviews = DvdReview.query.all()
     dvd = Dvd.query.all()
     user = User.query.all()
@@ -254,6 +251,7 @@ def login():
     return render_template('login.html')
 
 if __name__ == "__main__":
+
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
