@@ -58,12 +58,15 @@ One of the most useful features of the application is its search functionality. 
 <hr>
 
 #### User Login Form
+![image](https://user-images.githubusercontent.com/97599832/232009626-f6cdbcb5-3e93-44d7-99d1-dbed179b90a2.png)
 <hr>
 
 #### Submit a DVD Form
+![image](https://user-images.githubusercontent.com/97599832/232009972-96d59807-bb70-49ef-81e1-1e46904fa070.png)
 <hr>
 
 #### Add a DVD Review Form
+![image](https://user-images.githubusercontent.com/97599832/232010097-7f155657-c258-4f3d-8b7d-59b2aa32fe86.png)
 <hr>
 
 <h4> Wireframes and Concepts: </h4>
