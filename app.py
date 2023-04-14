@@ -12,7 +12,7 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")       # connect to db with me as owner
 
-# tell flask our secret key fron env.py
+# tell flask our secret key from env.py
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 # initialise login manager
@@ -137,7 +137,7 @@ def submit_dvd_review(id):
         db.session.commit()                 # commit
         return redirect('/')
 
-# update and send id
+# update and send dvd id
 @app.route('/update_dvd/<int:id>', methods=["GET", "POST"])
 @login_required
 def update_dvd(id):
@@ -208,7 +208,6 @@ def delete_dvd_reviews_by_dvd_id():
 
     else:
         return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")
-
 
 
 # display all reviews
