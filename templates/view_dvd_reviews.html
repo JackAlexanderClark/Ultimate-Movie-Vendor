@@ -1,4 +1,4 @@
-{% include 'header.html'%}                        <!-- include header as already has inherited main -->
+{% include 'header.html'%}
 {% block body %}
 
     <style>
@@ -12,57 +12,52 @@
 
     <div class="container">
         <h1>View your DVD reviews</h1>
-        <img src="static/images/Review Writing note.png" style="height: 200px; width: 200px;">
+        <img src="static/images/Review_Writing_note.png" alt="review note" class="img-fluid" style="max-height: 200px; max-width: 200px;">
     </div>
     <hr>
 
     <div class="container" style="padding-top: 30px; border: 2px black;">
         <div class="row">
-        <div class="col-md-6 justify-content-center" style="text-align: center;">
         {% for review in reviews %}
-
-                {% if reviews|length == 0 %}
-                    <div class="row" class="col-md-6 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
-                        <h3><b>You have no Reviews added to your DVD's in your collection,  click add a review on a DVD.</b></h3>
-                    </div>
-                {% endif %}
-
             {% if review.dvd_id is not none %}
-                <div class="review-card" style="width: 30rem; border: 5px black">
-                 {% if review.dvd.name  %}
-                    <li class="list-group-item"><b>DVD:</b> {{  review.dvd.name }}</li>
-                 {% endif %}
-
-                  <ul class="list-group list-group-flush">
-                        <p>Image:</p> <img src="{{ dvd.image_url }}" style="text-align: center; height: 150px; width: 150px;">
-                        <li class="list-group-item"><b>User Name:</b><p>{{ current_user.firstname }}</p></li>
-                        <li class="list-group-item"><b>Review:</b> {{  review.review }}</li>
-                        <li class="list-group-item"><b>Rating:</b></li>
-                        <!-- for loop to iterate over number of stars -->
-                        {% for i in range(review.rating)  %}
-                            <img id="gold_star" src="static/images/gold star.jpg" width="20" height="20" class="star">
-                        {% endfor %}
-                    </li>
-                  </ul>
-
-                    {% if message %}
-                        <p>{{ message }}</p>
-                    {% elif error %}
-                        <p>{{ error }}</p>
+                <div class="col-md-6 col-sm-12 justify-content-center text-center mb-4">
+                    {% if reviews|length == 0 %}
+                        <h3><b>You have no Reviews added to your DVD's in your collection,  click add a review on a DVD.</b></h3>
                     {% endif %}
 
-                    <!-- pass in review_id into delete function -->
-                    <form method="POST" action="{{ url_for('delete_dvd_reviews_by_dvd_id') }}">
-                      <input type="hidden" id="dvd_id" name="dvd_id" value="{{ review.dvd_id }}">
-                      <input type="submit" value="Delete This Review?" onclick="alertUserReview()">
-                    </form>
+                    <div class="review-card" style="width: 100%; border: 5px black">
+                    <ul class="list-group list-group-flush">
 
+                            {% if review.dvd.name  %}
+                                <li class="list-group-item"><b>DVD:</b> {{  review.dvd.name }}</li>
+                            {% endif %}
+
+                            <p>Image:</p> <img src="{{ dvd.image_url }}" class="img-fluid" style="text-align: center; max-height: 150px; max-width: 150px;">
+                            <li class="list-group-item"><b>User Name:</b><p>{{ current_user.firstname }}</p></li>
+                            <li class="list-group-item"><b>Review:</b> {{  review.review }}</li>
+                            <li class="list-group-item"><b>Rating:</b></li>
+                            <!-- for loop to iterate over number of stars -->
+                            {% for i in range(review.rating)  %}
+                                <img id="gold_star" src="static/images/gold star.jpg" width="20" height="20" class="star">
+                            {% endfor %}
+                        </li>
+                    </ul>
+
+                        {% if message %}
+                            <p>{{ message }}</p>
+                        {% elif error %}
+                            <p>{{ error }}</p>
+                        {% endif %}
+
+                        <!-- pass in review_id into delete function -->
+                        <form method="POST" action="{{ url_for('delete_dvd_reviews_by_dvd_id') }}">
+                            <input type="hidden" id="dvd_id" name="dvd_id" value="{{ review.dvd_id }}">
+                            <input type="submit" value="Delete This Review?" onclick="alertUserReview()">
+                        </form>
+                    </div>
                 </div>
-              </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-
+            {% endif %}
+        {% endfor %}
+        </div>
     </div>
-
 {% endblock %}

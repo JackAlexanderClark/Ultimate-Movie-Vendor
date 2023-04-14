@@ -1,56 +1,47 @@
-{% include 'header.html'%}                        <!-- include header as already has inherited main -->
+{% include 'header.html'%}
 {% block body %}
 
-    <h1>Please add a DVD in the below form.</h1>
-    <hr>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- error if invalid input -->
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
+    <title>Login Page</title>
 
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
     <div class="container">
-        <!-- multiple data types (text, images, file) etc -->
-        <form action="{{ url_for('update_dvd', id=dvd.id) }}" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" id="inputEmail3" value="{% if dvd %} {{ dvd.name }} {% endif %}" required>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="form-signin text-center" action="" method="POST">
+                    <img class="mb-4" src="static/images/user-icon.png" alt="" width="45" height="45" style="padding-top:10px;">
+                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                    <br>
+                    <a href="{{ url_for('register_user') }}"><h2>Need to create a new account?</h2></a>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    {% if error %}
+                        <div class="alert alert-danger col-md-12" role="alert" style="text-align: center;">
+                            There was an Error with Login, are your login details correct?
+                        </div>
+                    {% endif %}
+                </form>
             </div>
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Description</label>
-                <div class="col-sm-10">
-                    <input type="text" name="description" class="form-control" id="inputEmail3" value="{% if dvd %} {{ dvd.description }} {% endif %}" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Price (£)</label>
-                <div class="col-sm-10">
-                    <input type="text" name="price" class="form-control" id="inputEmail3" value="{% if dvd %} {{ dvd.price }} {% endif %}" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Quantity</label>
-                <div class="col-sm-10">
-                    <input type="text" name="quantity" class="form-control" id="inputEmail3" value="{% if dvd %} {{ dvd.quantity }} {% endif %}" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Image URL</label>
-                <div class="col-sm-10">
-                     <input class="form-control" name="image_url" id="image_url">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Genre</label>
-                <div class="col-sm-10">
-                    <input type="text" name="genre" class="form-control" id="inputEmail3" value="{% if dvd %} {{ dvd.genre }} {% endif %}" required>
-                </div>
-            </div>
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Update DVD</button>
-                </div>
-        </form>
+        </div>
     </div>
+  </body>
+</html>
+
 {% endblock %}
