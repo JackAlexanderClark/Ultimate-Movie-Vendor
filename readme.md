@@ -6,6 +6,8 @@
 
 <h3>Technologies: Python, PostgreSQL, SQLAlchemy, Flask, javaScript, CSS and HTML</h3>
 
+App Heroku: https://movie-database-project.herokuapp.com/
+
 ![image](https://user-images.githubusercontent.com/97599832/231828650-4ffdafa4-ca4d-445a-bfdc-0e0f3c9f579d.png)
 
 <h3>1. Project Goals</h3>
@@ -151,7 +153,20 @@ Solution:
 
 ### HTML Validator
 #### Page 1 - Index.html
+
+- Some of these errors correspond to being unable to recognise flask syntax.
+
 ![image](https://user-images.githubusercontent.com/97599832/230635519-99be8721-e205-452e-8dee-ac462373550b.png)
+
+#### Page 2 - add_dvd.html
+![image](https://user-images.githubusercontent.com/97599832/232019330-a43509d9-0312-4362-bf91-fba59e1f6810.png)
+
+#### Page 3 - user_registration.html 
+![image](https://user-images.githubusercontent.com/97599832/232022340-c18b7ff4-6502-4d89-a37d-663b86c43c9c.png)
+
+- Need to add a form action.
+
+#### Page 4 - 
 
 ### JavaScript Validator
 
