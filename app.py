@@ -121,7 +121,7 @@ def add_dvds():
 @login_required
 def submit_dvd_review(id):
     dvd = Dvd.query.filter_by(id=id).first()
-    # build authentication to pick the currently logged in and pass into the User
+
     user = User.query.first()
     if request.method == "GET":
         return render_template("dvd_review_submit.html", id=id, dvd=dvd, user=user)
