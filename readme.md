@@ -166,9 +166,19 @@ Solution:
 
 - Need to add a form action.
 
-#### Page 4 - 
+#### Page 4 - edit_dvd.html
+![image](https://user-images.githubusercontent.com/97599832/232024177-27e61607-3768-4ac5-8f48-027c7335f34a.png)
+
+#### Page 5 - View_dvd_reviews.html
+![image](https://user-images.githubusercontent.com/97599832/232024886-b4579cbe-8713-497c-969f-aec078c81562.png)
+
+#### Page 6 - Login_page.html
+![image](https://user-images.githubusercontent.com/97599832/232025369-aa1a7b98-8341-4080-b26d-66e23d05821d.png)
+
 
 ### JavaScript Validator
+https://jshint.com/
+![image](https://user-images.githubusercontent.com/97599832/232025515-1fc3547f-da8f-4324-898f-8df1e679ea69.png)
 
 ### Python Code Validator
 
