@@ -1,5 +1,6 @@
 import os
 from sqlalchemy import text
+from flask_sqlalchemy import SQLAlchemy
 import re
 from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Dvd, User, DvdReview
