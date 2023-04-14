@@ -70,12 +70,6 @@ def register_user():
         db.session.commit()                 # commit
         return redirect('/')
 
-def float_input(value):
-    return re.match(r'^\d+(\.\d+)?$', value) is not None
-
-def integer_input(value):
-    return re.match(r'^\d+$', value) is not None
-
 
 # add movies into database
 @app.route('/add_dvd', methods=["GET", "POST"])
@@ -91,18 +85,6 @@ def add_dvds():
         quantity = request.form.get("quantity")
         genre = request.form.get("genre")
         image_url = request.form.get("image_url")
-
-        # check inputs are correct data type i.e. integers
-        if not float_input(price):
-            flash('Invalid price format. Please enter a valid number.', 'error')
-            return render_template('add_dvd.html')
-
-        if not integer_input(quantity):
-            flash('Invalid quantity format. Please enter a valid integer.', 'error')
-            return render_template('add_dvd.html')
-
-        price = float(price)
-        quantity = int(quantity)
 
         dvd = Dvd(
             name=name,
@@ -157,18 +139,6 @@ def update_dvd(id):
         dvd.quantity = request.form.get("quantity")
         dvd.genre = request.form.get("genre")
         dvd.image_url = request.form.get("image_url")
-
-        # check inputs are correct data type i.e. integers
-        if not float_input(dvd.price):
-            flash('Invalid price format. Make sure you use a float, i.e 1.0.', 'error')
-            return render_template('edit_dvd.html')
-
-        if not integer_input(dvd.quantity):
-            flash('Invalid quantity format. Please enter a valid integer, 1,2,3 etc.', 'error')
-            return render_template('edit_dvd.html')
-
-        dvd.price = float(dvd.price)
-        dvd.quantity = int(dvd.quantity)
 
         db.session.commit()
         return redirect("/")
