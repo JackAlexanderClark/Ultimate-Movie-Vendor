@@ -6,7 +6,7 @@
 
 <h3>Technologies: Python, PostgreSQL, SQLAlchemy, Flask, javaScript, CSS and HTML</h3>
 
-App Heroku: https://movie-database-project.herokuapp.com/
+### App Heroku: https://movie-database-project.herokuapp.com/
 
 ![desktop (1)](https://user-images.githubusercontent.com/97599832/232035145-50ec5109-4ddc-468f-ad35-09f52821f395.png)
 
