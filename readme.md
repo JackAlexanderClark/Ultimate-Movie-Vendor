@@ -6,6 +6,8 @@
 
 <h3>Technologies: Python, PostgreSQL, SQLAlchemy, Flask, javaScript, CSS and HTML</h3>
 
+![image](https://user-images.githubusercontent.com/97599832/231828650-4ffdafa4-ca4d-445a-bfdc-0e0f3c9f579d.png)
+
 <h3>1. Project Goals</h3>
 <ul>
 <li>The purpose of this project is to create an application that allows users to enter their own dvds details.</li>
