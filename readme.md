@@ -6,6 +6,10 @@
 
 <h3>Technologies: Python, PostgreSQL, SQLAlchemy, Flask, javaScript, CSS and HTML</h3>
 
+App Heroku: https://movie-database-project.herokuapp.com/
+
+![image](https://user-images.githubusercontent.com/97599832/231828650-4ffdafa4-ca4d-445a-bfdc-0e0f3c9f579d.png)
+
 <h3>1. Project Goals</h3>
 <ul>
 <li>The purpose of this project is to create an application that allows users to enter their own dvds details.</li>
@@ -149,9 +153,32 @@ Solution:
 
 ### HTML Validator
 #### Page 1 - Index.html
+
+- Some of these errors correspond to being unable to recognise flask syntax.
+
 ![image](https://user-images.githubusercontent.com/97599832/230635519-99be8721-e205-452e-8dee-ac462373550b.png)
 
+#### Page 2 - add_dvd.html
+![image](https://user-images.githubusercontent.com/97599832/232019330-a43509d9-0312-4362-bf91-fba59e1f6810.png)
+
+#### Page 3 - user_registration.html 
+![image](https://user-images.githubusercontent.com/97599832/232022340-c18b7ff4-6502-4d89-a37d-663b86c43c9c.png)
+
+- Need to add a form action.
+
+#### Page 4 - edit_dvd.html
+![image](https://user-images.githubusercontent.com/97599832/232024177-27e61607-3768-4ac5-8f48-027c7335f34a.png)
+
+#### Page 5 - View_dvd_reviews.html
+![image](https://user-images.githubusercontent.com/97599832/232024886-b4579cbe-8713-497c-969f-aec078c81562.png)
+
+#### Page 6 - Login_page.html
+![image](https://user-images.githubusercontent.com/97599832/232025369-aa1a7b98-8341-4080-b26d-66e23d05821d.png)
+
+
 ### JavaScript Validator
+https://jshint.com/
+![image](https://user-images.githubusercontent.com/97599832/232025515-1fc3547f-da8f-4324-898f-8df1e679ea69.png)
 
 ### Python Code Validator
 
