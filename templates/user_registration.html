@@ -1,10 +1,9 @@
 {% include 'header.html'%}
 {% block body %}
 
-    <h1>Please add your contact information in the below form.</h1>
-    <hr>
-
     <div class="container">
+        <h1>Please add your contact information in the below form.</h1>
+        <hr>
         <form action="{{ url_for('register_user') }}" method="POST">
             <div class="form-group form-row">
                 <label for="firstname" class="col-sm-2 col-form-label">First Name</label>

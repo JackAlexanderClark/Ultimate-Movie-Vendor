@@ -99,7 +99,7 @@ def add_dvds():
 
         if not integer_input(quantity):
             flash('Invalid quantity format. Please enter a valid integer.', 'error')
-            return render_template('add_dvd.html.html')
+            return render_template('add_dvd.html')
 
         price = float(price)
         quantity = int(quantity)
@@ -161,11 +161,11 @@ def update_dvd(id):
         # check inputs are correct data type i.e. integers
         if not float_input(dvd.price):
             flash('Invalid price format. Make sure you use a float, i.e 1.0.', 'error')
-            return render_template('add_dvd.html')
+            return render_template('edit_dvd.html')
 
         if not integer_input(dvd.quantity):
             flash('Invalid quantity format. Please enter a valid integer, 1,2,3 etc.', 'error')
-            return render_template('add_dvd.html.html')
+            return render_template('edit_dvd.html')
 
         dvd.price = float(dvd.price)
         dvd.quantity = int(dvd.quantity)
