@@ -147,6 +147,8 @@ Solution:
 
 
 ### Checking Code through Validators:
+#### Manual Testing
+<hr>
 ### CSS w3 Schools Jigsaw:
 
 ![image](https://user-images.githubusercontent.com/97599832/228552574-b6fe0e9c-2e27-44ad-8937-291d16f54fd4.png)
