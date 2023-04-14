@@ -8,7 +8,7 @@
 
 App Heroku: https://movie-database-project.herokuapp.com/
 
-![image](https://user-images.githubusercontent.com/97599832/231828650-4ffdafa4-ca4d-445a-bfdc-0e0f3c9f579d.png)
+![desktop (1)](https://user-images.githubusercontent.com/97599832/232035145-50ec5109-4ddc-468f-ad35-09f52821f395.png)
 
 <h3>1. Project Goals</h3>
 <ul>
