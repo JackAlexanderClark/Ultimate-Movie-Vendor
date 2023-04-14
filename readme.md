@@ -145,6 +145,8 @@ Solution:
 - Check using regex.
 ![image](https://user-images.githubusercontent.com/97599832/231492997-ac32c32a-462d-4c10-9be3-71b832811bce.png)
 
+- Change input type -- to number to prevent letters: <input type="text">
+
 
 ### Checking Code through Validators:
 #### Manual Testing
