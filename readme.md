@@ -77,6 +77,7 @@ One of the most useful features of the application is its search functionality. 
 ![image](https://user-images.githubusercontent.com/97599832/232291553-9481b16e-fa9f-4bac-bdcf-5ab12bf95d2f.png)
 <hr>
 
+<hr>
 <h4> Wireframes and Concepts: </h4>
 
 - Early on I want a DVD to be a self-contained object that could be looped over or iterated upon. It would contain all the information pertaining to each DVD and would then display on the dashboard in whatever ordered they are stored within the database.
@@ -114,6 +115,14 @@ One of the most useful features of the application is its search functionality. 
 
 <h3>4. Bugs and Testing</h3>
 
+Different testing methods:
+<ol>
+    <li>User Testing: By asking people to try my application and check their user experiences and any issues they encounter.</li>
+    <li>Manual Testing: Using user experiences to inform my development and using logs to test key features.</li>
+    <li>Using code validators and checks to check for errors.</li>
+</ol>
+  
+
  -While testing my application I came across a major bug when trying to delete a DVD. Because I have a second table called DVD_REVIEW, it has a foreign key                  relationship with the primary key of DVD, the "DVD ID". So if you create a DVD and then add a DVD review and then try to delete the DVD, the application                 will return a 500 critical error, as seen below:         
 ![image](https://user-images.githubusercontent.com/97599832/227781558-7f0e1e34-2468-4eaa-ba16-33ded95038fe.png)
 
@@ -138,6 +147,12 @@ Solution:
 - Unresponsive Navigation Bar Bug
 - I used the w3 Schools nav bar as my previous nav bar would go out of line and break at certain breakpoints.
 ![image](https://user-images.githubusercontent.com/97599832/231490168-f89a3909-c2a3-418e-8b91-7b49d5ee4f50.png)
+
+
+- Nav Bar buttons still not acting responsively
+- Fix: Using media queries to change font signs
+![image](https://user-images.githubusercontent.com/97599832/232306718-f392c8df-7cd3-4dfd-9760-c2537758f43d.png)
+
 
 - Bug - Incorrect inputs for tables
 - If you enter letters for the "price" column in the form if will crash as the column is expecting integers.
@@ -194,6 +209,15 @@ https://jshint.com/
 ![image](https://user-images.githubusercontent.com/97599832/232025515-1fc3547f-da8f-4324-898f-8df1e679ea69.png)
 
 ### Python Code Validator
+- Source: https://snyk.io/code-checker/python/ 
+- Security Code Checker
+- Error detected when I send the error in the returned template
+![image](https://user-images.githubusercontent.com/97599832/232300790-a8bc9bde-d162-45e2-89f2-e546221f9755.png)
+
+- Use generic error message.
+
+![image](https://user-images.githubusercontent.com/97599832/232301727-8e6e044a-f54e-433d-a52a-ecd320853d60.png)
+
 
 ### Deployment
 
