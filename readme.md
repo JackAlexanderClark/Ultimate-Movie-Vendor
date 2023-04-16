@@ -115,7 +115,7 @@ One of the most useful features of the application is its search functionality. 
 <h3>4. Bugs and Testing</h3>
 
  -While testing my application I came across a major bug when trying to delete a DVD. Because I have a second table called DVD_REVIEW, it has a foreign key                  relationship with the primary key of DVD, the "DVD ID". So if you create a DVD and then add a DVD review and then try to delete the DVD, the application                 will return a 500 critical error, as seen below:         
-[image](https://user-images.githubusercontent.com/97599832/227781558-7f0e1e34-2468-4eaa-ba16-33ded95038fe.png)
+![image](https://user-images.githubusercontent.com/97599832/227781558-7f0e1e34-2468-4eaa-ba16-33ded95038fe.png)
 
 - From here we are taken to the submit DVD review form. We can then add a review which will create a record in the DVD review table with a dvd id.
 - Attempting to delete will then error.
