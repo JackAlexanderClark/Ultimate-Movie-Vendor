@@ -151,10 +151,15 @@ Solution:
 
 - Change input type -- to number to prevent letters: <input type="text">
 
+- Add error exceptions in try and catch to stop app crashing if a valid ID is not found:
+![image](https://user-images.githubusercontent.com/97599832/232299530-af7dcdd4-fe86-4ae8-a297-d46421a90e5a.png)
+
+
 
 ### Checking Code through Validators:
 #### Manual Testing
 <hr>
+
 ### CSS w3 Schools Jigsaw:
 
 ![image](https://user-images.githubusercontent.com/97599832/228552574-b6fe0e9c-2e27-44ad-8937-291d16f54fd4.png)
