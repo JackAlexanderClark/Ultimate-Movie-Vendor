@@ -73,6 +73,10 @@ One of the most useful features of the application is its search functionality. 
 ![image](https://user-images.githubusercontent.com/97599832/232010097-7f155657-c258-4f3d-8b7d-59b2aa32fe86.png)
 <hr>
 
+#### View Reviews
+![image](https://user-images.githubusercontent.com/97599832/232291553-9481b16e-fa9f-4bac-bdcf-5ab12bf95d2f.png)
+<hr>
+
 <h4> Wireframes and Concepts: </h4>
 
 - Early on I want a DVD to be a self-contained object that could be looped over or iterated upon. It would contain all the information pertaining to each DVD and would then display on the dashboard in whatever ordered they are stored within the database.
