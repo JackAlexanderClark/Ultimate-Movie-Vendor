@@ -121,6 +121,10 @@ Different testing methods:
     <li>Manual Testing: Using user experiences to inform my development and using logs to test key features.</li>
     <li>Using code validators and checks to check for errors.</li>
 </ol>
+
+- Testing use Chrome Dev Tools to make sure the application is responsive for all types of devices such as Laptops, iPads and mobiles:
+![image](https://user-images.githubusercontent.com/97599832/232476672-110534e8-7275-4a30-bf3d-fc7e9a5b45ad.png)
+
   
 
  -While testing my application I came across a major bug when trying to delete a DVD. Because I have a second table called DVD_REVIEW, it has a foreign key                  relationship with the primary key of DVD, the "DVD ID". So if you create a DVD and then add a DVD review and then try to delete the DVD, the application                 will return a 500 critical error, as seen below:         
@@ -160,9 +164,6 @@ Solution:
 - To solve this error we need a validation check:
 
 - Add an error message.
-
-- Check using regex.
-![image](https://user-images.githubusercontent.com/97599832/231492997-ac32c32a-462d-4c10-9be3-71b832811bce.png)
 
 - Change input type -- to number to prevent letters: <input type="text">
 
