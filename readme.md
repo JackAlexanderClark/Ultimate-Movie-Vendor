@@ -171,6 +171,14 @@ Solution:
 
 
 
+### JavaScript Error - Reviews could still be deleted even though an alert allows you to cancel.
+![image](https://user-images.githubusercontent.com/97599832/232472641-42fa3e5b-92d8-4983-bc75-600c6582a4b7.png)
+
+Fix: I was using an onclick on the html input when I need to use a onsubmit on the form to return the javascript function, like such:
+![image](https://user-images.githubusercontent.com/97599832/232472873-e9ff9ad6-db62-4554-a2f2-4c72013ec80c.png)
+
+
+
 ### Checking Code through Validators:
 #### Manual Testing
 <hr>
