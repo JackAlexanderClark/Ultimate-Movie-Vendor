@@ -29,9 +29,17 @@
     color: white;
 }
 
+hr {
+    color: black;
+}
+
 #dashboard {
     margin: auto;
     width: 50%;
+}
+
+#dashboard_title {
+    text-decoration: underline;
 }
 
 #dashboardLogo {
@@ -41,12 +49,6 @@
     text-align: center;
     margin: auto;
     display: block;
-}
-
-#dashboard_title {
-    text-decoration: underline;
-    text-align: center;
-    margin: 0;
 }
 
 #order_btn {

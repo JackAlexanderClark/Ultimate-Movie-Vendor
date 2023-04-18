@@ -40,8 +40,8 @@ class Dvd(db.Model):
     name = db.Column(db.String(40))
     description = db.Column(db.String())
     price = db.Column(db.Float())
-    quantity = db.Column(db.Integer())                      # image will be a URL
-    image_url = db.Column(db.String())
+    quantity = db.Column(db.Integer())
+    image_url = db.Column(db.String())                  # image will be a URL
     genre = db.Column(db.String(10))
     created_date = db.Column(db.Date, default=func.now())       # get datetime for now
 
@@ -59,7 +59,7 @@ class DvdReview(db.Model):
     dvd_id = db.Column(db.Integer, db.ForeignKey("dvd.id"))
     dvd = db.relationship("Dvd", backref=backref("dvd", uselist=False))             # relation of foreign key to dvd table
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    user = db.relationship("User", backref=backref("user", uselist=False))          # related to USER table
+    user = db.relationship("User", backref=backref("user", uselist=False))          # related to user table
     review = db.Column(db.String())
     rating = db.Column(db.Integer())
 

@@ -11,9 +11,9 @@ function alertUser() {
 
 function alertUserReview() {
 
-  const confirmDelete = confirm("Are you sure you want to delete this Review?");
+  const confirmDeleteReview = confirm("Are you sure you want to delete this Review?");
 
-  if (!confirmDelete) {
+  if (!confirmDeleteReview) {
     // Cancel the button click
     return false;
   }

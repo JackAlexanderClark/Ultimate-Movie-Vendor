@@ -1,8 +1,6 @@
 import os
 from sqlalchemy import text
-from flask_sqlalchemy import SQLAlchemy
-import re
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
@@ -103,8 +101,8 @@ def add_dvds():
 @login_required
 def submit_dvd_review(id):
     dvd = Dvd.query.filter_by(id=id).first()
-
     user = User.query.first()
+
     if request.method == "GET":
         return render_template("dvd_review_submit.html", id=id, dvd=dvd, user=user)
     if request.method == "POST":
@@ -154,7 +152,7 @@ def delete_dvd(id):
             return render_template("index.html", message=f"Deleted all DVD with id {id}")
         except Exception as e:
             db.session.rollback()
-            return render_template("index.html")
+            return render_template("index.html", error="Invalid DVD ID")
 
     else:
         return render_template('index.html', error="Please enter a valid DVD ID")
@@ -175,7 +173,7 @@ def delete_dvd_reviews_by_dvd_id():
             return render_template("index.html", dvds=dvds)
         except Exception as e:
             db.session.rollback()
-            return render_template("index.html", dvds=dvds, error=f"An error occurred while deleting this DVD review: {e}")
+            return render_template("index.html", dvds=dvds, error="An error occurred while deleting this DVD review. Please try again later.")
 
     else:
         return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")

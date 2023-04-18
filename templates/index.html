@@ -1,120 +1,125 @@
-{% include 'header.html'%}                        <!-- include header as already has inherited main -->
+{% include 'header.html'%} <!-- include header as already has inherited main -->
 {% block body %}
 <div id="page_header"></div>
 <br>
-    <style>
-    .gold_star {
-            width: 50px;
-            height: 50px;
-        }
-    </style>
+<style>
+      .gold_star {
+        width: 40px;
+        height: 40px;
+      }
+</style>
 
-    <head>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    </head>
-    <!-- dashboard logo -->
-    <div class="row" id="dashboard">
-        <div class="container col-md-12" style="text-align: center;">
-            <h1 id="dashboard_title">Your Movie Dashboard</h1>
-            <br>
-            <p>Submit your DVD's you wish to trade and submit reviews and share with the community!</p>
-            <p>Create a database to store all your DVDs and reviews as you collect!</p>
-            <br>
-            <div class="row">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/A2U6AVvy9VUQ9/ECfN6LpLFOUy8xwB1TbYroFJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</head>
 
-                <div class="col-md-12">
-                    {% if dvds %}
-                        <p style="text-align: center; font-weight: bold;">Total DVDs in your collection: {{ dvds|length }}</p>
-                    {% else %}
-                    <div class="col-md-12 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
-                        <h3><b>You have no DVD's in your collection, please add one using the above forms, or click help for more information.</b></h3>
-                        <img src="static/images/DVD favicon.png" style="height: 25px; width: 25px;">
-                    </div>
-                    {% endif %}
-                </div>
-
-            {% if error %}
-                <p>{{ error }}</p>
-            {% endif %}
-
-            </div>
-            {% if dvds %}
-                <div class="dropdown" id="order_btn">
-                  <!-- order by button -->
-                  <button class="dropdown-toggle btn btn-info btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-bottom: 20px; color: white; background-color: mediumpurple;">
-                      Order By
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="?sort=newest">Order By Newest Date</a>
-                        <a class="dropdown-item" href="?sort=highest_rating">Order By Highest Rating</a>
-                        <a class="dropdown-item" href="?sort=lowest_rating">Order By the Lowest Rating</a>
-                  </div>
-                </div>
-            {% endif %}
-
-            <hr>
-        </div>
+    <div class="container" style="text-align: center;">
+        <h1 id="dashboard_title">Dashboard</h1>
+        <img src="/static/images/DVD logo.png" height="50" width="50">
     </div>
 
-    <br>
+<!-- dashboard logo -->
+<div class="container">
+  <div class="row" id="dashboard">
+    <div class="col-10 text-center">
+      <p>Current User: {{ current_user.email }}</p>
+        <div class="col-10">
+          {% if dvds %}
+            <p class="text-center font-weight-bold">Total DVDs in your collection: {{ dvds|length }}</p>
+          {% else %}
+            <div class="col-10 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
+              <h3><b>You have no DVD's in your collection, please add one using the above forms, or click help for more information.</b></h3>
+            </div>
+          {% endif %}
+        </div>
 
-        <!-- for loop to loop over db dvd objects -->
-                  {% for dvd in dvds %}
-                  <div class="container" style="border-style: solid; border-width: medium; border-color: black; padding: 10px; margin-bottom: 20px;">
-                      <div class="row" class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
-                      <!-- give padding to each card -->
-                      <div class="col-sm-12" style="padding-top: 10px; padding-bottom: 10px;">
-                            {% if dvd.image_url %}
-                                <p class="card-text text-center"><img src="{{ dvd.image_url }}" style="text-align: center; height: 200px; width: 200px;"></p>
-                            {% endif %}
-                      </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
-                                <p class="card-text text-center"><span class="titles">DVD id:</span> {{ dvd.id }}</p>
-                                <p class="card-text text-center"><span class="titles">Description:</span> {{ dvd.description }}</p>
-                                <p class="card-text text-center"><span class="titles">Price:</span> £{{ dvd.price }}0</p>
-                                <p class="card-text text-center"><span class="titles">Genre:</span> {{ dvd.genre }}</p>
-                                <p class="card-text text-center"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
-                                <p class="card-text text-center"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
-                                <p class="card-text text-center"><span class="titles">Rating:</span>
-                                <i class="fa-solid fa-star"></i>
-                                    {% if dvd.dvd.rating == 1 %} <img class="gold_star" src="/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 2 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 3 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 4 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
-                                        {% elif dvd.dvd.rating == 5 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
-                                        {% else %} No DVD rating available.
-                                    {% endif %}
-                                </p>
-                                <div class="card-body mb-3">
-                                    <div class="d-flex justify-content-center">
-                                        <a href="add_dvd_review/{{ dvd.id }}"><button class="btn btn-primary btn-lg">Add a Review to DVD</button></a>
+      {% if error %}
+        <p>{{ error }}</p>
+      {% endif %}
 
-                                        <form method="GET" action="{{ url_for('update_dvd', id=dvd.id) }}" class="ml-2">
-                                            <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
-                                            <input type="submit" value="Update This DVD?" class="btn btn-warning btn-lg" style="background-color: yellow; color: black;">
-                                        </form>
+      </div>
 
-                                        <form method="POST" action="{{ url_for('delete_dvd', id=dvd.id) }}" class="ml-2">
-                                            <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
-                                            <input type="submit" value="Delete This DVD?" class="btn btn-danger btn-lg" onclick="alertUser()" style="background-color: red; color: white;" id="delete">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+      {% if dvds %}
+        <div class="dropdown" id="order_btn">
+          <!-- order by button -->
+          <button class="dropdown-toggle btn btn-info btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-bottom: 20px; color: white; background-color: mediumpurple;">
+            Order By
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="?sort=newest">Order By Newest Date</a>
+            <a class="dropdown-item" href="?sort=highest_rating">Order By Highest Rating</a>
+            <a class="dropdown-item" href="?sort=lowest_rating">Order By the Lowest Rating</a>
+          </div>
+        </div>
+      {% endif %}
+
+      <hr>
+    </div>
+  </div>
+</div>
+  <br>
+
+<!-- Suspect cards -->
+  <!-- for loop to loop over db dvd objects -->
+
+{% for dvd in dvds %}
+    <div class="container">
+      <div class="row">
+      <div class="col-12 col-md-6 mx-auto">
+        <div class="card mb-6 shadow-sm">
+              {% if dvd.image_url %}
+                <p class="card-text text-center"><img src="{{ dvd.image_url }}" class="img-fluid mx-auto" style="text-align: center; height: 200px; width: 200px;"></p>
+              {% endif %}
+                <div class="card-body">
+                      <h5 class="card-title text-center"><span class="titles">Name:</span> {{ dvd.name }}</h5>
+                      <p class="card-text text-center"><span class="titles">Description:</span> {{ dvd.description }}</p>
+                      <p class="card-text text-center"><span class="titles">Price:</span> £{{ dvd.price }}0</p>
+                      <p class="card-text text-center"><span class="titles">Genre:</span> {{ dvd.genre }}</p>
+                      <p class="card-text text-center"><span class="titles">Quantity in stock:</span> {{ dvd.quantity }}</p>
+                      <p class="card-text text-center"><span class="titles">Date:</span> {{ dvd.created_date }}</p>
+                      <p class="card-text text-center"><span class="titles">Rating:</span>
+                        {% if dvd.dvd.rating == 1 %} <img class="gold_star" src="/static/images/gold star.jpg">
+                        {% elif dvd.dvd.rating == 2 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
+                        {% elif dvd.dvd.rating == 3 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
+                        {% elif dvd.dvd.rating == 4 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
+                        {% elif dvd.dvd.rating == 5 %} <img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg"><img class="gold_star" src="/static/images/gold star.jpg">
+                        {% else %} No DVD rating available.
+                        {% endif %}
+                      </p>
+                        <div class="card-body mb-3">
+                          <div class="d-flex flex-column justify-content-center">
+                            <form method="GET" action="{{ url_for('submit_dvd_review', id=dvd.id) }}" class="my-2 text-center">
+                              <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
+                              <input type="submit" value="Add Review?" class="btn btn-primary btn-sm">
+                            </form>
+
+                            <form method="GET" action="{{ url_for('update_dvd', id=dvd.id) }}" class="my-2 text-center">
+                              <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
+                              <input type="submit" value="Update DVD?" class="btn btn-warning btn-sm" style="background-color: yellow; color: black;">
+                            </form>
+
+                            <form method="POST" action="{{ url_for('delete_dvd', id=dvd.id) }}" class="my-2 text-center" onsubmit="return alertUser()">
+                              <input type="hidden" id="id" name="id" value="{{ dvd.id }}">
+                              <input type="submit" value="Delete DVD?" class="btn btn-danger btn-sm" style="background-color: red; color: white;" id="delete">
+                            </form>
+                          </div>
                         </div>
-                </div>
+
+                    </div>
             </div>
-            <!-- end for loop -->
-            {% endfor %}
+        </div>
+      </div>
+    </div>
+{% endfor %}
 
 
-            <div class="row">
-                <div class="col-md-12" style="text-align: center; padding-top: 10px;">
-                    <a href="#page_header"><button type="button" class="btn btn-success" style="background-color: blue; color: white;">Return to top of the page?</button></a>
-                </div>
-            </div>
-
+<div class="row">
+    <div class="col-md-12" style="text-align: center; padding-top: 10px;">
+      <a href="#page_header"><button type="button" class="btn btn-success" style="background-color: blue; color: white;">Return to top of the page?</button></a>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
