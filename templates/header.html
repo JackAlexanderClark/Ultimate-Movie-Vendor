@@ -8,7 +8,10 @@
 /* Add a black background color to the top navigation */
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #c7c7c7;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .topnav a {
@@ -44,13 +47,34 @@
           }
         }
 
+        // w3Schools code
+        document.addEventListener("DOMContentLoaded", function () {
+        setActiveClass();
+
+        function setActiveClass() {
+
+            const currentUrl = window.location.href;
+            const navLinks = document.querySelectorAll(".topnav a");
+
+            navLinks.forEach(link => {
+                if (link.href === currentUrl) {
+                    link.classList.add("active");
+                } else {
+                    link.classList.remove("active");
+                }
+            });
+        }
+    });
+
+
+
     </script>
 </head>
 
 <body>
     <header>
-        <div class="topnav" id="myTopnav" style="text-align: center; justify-content: center; display: flex;">
-            <a href="{{ url_for('homepage') }}" class="active"><small>Dashboard <i class="fa fa-home"></i></small></a>
+        <div class="topnav" id="myTopnav" style="text-align: center; justify-content: center; display: flex; position: sticky;">
+            <a href="{{ url_for('homepage') }}"><small>Dashboard <i class="fa fa-home"></i></small></a>
             <a href="{{ url_for('add_dvds') }}"><small>Submit DVD <i class="fa fa-arrow-up"></i></small></a>
             <a href="{{ url_for('reviews') }}"><small>DVD Reviews <i class="fa fa-paperclip"></i></small></a>
             <a href="{{ url_for('log_out') }}"><small>Log Out? </small></a>

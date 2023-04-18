@@ -7,6 +7,16 @@
         width: 40px;
         height: 40px;
       }
+
+      #dashboard-img {
+          width: 200px;
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+      }
+
 </style>
 
 <head>
@@ -17,23 +27,23 @@
 
     <div class="container" style="text-align: center;">
         <h1 id="dashboard_title">Dashboard</h1>
-        <img src="/static/images/DVD logo.png" height="50" width="50">
     </div>
+
+  <div class="d-flex justify-content-center">
+    <img src="/static/images/Dashboard_DVDs.jpg" alt="DVDs on a Shelf" class="img-fluid" id="dashboard-img">
+  </div>
 
 <!-- dashboard logo -->
 <div class="container">
   <div class="row" id="dashboard">
     <div class="col-10 text-center">
-      <p>Current User: {{ current_user.email }}</p>
-        <div class="col-10">
           {% if dvds %}
-            <p class="text-center font-weight-bold">Total DVDs in your collection: {{ dvds|length }}</p>
+            <p class="text-center font-weight-bold" style="padding-left: 30px; padding-top: 20px;">Total DVDs in your collection: {{ dvds|length }}</p>
           {% else %}
             <div class="col-10 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
               <h3><b>You have no DVD's in your collection, please add one using the above forms, or click help for more information.</b></h3>
             </div>
           {% endif %}
-        </div>
 
       {% if error %}
         <p>{{ error }}</p>
