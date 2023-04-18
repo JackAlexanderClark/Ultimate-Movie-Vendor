@@ -6,9 +6,9 @@
 
 <h3>Technologies: Python, PostgreSQL, SQLAlchemy, Flask, javaScript, CSS and HTML</h3>
 
-App Heroku: https://movie-database-project.herokuapp.com/
+### App Heroku: https://movie-database-project.herokuapp.com/
 
-![image](https://user-images.githubusercontent.com/97599832/231828650-4ffdafa4-ca4d-445a-bfdc-0e0f3c9f579d.png)
+![desktop (1)](https://user-images.githubusercontent.com/97599832/232035145-50ec5109-4ddc-468f-ad35-09f52821f395.png)
 
 <h3>1. Project Goals</h3>
 <ul>
@@ -73,6 +73,11 @@ One of the most useful features of the application is its search functionality. 
 ![image](https://user-images.githubusercontent.com/97599832/232010097-7f155657-c258-4f3d-8b7d-59b2aa32fe86.png)
 <hr>
 
+#### View Reviews
+![image](https://user-images.githubusercontent.com/97599832/232291553-9481b16e-fa9f-4bac-bdcf-5ab12bf95d2f.png)
+<hr>
+
+<hr>
 <h4> Wireframes and Concepts: </h4>
 
 - Early on I want a DVD to be a self-contained object that could be looped over or iterated upon. It would contain all the information pertaining to each DVD and would then display on the dashboard in whatever ordered they are stored within the database.
@@ -110,8 +115,20 @@ One of the most useful features of the application is its search functionality. 
 
 <h3>4. Bugs and Testing</h3>
 
+Different testing methods:
+<ol>
+    <li>User Testing: By asking people to try my application and check their user experiences and any issues they encounter.</li>
+    <li>Manual Testing: Using user experiences to inform my development and using logs to test key features.</li>
+    <li>Using code validators and checks to check for errors.</li>
+</ol>
+
+- Testing use Chrome Dev Tools to make sure the application is responsive for all types of devices such as Laptops, iPads and mobiles:
+![image](https://user-images.githubusercontent.com/97599832/232476672-110534e8-7275-4a30-bf3d-fc7e9a5b45ad.png)
+
+  
+
  -While testing my application I came across a major bug when trying to delete a DVD. Because I have a second table called DVD_REVIEW, it has a foreign key                  relationship with the primary key of DVD, the "DVD ID". So if you create a DVD and then add a DVD review and then try to delete the DVD, the application                 will return a 500 critical error, as seen below:         
-[image](https://user-images.githubusercontent.com/97599832/227781558-7f0e1e34-2468-4eaa-ba16-33ded95038fe.png)
+![image](https://user-images.githubusercontent.com/97599832/227781558-7f0e1e34-2468-4eaa-ba16-33ded95038fe.png)
 
 - From here we are taken to the submit DVD review form. We can then add a review which will create a record in the DVD review table with a dvd id.
 - Attempting to delete will then error.
@@ -135,6 +152,12 @@ Solution:
 - I used the w3 Schools nav bar as my previous nav bar would go out of line and break at certain breakpoints.
 ![image](https://user-images.githubusercontent.com/97599832/231490168-f89a3909-c2a3-418e-8b91-7b49d5ee4f50.png)
 
+
+- Nav Bar buttons still not acting responsively
+- Fix: Using media queries to change font signs
+![image](https://user-images.githubusercontent.com/97599832/232306718-f392c8df-7cd3-4dfd-9760-c2537758f43d.png)
+
+
 - Bug - Incorrect inputs for tables
 - If you enter letters for the "price" column in the form if will crash as the column is expecting integers.
 ![image](https://user-images.githubusercontent.com/97599832/231492321-e109fd41-6b72-4a8a-9d3b-2ab6436080cd.png)
@@ -142,11 +165,25 @@ Solution:
 
 - Add an error message.
 
-- Check using regex.
-![image](https://user-images.githubusercontent.com/97599832/231492997-ac32c32a-462d-4c10-9be3-71b832811bce.png)
+- Change input type -- to number to prevent letters: <input type="text">
+
+- Add error exceptions in try and catch to stop app crashing if a valid ID is not found:
+![image](https://user-images.githubusercontent.com/97599832/232299530-af7dcdd4-fe86-4ae8-a297-d46421a90e5a.png)
+
+
+
+### JavaScript Error - Reviews could still be deleted even though an alert allows you to cancel.
+![image](https://user-images.githubusercontent.com/97599832/232472641-42fa3e5b-92d8-4983-bc75-600c6582a4b7.png)
+
+Fix: I was using an onclick on the html input when I need to use a onsubmit on the form to return the javascript function, like such:
+![image](https://user-images.githubusercontent.com/97599832/232472873-e9ff9ad6-db62-4554-a2f2-4c72013ec80c.png)
+
 
 
 ### Checking Code through Validators:
+#### Manual Testing
+<hr>
+
 ### CSS w3 Schools Jigsaw:
 
 ![image](https://user-images.githubusercontent.com/97599832/228552574-b6fe0e9c-2e27-44ad-8937-291d16f54fd4.png)
@@ -181,6 +218,15 @@ https://jshint.com/
 ![image](https://user-images.githubusercontent.com/97599832/232025515-1fc3547f-da8f-4324-898f-8df1e679ea69.png)
 
 ### Python Code Validator
+- Source: https://snyk.io/code-checker/python/ 
+- Security Code Checker
+- Error detected when I send the error in the returned template
+![image](https://user-images.githubusercontent.com/97599832/232300790-a8bc9bde-d162-45e2-89f2-e546221f9755.png)
+
+- Use generic error message.
+
+![image](https://user-images.githubusercontent.com/97599832/232301727-8e6e044a-f54e-433d-a52a-ecd320853d60.png)
+
 
 ### Deployment
 
