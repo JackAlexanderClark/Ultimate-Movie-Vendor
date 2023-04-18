@@ -77,7 +77,15 @@ One of the most useful features of the application is its search functionality. 
 ![image](https://user-images.githubusercontent.com/97599832/232291553-9481b16e-fa9f-4bac-bdcf-5ab12bf95d2f.png)
 <hr>
 
-<hr>
+### User Experience
+- I've used JavaScript to query whether a user wishes to delete a DVD or a review, by alerting them and asking them to confirm or cancel their input.
+![image](https://user-images.githubusercontent.com/97599832/232767508-4dbbde34-5c66-4027-9002-11fa253cac9e.png)
+
+- User 1: "I found the buttons and navigation bar simple to use and to add DVD's. However, there was not a clear way to see which user had added a review."
+- Solution: Add the user who added a review/
+
+- User 2:
+
 <h4> Wireframes and Concepts: </h4>
 
 - Early on I want a DVD to be a self-contained object that could be looped over or iterated upon. It would contain all the information pertaining to each DVD and would then display on the dashboard in whatever ordered they are stored within the database.
