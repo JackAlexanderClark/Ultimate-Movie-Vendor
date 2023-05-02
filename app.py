@@ -84,10 +84,6 @@ def index():
     return render_template("index.html", dvd_added=dvd_added, dvd_id=dvd_id)
 
 
-# add movies into database
-from flask import url_for, request
-
-
 @app.route('/add_dvd', methods=["GET", "POST"])
 @login_required
 def add_dvds():
@@ -172,7 +168,7 @@ def delete_dvd(id):
         try:
             db.session.execute(text("DELETE FROM dvd WHERE id = :id"), {"id": id})
             db.session.commit()
-            message = f"Deleted all DVD with id {id}"
+            message = f"Deleted DVD with id {id}"
             return render_template("index.html", message=message)
         except Exception as e:
             db.session.rollback()
@@ -182,8 +178,6 @@ def delete_dvd(id):
     else:
         error = "Please enter a valid DVD ID"
         return render_template('index.html', error=error)
-
-
 
 
 @login_required
@@ -197,13 +191,17 @@ def delete_dvd_reviews_by_dvd_id():
         try:
             db.session.execute(text("DELETE FROM dvd_review WHERE dvd_id = :dvd_id"), {"dvd_id": dvd_id})
             db.session.commit()
-            return render_template("index.html", dvds=dvds)
+            message = "DVD review successfully deleted"
+            return render_template("index.html", dvds=dvds, message=message)
         except Exception as e:
             db.session.rollback()
-            return render_template("index.html", dvds=dvds, error="An error occurred while deleting this DVD review. Please try again later.")
+            error = "An error occurred while deleting this DVD review. Please try again later."
+            return render_template("index.html", dvds=dvds, error=error)
 
     else:
-        return render_template('view_dvd_reviews.html', error="Please enter a valid DVD ID")
+        error = "Please enter a valid DVD ID"
+        return render_template('view_dvd_reviews.html', error=error)
+
 
 
 # display all reviews
