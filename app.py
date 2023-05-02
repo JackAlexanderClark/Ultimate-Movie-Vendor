@@ -1,6 +1,6 @@
 import os
 from sqlalchemy import text
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
@@ -46,6 +46,13 @@ def homepage():  # put application's code here
 
     return render_template("index.html", dvds=dvds)
 
+@app.route('/gallery', methods=['GET'])
+def gallery():
+
+    dvds = Dvd.query.all()
+
+    return render_template('gallery.html', dvds=dvds)
+
 # get user information and store in database
 @app.route('/user_register', methods=["GET", "POST"])
 def register_user():
@@ -68,14 +75,26 @@ def register_user():
         db.session.commit()                 # commit
         return redirect('/')
 
+@app.route('/')
+@login_required
+def index():
+    dvd_added = request.args.get('dvd_added', False, type=bool)
+    dvd_id = request.args.get('dvd_id', None, type=int)
+
+    return render_template("index.html", dvd_added=dvd_added, dvd_id=dvd_id)
+
 
 # add movies into database
+from flask import url_for, request
+
+
 @app.route('/add_dvd', methods=["GET", "POST"])
 @login_required
 def add_dvds():
     if request.method == "GET":
         dvd = Dvd(name="", description="", price="", quantity="", genre="", image_url="")
         return render_template("add_dvd.html", dvd=dvd)
+
     if request.method == "POST":
         name = request.form.get("name")
         description = request.form.get("description")
@@ -92,9 +111,11 @@ def add_dvds():
             image_url=image_url,
             genre=genre
         )
-        db.session.add(dvd)                # add to database
-        db.session.commit()                 # commit
-        return redirect('/')
+        db.session.add(dvd)  # add to database
+        db.session.commit()  # commit
+
+        return redirect(url_for('index', dvd_added=True, dvd_id=dvd.id))
+
 
 # submit users review for movies
 @app.route('/add_dvd_review/<int:id>', methods=["GET", "POST"])
@@ -139,7 +160,9 @@ def update_dvd(id):
         dvd.image_url = request.form.get("image_url")
 
         db.session.commit()
-        return redirect("/")
+        message = f"DVD {dvd.id} has been successfully updated."
+        return render_template("index.html", dvd=dvd, message=message)
+
 
 @app.route('/delete_dvd/<int:id>', methods=["POST"])
 @login_required
@@ -149,13 +172,17 @@ def delete_dvd(id):
         try:
             db.session.execute(text("DELETE FROM dvd WHERE id = :id"), {"id": id})
             db.session.commit()
-            return render_template("index.html", message=f"Deleted all DVD with id {id}")
+            message = f"Deleted all DVD with id {id}"
+            return render_template("index.html", message=message)
         except Exception as e:
             db.session.rollback()
-            return render_template("index.html", error="Invalid DVD ID")
+            error = "Invalid DVD ID"
+            return render_template("index.html", error=error)
 
     else:
-        return render_template('index.html', error="Please enter a valid DVD ID")
+        error = "Please enter a valid DVD ID"
+        return render_template('index.html', error=error)
+
 
 
 

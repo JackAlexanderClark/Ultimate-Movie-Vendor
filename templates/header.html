@@ -1,8 +1,8 @@
 {% extends 'main.html'%}
 {% block body %}
-
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <style>
 /* Add a black background color to the top navigation */
@@ -75,11 +75,22 @@
     <header>
         <div class="topnav" id="myTopnav" style="text-align: center; justify-content: center; display: flex; position: sticky;">
             <a href="{{ url_for('homepage') }}"><small>Dashboard <i class="fa fa-home"></i></small></a>
-            <a href="{{ url_for('add_dvds') }}"><small>Submit DVD <i class="fa fa-arrow-up"></i></small></a>
+            <a href="{{ url_for('add_dvds') }}"><small>Add DVD <i class="fa fa-arrow-up"></i></small></a>
             <a href="{{ url_for('reviews') }}"><small>DVD Reviews <i class="fa fa-paperclip"></i></small></a>
+            <a href="{{ url_for('gallery') }}"><small>Gallery <i class="fa-paint-roller"></i></small></a>
             <a href="{{ url_for('log_out') }}"><small>Log Out? </small></a>
         </div>
     </header>
 
 </body>
+      {% block footer %}
+    <footer>
+      <p>Hi this is the footer</p>
+    </footer>
+  {% endblock %}
+
+
 {% endblock %}
+
+
+

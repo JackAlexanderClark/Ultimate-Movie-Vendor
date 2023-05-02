@@ -17,12 +17,24 @@
           overflow: hidden;
       }
 
+  .modal-backdrop {
+    background-color: transparent;
+  }
+    .modal.no-backdrop::before {
+    display: none;
+  }
+
 </style>
 
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/A2U6AVvy9VUQ9/ECfN6LpLFOUy8xwB1TbYroFJ" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
 </head>
 
     <div class="container" style="text-align: center;">
@@ -65,14 +77,59 @@
         </div>
       {% endif %}
 
+        <!-- Help button -->
+        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#helpModal" style="color: white; background-color: gold;">
+          Help
+        </button>
+
+        <!-- Help modal -->
+        <div class="modal no-backdrop" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="helpModalLabel">Help ?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                    help em out
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <hr>
     </div>
   </div>
 </div>
+
   <br>
 
-<!-- Suspect cards -->
-  <!-- for loop to loop over db dvd objects -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% if dvd_id %}
+            <p>DVD {{ dvd_id }} has been created.</p>
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% for dvd in dvds %}
     <div class="container">
@@ -131,5 +188,27 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    {% if dvd_added %}
+      $('#successModal').modal('show');
+    {% endif %}
+  });
+
+{% if message %}
+
+  alert('{{ message }}');
+
+{% endif %}
+
+{% if error %}
+
+  alert('{{ error }}');
+
+{% endif %}
+
+
+</script>
 
 {% endblock %}
