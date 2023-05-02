@@ -63,37 +63,46 @@
 
       </div>
 
-      {% if dvds %}
-        <div class="dropdown" id="order_btn">
-          <!-- order by button -->
-          <button class="dropdown-toggle btn btn-info btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-bottom: 20px; color: white; background-color: mediumpurple;">
-            Order By
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="?sort=newest">Order By Newest Date</a>
-            <a class="dropdown-item" href="?sort=highest_rating">Order By Highest Rating</a>
-            <a class="dropdown-item" href="?sort=lowest_rating">Order By the Lowest Rating</a>
-          </div>
-        </div>
-      {% endif %}
 
+    <div class="button-container" style="display: flex; justify-content: center; align-items: center; padding: 10px;">
+         {% if dvds %}
+        <div class="dropdown" id="order_btn">
+            <!-- order by button -->
+            <button class="dropdown-toggle btn btn-info btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; background-color: mediumpurple;">
+                Order By
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="?sort=newest">Order By Newest Date</a>
+                <a class="dropdown-item" href="?sort=highest_rating">Order By Highest Rating</a>
+                <a class="dropdown-item" href="?sort=lowest_rating">Order By the Lowest Rating</a>
+            </div>
+        </div>
         <!-- Help button -->
-        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#helpModal" style="color: white; background-color: gold;">
-          Help
+        {% endif %}
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#helpModal" style="color: white; background-color: gold; margin-left: 10px;">
+            Help?
         </button>
+    </div>
+
 
         <!-- Help modal -->
         <div class="modal no-backdrop" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="helpModalLabel">Help ?</h5>
+                <h3 class="modal-title" id="helpModalLabel"><b>User Guide:</b></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                    help em out
+                    <ul>
+                        <li>This is your dashboard where your dvd's will be stored and ordered.</li>
+                        <li>Click on "Add DVD" to submit a dvd with an image URL.</li>
+                        <li>You can then click "Add a Review" to write a review for it, these can be viewed by clicking on the navigation bar "View Reviews".</li>
+                        <li>You can update the DVD if any information changes.</li>
+                        <li>Users can delete this DVD if it is no longer in their collection.</li>
+                    </ul>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -108,28 +117,6 @@
 </div>
 
   <br>
-
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Success</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {% if dvd_id %}
-            <p>DVD {{ dvd_id }} has been created.</p>
-        {% endif %}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 {% for dvd in dvds %}
     <div class="container">

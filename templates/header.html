@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
 <style>
 /* Add a black background color to the top navigation */
 .topnav {
@@ -12,6 +11,8 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    height: 60px; /* Increase the height of the navbar */
+    line-height: 60px; /* Adjust the line-height to vertically center the text */
 }
 
 .topnav a {
@@ -19,7 +20,7 @@
     display: block;
     color: white;
     text-align: center;
-    padding: 3px;
+    padding: 0 16px; /* Increase padding for larger navbar */
     text-decoration: none;
     font-size: 17px;
 }
@@ -34,7 +35,14 @@
     color: white;
 }
 
-    </style>
+@media screen and (max-width: 600px) {
+  .topnav a {
+    font-size: 14px;
+    padding: 0 8px;
+  }
+}
+
+</style>
 
     <script>
         // code from W3Schools: Responsive NavBar
@@ -66,14 +74,12 @@
         }
     });
 
-
-
     </script>
 </head>
 
 <body>
     <header>
-        <div class="topnav" id="myTopnav" style="text-align: center; justify-content: center; display: flex; position: sticky;">
+        <div class="topnav" id="myTopnav" style="text-align: center; justify-content: center; display: flex;">
             <a href="{{ url_for('homepage') }}"><small>Dashboard <i class="fa fa-home"></i></small></a>
             <a href="{{ url_for('add_dvds') }}"><small>Add DVD <i class="fa fa-arrow-up"></i></small></a>
             <a href="{{ url_for('reviews') }}"><small>DVD Reviews <i class="fa fa-paperclip"></i></small></a>
@@ -83,14 +89,9 @@
     </header>
 
 </body>
-      {% block footer %}
-    <footer>
-      <p>Hi this is the footer</p>
-    </footer>
-  {% endblock %}
-
 
 {% endblock %}
+
 
 
 
