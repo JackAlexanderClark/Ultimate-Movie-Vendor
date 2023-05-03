@@ -52,7 +52,15 @@ One of the most useful features of the application is its search functionality. 
 
 <h3>2. Data Models</h3> 
 
+- Database Scheme Overview:
+User: Represents a user in the system, storing their personal information such as firstname, lastname, email, country, and a password. The User class also includes authentication and identification methods, such as is_authenticated, is_active, is_anonymous, and get_id. These methods determine if a user is authenticated, active, anonymous, and return the user's ID, respectively.
+
+Dvd: This table is for a DVD in the collection, including attributes like name, description, price, quantity, image_url, genre, and created_date. The Dvd class has an init method for initializing a new DVD object with the given attributes. The image_url field stores the URL of an image representing the DVD, while the created_date field automatically stores the current date as the default value, which can be later used to order the dvd's.
+
+DvdReview: Represents a review written by a user for a particular DVD. This class has a foreign key relationship with both the User and Dvd classes through the user_id and dvd_id fields, respectively. The user and dvd relationships allow for easy retrieval of the associated User and Dvd objects, while the backref attribute creates a reverse relationship for convenience. The DvdReview class also stores the review text and a rating (an integer value).
+
 <ul> 
+
 
     <li>The app is based around 3 principles the "user", the "dvd" a user can own and a "dvd review" a user can write about a dvd.</li> 
 
