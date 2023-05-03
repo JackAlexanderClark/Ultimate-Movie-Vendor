@@ -52,7 +52,8 @@ One of the most useful features of the application is its search functionality. 
 
 <h3>2. Data Models</h3> 
 
-- Database Scheme Overview:
+<h4>Database Scheme Overview:</h4>
+
 User: Represents a user in the system, storing their personal information such as firstname, lastname, email, country, and a password. The User class also includes authentication and identification methods, such as is_authenticated, is_active, is_anonymous, and get_id. These methods determine if a user is authenticated, active, anonymous, and return the user's ID, respectively.
 
 Dvd: This table is for a DVD in the collection, including attributes like name, description, price, quantity, image_url, genre, and created_date. The Dvd class has an init method for initializing a new DVD object with the given attributes. The image_url field stores the URL of an image representing the DVD, while the created_date field automatically stores the current date as the default value, which can be later used to order the dvd's.
