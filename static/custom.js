@@ -18,3 +18,23 @@ function alertUserReview() {
     return false;
   }
 }
+
+function alertUserUpdate() {
+
+  const confirmUpdate = confirm("Would you like to update this DVD?");
+
+  if (!confirmUpdate) {
+
+    return false;
+  }
+}
+
+function alertAddReview() {
+
+  const confirmUpdate = confirm("Would you like to add a review to this DVD?");
+
+  if (!confirmUpdate) {
+
+    return false;
+  }
+}

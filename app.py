@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
 from flask_login import LoginManager, login_required, login_user, logout_user
+from models import Dvd
 
 if os.path.exists("env.py"):
     import env  # noqa
@@ -45,13 +46,6 @@ def homepage():  # put application's code here
         dvds = sort_dvd(Dvd, sort_param)
 
     return render_template("index.html", dvds=dvds)
-
-@app.route('/gallery', methods=['GET'])
-def gallery():
-
-    dvds = Dvd.query.all()
-
-    return render_template('gallery.html', dvds=dvds)
 
 # get user information and store in database
 @app.route('/user_register', methods=["GET", "POST"])
@@ -144,6 +138,10 @@ def update_dvd(id):
     if not dvd:
         return render_template("index.html", message="DVD not found")
 
+    # Remove spaces around the price and quantity values
+    dvd.price = str(dvd.price).strip()
+    dvd.quantity = str(dvd.quantity).strip()
+
     if request.method == "GET":
         return render_template("edit_dvd.html", id=id, dvd=dvd)
 
@@ -160,18 +158,27 @@ def update_dvd(id):
         return render_template("index.html", dvd=dvd, message=message)
 
 
+
+
+
 @app.route('/delete_dvd/<int:id>', methods=["POST"])
 @login_required
 def delete_dvd(id):
 
     if id is not None:
         try:
-            db.session.execute(text("DELETE FROM dvd WHERE id = :id"), {"id": id})
-            db.session.commit()
-            message = f"Deleted DVD with id {id}"
-            return render_template("index.html", message=message)
+            dvds = Dvd.query.get(id)  # Retrieve the DVD object with the given ID
+            if dvds:
+                db.session.delete(dvds)  # Delete
+                db.session.commit()
+                message = f"Deleted DVD with id {id}"
+                return render_template("index.html", message=message)
+            else:
+                error = "DVD not found"
+                return render_template("index.html", error=error)
         except Exception as e:
             db.session.rollback()
+            print("Error during deletion:", e)  # Print the exception message
             error = "Invalid DVD ID"
             return render_template("index.html", error=error)
 

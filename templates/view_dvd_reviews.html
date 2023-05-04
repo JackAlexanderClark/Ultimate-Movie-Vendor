@@ -55,17 +55,15 @@
                         <li class="list-group-item"><b>Review:</b> {{  review.review }}</li>
                         <!-- for loop to iterate over number of stars -->
                         <li class="list-group-item"><b>Rating:</b>{% for i in range(review.rating) %}
-                            <img id="gold_star" src="static/images/gold star.jpg" width="20" height="20" class="star">
+                            <i class="fa fa-star"></i>
                         {% endfor %}</li>
-
-
                     </li>
                 </ul>
                 <br>
                     <!-- pass in review_id into delete function -->
                     <form method="POST" action="{{ url_for('delete_dvd_reviews_by_dvd_id') }}" onsubmit="return alertUserReview()">
                         <input type="hidden" id="dvd_id" name="dvd_id" value="{{ review.dvd_id }}">
-                        <input type="submit" value="Delete This Review?" id="button-submit">
+                        <input type="submit" value="Delete This Review?" id="button-submit" class="btn btn-outline-primary">
                     </form>
                 </div>
             </div>
