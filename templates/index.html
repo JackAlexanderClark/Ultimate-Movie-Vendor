@@ -1,21 +1,7 @@
 {% include 'header.html'%} <!-- include header as already has inherited main -->
 {% block body %}
 <div id="page_header"></div>
-<br>
 <style>
-      .gold_star {
-        width: 40px;
-        height: 40px;
-      }
-
-      #dashboard-img {
-          width: 200px;
-          height: 200px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-      }
 
       .modal-backdrop {
         background-color: transparent;
@@ -26,6 +12,35 @@
     .table-style {
         font-weight: bold; text-transform: uppercase;
     }
+
+.background-image {
+  background-image: url("/static/images/Dashboard_DVDs.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  width: 100%;
+}
+
+.responsive-image {
+  width: 100%;
+  height: 50vh;
+}
+
+.responsive-image img {
+  width: 100%;
+  height: 50vh;
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 4.5em;
+  text-align: center;
+  color: #000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
 </style>
 
 <head>
@@ -39,22 +54,22 @@
 
 </head>
 
-    <div class="container" style="text-align: center;">
-        <h1 id="dashboard_title">Dashboard</h1>
-    </div>
+<div class="responsive-image background-image">
+  <img src="/static/images/Dashboard_DVDs.jpg" alt="Your image">
+</div>
 
-  <div class="d-flex justify-content-center">
-    <img src="/static/images/Dashboard_DVDs.jpg" alt="DVDs on a Shelf" class="img-fluid" id="dashboard-img">
-  </div>
+<div class="container" style="text-align: center;">
+    <h1 id="dashboard_title">Dashboard</h1>
+</div>
 
 <!-- dashboard logo -->
 <div class="container">
   <div class="row" id="dashboard">
-    <div class="col-10 text-center">
+    <div class="col-12 text-center">
           {% if dvds %}
-            <p class="text-center font-weight-bold" style="padding-left: 30px; padding-top: 20px;">Total DVDs in your collection:   {{ dvds|length }}</p>
+            <p class="text-center font-weight-bold">  Total DVDs in your collection:   {{ dvds|length }}</p>
           {% else %}
-            <div class="col-10 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
+            <div class="col-12 justify-content-center" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
               <h3><b>You have no DVD's in your collection, please add one using the above forms, or click help for more information.</b></h3>
             </div>
           {% endif %}
@@ -157,7 +172,7 @@
                                     </tr>
                                     <tr>
                                         <td class="table-style">Quantity in stock</td>
-                                        <td>{{ dvd.quantity }}</td>
+                                        <td><b>{{ dvd.quantity }}</b></td>
                                     </tr>
                                     <tr>
                                         <td class="table-style">Date</td>

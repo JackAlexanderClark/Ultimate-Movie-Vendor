@@ -3,8 +3,8 @@ from sqlalchemy import text
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, Dvd, User, DvdReview
 from helper import sort_dvd
-from flask_login import LoginManager, login_required, login_user, logout_user
-from models import Dvd
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+from urllib.parse import urlparse
 
 if os.path.exists("env.py"):
     import env  # noqa
@@ -81,6 +81,7 @@ def index():
 @app.route('/add_dvd', methods=["GET", "POST"])
 @login_required
 def add_dvds():
+
     if request.method == "GET":
         dvd = Dvd(name="", description="", price="", quantity="", genre="", image_url="")
         return render_template("add_dvd.html", dvd=dvd)
@@ -92,6 +93,13 @@ def add_dvds():
         quantity = request.form.get("quantity")
         genre = request.form.get("genre")
         image_url = request.form.get("image_url")
+
+        # Verify that the URL starts with http:// or https://
+        parsed_url = urlparse(image_url)
+        if parsed_url.scheme not in ['http', 'https']:
+            message = "Invalid image URL. Please make sure it starts with http:// or https://."
+            dvd = Dvd(name="", description="", price="", quantity="", genre="", image_url="")
+            return render_template("add_dvd.html", dvd=dvd, message=message)
 
         dvd = Dvd(
             name=name,
@@ -112,22 +120,40 @@ def add_dvds():
 @login_required
 def submit_dvd_review(id):
     dvd = Dvd.query.filter_by(id=id).first()
-    user = User.query.first()
 
     if request.method == "GET":
-        return render_template("dvd_review_submit.html", id=id, dvd=dvd, user=user)
+        return render_template("dvd_review_submit.html", id=id, dvd=dvd)
+        #user=user
     if request.method == "POST":
         review = request.form.get("review")
         rating = request.form.get("rating")
+        #user_fullname = request.form.get("user_fullname")  # Getting user fullname from the request
         dvd_review = DvdReview(
             review=review,
             rating=rating,
-            user_id=user.id,
+            #user_id=user.id,
             dvd_id=dvd.id,
         )
         db.session.add(dvd_review)          # add to database
         db.session.commit()                 # commit
-        return redirect('/')
+        return redirect(url_for('show_review', dvd_id=dvd.id))
+
+
+# start of logic for user reviews
+    #### finish and build upon
+    @app.route('/show_review', methods=["GET"])
+    @login_required
+    def show_review():
+        user_fullname = request.args.get('fullname')
+        dvd_id = request.args.get('dvd_id')
+        dvd_review = DvdReview.query.filter_by(dvd_id=dvd_id).first()
+
+        if dvd_review is None:
+            return "No review found for this DVD."
+
+        return render_template("review_display.html", fullname=user_fullname, review=dvd_review.review,
+                               dvd=dvd_review.dvd.name)
+
 
 # update and send dvd id
 @app.route('/update_dvd/<int:id>', methods=["GET", "POST"])
@@ -153,6 +179,15 @@ def update_dvd(id):
         dvd.genre = request.form.get("genre")
         dvd.image_url = request.form.get("image_url")
 
+        # Verify that the URL starts with http:// or https://
+        parsed_url = urlparse(dvd.image_url)
+        if parsed_url.scheme not in ['http', 'https']:
+            message = "Invalid image URL. Please make sure it starts with http:// or https://."
+            dvd = Dvd(name="", description="", price="", quantity="", genre="", image_url="")
+            return render_template("add_dvd.html", dvd=dvd, message=message)
+
+        dvd.image_url = dvd.image_url
+
         db.session.commit()
         message = f"DVD {dvd.id} has been successfully updated."
         return render_template("index.html", dvd=dvd, message=message)
@@ -164,6 +199,7 @@ def update_dvd(id):
 @app.route('/delete_dvd/<int:id>', methods=["POST"])
 @login_required
 def delete_dvd(id):
+    dvds = Dvd.query.all()
 
     if id is not None:
         try:
@@ -172,7 +208,7 @@ def delete_dvd(id):
                 db.session.delete(dvds)  # Delete
                 db.session.commit()
                 message = f"Deleted DVD with id {id}"
-                return render_template("index.html", message=message)
+                return render_template("index.html", dvds=dvds, message=message)
             else:
                 error = "DVD not found"
                 return render_template("index.html", error=error)
@@ -187,22 +223,34 @@ def delete_dvd(id):
         return render_template('index.html', error=error)
 
 
-@login_required
 @app.route('/dvd_reviews/delete_by_dvd_id', methods=['POST'])
+@login_required
 def delete_dvd_reviews_by_dvd_id():
 
     dvd_id = request.form.get('dvd_id')
     dvds = Dvd.query.all()  # query db call all dvd
 
     if dvd_id is not None:
-        try:
-            db.session.execute(text("DELETE FROM dvd_review WHERE dvd_id = :dvd_id"), {"dvd_id": dvd_id})
-            db.session.commit()
-            message = "DVD review successfully deleted"
-            return render_template("index.html", dvds=dvds, message=message)
-        except Exception as e:
-            db.session.rollback()
-            error = "An error occurred while deleting this DVD review. Please try again later."
+        dvd_review = DvdReview.query.filter_by(dvd_id=dvd_id).first()
+
+        if dvd_review is not None:
+            review_user = load_user(dvd_review.user_id)
+
+            if review_user == current_user:
+                try:
+                    db.session.delete(dvd_review)
+                    db.session.commit()
+                    message = "DVD review successfully deleted"
+                    return render_template("index.html", dvds=dvds, message=message)
+                except Exception as e:
+                    db.session.rollback()
+                    error = "An error occurred while deleting this DVD review. Please try again later."
+                    return render_template("index.html", dvds=dvds, error=error)
+            else:
+                error = "Incorrect user"
+                return render_template("index.html", dvds=dvds, error=error)
+        else:
+            error = "DVD review not found"
             return render_template("index.html", dvds=dvds, error=error)
 
     else:

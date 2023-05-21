@@ -1,9 +1,8 @@
 {% include 'header.html'%}
 {% block body %}
 
-    <div class="container" style="padding-top: 30px;">
-        <h1>Please add your contact information in the below form.</h1>
-        <hr>
+    <div class="container" style="padding-top: 10px;">
+        <h3>Please add your contact information in the below form.</h3>
 
         <form action="{{ url_for('register_user') }}" method="POST">
             <div class="form-group form-row">

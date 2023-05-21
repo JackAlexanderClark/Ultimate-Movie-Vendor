@@ -1,59 +1,98 @@
-{% include 'header.html'%}
+{% include 'header.html' %}
 {% block body %}
+<style>
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: url("/static/images/checkerboard-cross-jpeg.jpg");
+        background-size: cover;
+    }
 
-    <h1>Please add a DVD in the below form.</h1>
-    <hr>
+    .form-container {
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        max-width: 600px;
+        width: 100%;
+        z-index: 1;
+    }
 
-    <!-- error if invalid input -->
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0.5;
+        z-index: -1;
+    }
+</style>
 
-    <div class="container" style="padding-top: 30px;">
-        <!-- multiple data types (text, images, file) etc -->
+<div class="form-wrapper">
+    <div class="background-image"></div>
+    <div class="form-container">
+        <h3>Please add a DVD in the below form.</h3>
+        <hr>
+        {% if error %}
+            <h5 style="color: red;">{{ error }}</h5>
+        {% endif %}
+        <!-- message if invalid url-->
+        {% if message %}
+            <h5 style="color: red;">{{ message }}</h5>
+        {% endif %}
+
         <form action="{{ url_for('update_dvd', id=dvd.id) }}" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" id="name" value="{% if dvd %} {{ dvd.name }} {% endif %}" required>
-                </div>
+            <div class="form-group form-row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" id="name" value="{% if dvd %} {{ dvd.name }} {% endif %}" required> &nbsp;<div class="checkmark">&#10003;</div>
             </div>
-            <div class="form-group row">
-                <label for="description" class="col-sm-2 col-form-label">Description</label>
-                <div class="col-sm-10">
-                    <input type="text" name="description" class="form-control" id="description" value="{% if dvd %} {{ dvd.description }} {% endif %}" required>
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" name="description" class="form-control" id="description" value="{% if dvd %} {{ dvd.description }} {% endif %}" required> &nbsp;<div class="checkmark">&#10003;</div>
             </div>
-            <div class="form-group row">
-                <label for="price" class="col-sm-2 col-form-label">Price (£)</label>
-                <div class="col-sm-10">
-                    <input type="number" name="price" class="form-control" id="price" value="{% if dvd %} {{ dvd.price|float }} {% endif %}" required>
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="price" class="col-sm-2 col-form-label">Price (£)</label>
+            <div class="col-sm-10">
+                <input type="number" name="price" class="form-control" id="price" value="{% if dvd %} {{ dvd.price|float }} {% endif %}" required> &nbsp;<div class="checkmark">&#10003;</div>
             </div>
-            <div class="form-group row">
-                <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
-                <div class="col-sm-10">
-                    <input type="number" name="quantity" class="form-control" id="quantity" value="{% if dvd %} {{ dvd.quantity|int }} {% endif %}" required>
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+            <div class="col-sm-10">
+                <input type="number" name="quantity" class="form-control" id="quantity" value="{% if dvd %} {{ dvd.quantity|int }} {% endif %}" required> &nbsp;<div class="checkmark">&#10003;</div>
             </div>
-            <div class="form-group row">
-                <label for="image_url" class="col-sm-2 col-form-label">Image URL</label>
-                <div class="col-sm-10">
-                     <input type="text" class="form-control" name="image_url" id="image_url" value="{% if dvd %} {{ dvd.image_url }} {% endif %}">
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="image_url" class="col-sm-2 col-form-label">Image URL</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="image_url" id="image_url" value="{% if dvd %} {{ dvd.image_url }} {% endif %}"> &nbsp;<div class="checkmark">&#10003;</div>
             </div>
-            <div class="form-group row">
-                <label for="genre" class="col-sm-2 col-form-label">Genre</label>
-                <div class="col-sm-10">
-                    <input type="text" name="genre" class="form-control" id="genre" value="{% if dvd %} {{ dvd.genre }} {% endif %}" required>
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="genre" class="col-sm-2 col-form-label">Genre</label>
+            <div class="col-sm-10">
+                <input type="text" name="genre" class="form-control" id="genre" value="{% if dvd %} {{ dvd.genre }} {% endif %}" required> &nbsp;<div class="checkmark">&#10003;</div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Update DVD</button>
+        </div>
+
+            <div class="form-group form-row">
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary">Submit DVD</button>
                 </div>
             </div>
         </form>
     </div>
+</div>
+
 {% endblock %}
+
+
+
 

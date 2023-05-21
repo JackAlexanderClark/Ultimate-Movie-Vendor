@@ -1,47 +1,77 @@
-{% include 'header.html'%}  <!-- include header as already inherited main -->
+{% include 'header.html'%}
 {% block body %}
 
-    <h1>Please add your review in the below form.</h1>
-    <hr>
+    <style>
+        .form-container {
+            border: 2px solid #000;
+            padding: 20px;
+            background-color: #fff; /* optional: add a background color to make the form stand out from the background pattern */
+            border-radius: 8px; /* optional: add a border radius to round the corners of the form */
+            margin: 20px auto; /* centers the form horizontally and provides a space between the form and the screen edges */
+        }
+    </style>
 
-    <div class="container" style="padding-top: 30px;">
-    <!-- how to add foreign keys to database -->
-        <form  method="POST"  action="{{ url_for('submit_dvd_review', id=id) }}">
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Name of DVD</label>
-                <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" value="{{ dvd.name }}" required readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">User</label>
-                <div class="col-sm-10">
-                    <input type="text" name="" class="form-control" value="{{ user.firstname + ' ' + user.lastname }}" required readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="firstname" class="col-sm-2 col-form-label">Review</label>
-                <div class="col-sm-10">
-                    <input type="text" name="review" class="form-control" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Rating (Out of 5 <i class="fa-solid fa-star"></i>)</label>
-                <select class="form-control" name="rating" required>
-                    <option value="">Please select</option>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Star</option>
-                    <option value="3">3 Star</option>
-                    <option value="4">4 Star</option>
-                    <option value="5">5 Star</option>
-                </select>
-            </div>
+    <div class="container" style="padding-top: 10px;">
+        <h3>Please add your review in the below form.</h3>
 
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
+        <div class="form-container">
+            <!-- how to add foreign keys to database -->
+            <form  method="POST"  action="{{ url_for('submit_dvd_review', id=id) }}">
+                <div class="form-group row">
+                    <label for="firstname" class="col-sm-2 col-form-label">Name of DVD</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" value="{{ dvd.name }}" required readonly>
+                    </div>
                 </div>
-            </div>
-        </form>
+{#                fix ------ need to add user logic for reviews last task ben #}
+{#                <div class="form-group row">#}
+{#                    <label for="firstname" class="col-sm-2 col-form-label">User</label>#}
+{#                    <div class="col-sm-10">#}
+{#                        <input type="text" name="" class="form-control" value="{{ user.firstname + ' ' + user.lastname }}" required readonly>#}
+{#                    </div>#}
+{#                </div>#}
+                <div class="form-group row">
+                    <label for="firstname" class="col-sm-2 col-form-label">Review</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="review" class="form-control" required> <div class="checkmark">&#10003;</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Rating (Out of 5 <i class="fa-solid fa-star"></i>)</label> <div class="checkmark">&#10003;</div>
+                    <select class="form-control" name="rating" required>
+                        <option value="">Please select</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Star</option>
+                        <option value="3">3 Star</option>
+                        <option value="4">4 Star</option>
+                        <option value="5">5 Star</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10" style="padding-top: 5px;">
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <script>
+    // checkbox input code
+    const inputs = document.querySelectorAll('input');
+
+    // reveal ticks if user inputs data to form
+    inputs.forEach((input) => {
+        input.addEventListener('input', (event) => {
+
+            const checkmark = event.target.parentElement.parentElement.querySelector('.checkmark');
+            if (event.target.value !== '') {
+                checkmark.style.display = 'block';
+            } else {
+                checkmark.style.display = 'none';
+            }
+        });
+    });
+</script>
+
 {% endblock %}
