@@ -60,22 +60,18 @@ Dvd: This table is for a DVD in the collection, including attributes like name, 
 
 DvdReview: Represents a review written by a user for a particular DVD. This class has a foreign key relationship with both the User and Dvd classes through the user_id and dvd_id fields, respectively. The user and dvd relationships allow for easy retrieval of the associated User and Dvd objects, while the backref attribute creates a reverse relationship for convenience. The DvdReview class also stores the review text and a rating (an integer value).
 
-<ul> 
 
 
-    <li>The app is based around 3 principles the "user", the "dvd" a user can own and a "dvd review" a user can write about a dvd.</li> 
+    The app is based around 3 principles the "user", the "dvd" a user can own and a "dvd review" a user can write about a dvd.
 
-    <li>This is intrinsic to the business logic of the app.</li> 
+    This is intrinsic to the business logic of the app.
 
-    <li>The DVD objects can be updated, read, created and deleted whenever is necessary by clear and well defined buttons on each DVD.</li> 
+    <lThe DVD objects can be updated, read, created and deleted whenever is necessary by clear and well defined buttons on each DVD.</li> 
 
     <li>As seen below, this ERD diagram shows the relationships between the database tables, we can see that the DVD_REVIEW references the primary key of DVD id.</li> 
 
     <li>Similarly we can see that the DVD_REVIEW references the primary key of user id from USER table.</li> 
 
-    
-
-</ul> 
 
 <img src="static/images/ERD diagram of tables.jpg"> 
 
