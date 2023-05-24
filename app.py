@@ -57,13 +57,11 @@ def register_user():
         lastname = request.form.get("lastname")
         email = request.form.get("email")
         password = request.form.get("password")
-        country = request.form.get("country")
         user = User(
             firstname=firstname,
             lastname=lastname,
             email=email,
             password=password,
-            country=country,
         )
         db.session.add(user)                # add to database
         db.session.commit()                 # commit
@@ -287,6 +285,23 @@ def sign_in():
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
+
+# @app.route('/get_current_user')
+# def get_current_user():
+#     if current_user.is_authenticated:
+#         return {
+#             "user_id": current_user.id,
+#             "first_name": current_user.firstname,
+#             "last_name": current_user.lastname,
+#             "email": current_user.email
+#         }
+#         print(user_data)  # prints the user details to the terminal
+#         return user_data
+#     else:
+#         print("No user is currently logged in")  # prints the message to the terminal
+#         return {"error": "No user is currently logged in"}
+#
+# get_current_user()
 
 @app.route('/log_out', methods=["GET"])
 @login_required

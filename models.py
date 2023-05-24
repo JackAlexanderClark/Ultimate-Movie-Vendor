@@ -12,14 +12,12 @@ class User(db.Model):
     firstname = db.Column(db.String(40))
     lastname = db.Column(db.String(40))
     email = db.Column(db.String(40))
-    country = db.Column(db.String())
     password = db.Column(db.String(40))
 
-    def __init__(self, firstname, lastname, email, country, password):         # initialise the model by calling self
+    def __init__(self, firstname, lastname, email, password):         # initialise the model by calling self
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
-        self.country = country
         self.password = password
 
     def is_authenticated(self):

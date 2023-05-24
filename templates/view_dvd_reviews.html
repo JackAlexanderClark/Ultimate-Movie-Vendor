@@ -13,19 +13,28 @@
             color: white;
             background-color: lightblue;
         }
+
+        .review-card {
+              position: relative;
+              border: 5px solid black;
+              border: 1px solid black;
+              background-color: white; /* White background for the container */
+        }
     </style>
 
-    <div class="container" style="padding-top: 10px;">
-        <h3>View your DVD reviews</h3>
-        <img src="static/images/Review_Writing_note.png" alt="review note" class="img-fluid" style="max-height: 200px; max-width: 200px;">
+        <div class="container d-flex align-items-center justify-content-center" style="padding-top: 10px; height: 40vh;">
+          <div class="text-center">
+            <h3>View your DVD reviews</h3>
+            <img src="static/images/Review_Writing_note.png" alt="review note" class="img-fluid" style="max-height: 200px; max-width: 200px;">
 
-                    {% if message %}
-                        <p>{{ message }}</p>
-                    {% elif error %}
-                        <p>{{ error }}</p>
-                    {% endif %}
+            {% if message %}
+            <p>{{ message }}</p>
+            {% elif error %}
+            <p>{{ error }}</p>
+            {% endif %}
+          </div>
+        </div>
 
-    </div>
     <hr>
 
 <div class="container" style="padding-top: 30px; width: 100%;">
@@ -37,23 +46,23 @@
                     <h3><b>You have no Reviews added to your DVD's in your collection,  click add a review on a DVD.</b></h3>
                 {% endif %}
 
-                <div class="review-card" style="border: 5px solid black; padding: 10px; margin-bottom: 20px; text-align: center;">
+                <div class='review-card' style="border: 5px solid black; padding: 10px; margin-bottom: 20px; text-align: center;">
                 <ul class="list-group list-group-flush" style="display: inline-block; text-align: left;">
 
                         {% if review.dvd.name  %}
-                        <li class="list-group-item"><b>DVD:</b> {{  review.dvd.name }}</li>
+                        <li class="list-group-item"><b>DVD:</b> {{  review.dvd.name }} <i class="fa fa-comments fa-lg" style="float: right;"></i></li>
                         {% endif %}
                         <img src="{{ review.dvd.image_url }}" class="img-fluid" id="review-image">
                         <li class="list-group-item"><b>User Name:</b> {{ review.user.firstname }} </li>
                         <li class="list-group-item"><b>Review:</b> {{  review.review }}</li>
-                        <!-- for loop to iterate over number of stars -->
+                        {# for loop to iterate over number of stars #}
                         <li class="list-group-item"><b>Rating:</b>{% for i in range(review.rating) %}
                             <i class="fa fa-star"></i>
                         {% endfor %}</li>
                     </li>
                 </ul>
                 <br>
-                    <!-- pass in review_id into delete function -->
+                    {#  pass in review_id into delete function #}
                     <form method="POST" action="{{ url_for('delete_dvd_reviews_by_dvd_id') }}" onsubmit="return alertUserReview()">
                         <input type="hidden" id="dvd_id" name="dvd_id" value="{{ review.dvd_id }}">
                         <input type="submit" value="Delete This Review?" id="button-submit" class="btn btn-outline-primary">

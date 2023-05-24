@@ -12,12 +12,13 @@
     }
 
     .form-container {
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        padding: 20px;
-        max-width: 600px;
-        width: 100%;
-        z-index: 1;
+            margin: 0 auto;
+            border: 2px solid #000;
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            z-index: 2;
+            position: relative;
     }
 
     .background-image {
@@ -33,7 +34,7 @@
 
 <div class="form-wrapper">
     <div class="background-image"></div>
-    <div class="form-container">
+    <div class="form-container" style="padding-top: 10px;">
         <h3>Please add a DVD in the below form.</h3>
         <hr>
         {% if error %}
@@ -45,7 +46,7 @@
         {% endif %}
 
         <form action="{{ url_for('update_dvd', id=dvd.id) }}" method="POST" enctype="multipart/form-data">
-            <div class="form-group form-row">
+        <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
                 <input type="text" name="name" class="form-control" id="name" value="{% if dvd %} {{ dvd.name }} {% endif %}" required> &nbsp;<div class="checkmark">&#10003;</div>
